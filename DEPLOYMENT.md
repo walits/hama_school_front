@@ -250,3 +250,9 @@ terraform destroy
 - [CloudFront 공식 문서](https://docs.aws.amazon.com/cloudfront/)
 - [Next.js Static Export](https://nextjs.org/docs/app/building-your-application/deploying/static-exports)
 - [Terraform AWS Provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
+# Deployment Info
+
+- Deployed on: Mon Feb  2 14:49:52 KST 2026
+- CloudFront: https://d6h9r23562m58.cloudfront.net
+- S3 Bucket: hama-school-front-prod
+
