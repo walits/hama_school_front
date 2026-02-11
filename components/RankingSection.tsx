@@ -196,20 +196,15 @@ export default function RankingSection() {
                 key={student.id}
                 className={`p-4 rounded-xl transition-all hover:shadow-md ${
                   index === 0 ? 'bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-300' :
-                  index === 1 ? 'bg-gradient-to-r from-gray-50 to-gray-100 border-2 border-gray-300' :
-                  index === 2 ? 'bg-gradient-to-r from-orange-50 to-amber-50 border-2 border-orange-300' :
                   'bg-gray-50 border border-gray-200'
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-4">
                     <div className={`text-2xl font-bold ${
-                      index === 0 ? 'text-yellow-600' :
-                      index === 1 ? 'text-gray-600' :
-                      index === 2 ? 'text-orange-600' :
-                      'text-gray-400'
+                      index === 0 ? 'text-yellow-600' : 'text-gray-400'
                     }`}>
-                      {index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `${index + 1}위`}
+                      {index === 0 ? '🥇' : `${index + 1}위`}
                     </div>
                     <div>
                       <div className="font-bold text-gray-900">{student.nickname}</div>
@@ -280,20 +275,15 @@ export default function RankingSection() {
                 key={school.id}
                 className={`p-4 rounded-xl transition-all hover:shadow-md ${
                   index === 0 ? 'bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-300' :
-                  index === 1 ? 'bg-gradient-to-r from-gray-50 to-gray-100 border-2 border-gray-300' :
-                  index === 2 ? 'bg-gradient-to-r from-orange-50 to-amber-50 border-2 border-orange-300' :
                   'bg-gray-50 border border-gray-200'
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-4">
                     <div className={`text-2xl font-bold ${
-                      index === 0 ? 'text-yellow-600' :
-                      index === 1 ? 'text-gray-600' :
-                      index === 2 ? 'text-orange-600' :
-                      'text-gray-400'
+                      index === 0 ? 'text-yellow-600' : 'text-gray-400'
                     }`}>
-                      {index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `${index + 1}위`}
+                      {index === 0 ? '🥇' : `${index + 1}위`}
                     </div>
                     <div>
                       <div className="font-bold text-gray-900">{school.name}</div>

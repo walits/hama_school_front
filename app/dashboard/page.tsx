@@ -323,12 +323,9 @@ export default function DashboardPage() {
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center gap-3">
                           <div className={`text-xl font-bold ${
-                            school.rank === 1 ? 'text-yellow-600' :
-                            school.rank === 2 ? 'text-gray-600' :
-                            school.rank === 3 ? 'text-orange-600' :
-                            'text-gray-400'
+                            school.rank === 1 ? 'text-yellow-600' : 'text-gray-400'
                           }`}>
-                            {school.rank === 1 ? '🥇' : school.rank === 2 ? '🥈' : school.rank === 3 ? '🥉' : `${school.rank}위`}
+                            {school.rank === 1 ? '🥇' : `${school.rank}위`}
                           </div>
                           <div>
                             <div className="font-bold text-gray-900">{school.name}</div>
@@ -406,20 +403,15 @@ export default function DashboardPage() {
                       key={student.id}
                       className={`p-4 rounded-lg ${
                         student.rank === 1 ? 'bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-300' :
-                        student.rank === 2 ? 'bg-gradient-to-r from-gray-50 to-gray-100 border-2 border-gray-300' :
-                        student.rank === 3 ? 'bg-gradient-to-r from-orange-50 to-amber-50 border-2 border-orange-300' :
                         'bg-gray-50 border border-gray-200'
                       }`}
                     >
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center gap-3">
                           <div className={`text-2xl font-bold ${
-                            student.rank === 1 ? 'text-yellow-600' :
-                            student.rank === 2 ? 'text-gray-600' :
-                            student.rank === 3 ? 'text-orange-600' :
-                            'text-gray-400'
+                            student.rank === 1 ? 'text-yellow-600' : 'text-gray-400'
                           }`}>
-                            {student.rank === 1 ? '🥇' : student.rank === 2 ? '🥈' : student.rank === 3 ? '🥉' : `${student.rank}위`}
+                            {student.rank === 1 ? '🥇' : `${student.rank}위`}
                           </div>
                           <div>
                             <div className="font-bold text-gray-900">{student.nickname}</div>
