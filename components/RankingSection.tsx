@@ -171,161 +171,227 @@ export default function RankingSection() {
     }
   };
 
-  const renderStudentRankingList = (students: Student[], level: SchoolLevel) => (
-    <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
-      <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-        <span>{SCHOOL_LABELS[level]} 학생</span>
-        <span className="text-sm font-normal text-gray-500">TOP 10</span>
-      </h3>
+  const renderStudentRankingList = (students: Student[], level: SchoolLevel) => {
+    const firstPlace = students[0];
+    const restStudents = students.slice(1);
 
-      {students.length === 0 ? (
-        <div className="text-center py-8 text-gray-500">
-          데이터가 없습니다
-        </div>
-      ) : (
-        <div className="space-y-3">
-          {students.map((student, index) => {
-            // API tier 정보 사용, 없으면 폴백
-            const fallbackTier = getFallbackTier(student.totalScore, true);
-            const tierInfo = student.tier || fallbackTier;
-            const tierEmoji = student.tier?.icon || fallbackTier.emoji;
-            const tierName = student.tier?.currentKorean || fallbackTier.nameKorean;
+    return (
+      <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
+        <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+          <span>{SCHOOL_LABELS[level]} 학생</span>
+          <span className="text-sm font-normal text-gray-500">TOP 10</span>
+        </h3>
 
-            return (
-              <div
-                key={student.id}
-                className={`p-4 rounded-xl transition-all hover:shadow-md ${
-                  index === 0 ? 'bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-300' :
-                  'bg-gray-50 border border-gray-200'
-                }`}
-              >
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-4">
-                    <div className={`text-2xl font-bold ${
-                      index === 0 ? 'text-yellow-600' : 'text-gray-400'
-                    }`}>
-                      {index === 0 ? '🥇' : `${index + 1}위`}
-                    </div>
-                    <div>
-                      <div className="font-bold text-gray-900">{student.nickname}</div>
-                      <div className="text-sm text-gray-600">
-                        {student.school ? `${student.school.name}` : `Lv.${student.level}`}
+        {students.length === 0 ? (
+          <div className="text-center py-8 text-gray-500">
+            데이터가 없습니다
+          </div>
+        ) : (
+          <div className="space-y-6">
+            {/* 1등 - 크게 표시 */}
+            {firstPlace && (() => {
+              const fallbackTier = getFallbackTier(firstPlace.totalScore, true);
+              const tierInfo = firstPlace.tier || fallbackTier;
+              const tierEmoji = firstPlace.tier?.icon || fallbackTier.emoji;
+              const tierName = firstPlace.tier?.currentKorean || fallbackTier.nameKorean;
+
+              return (
+                <div className="bg-gradient-to-r from-yellow-50 via-orange-50 to-yellow-50 border-4 border-yellow-400 rounded-2xl p-6 shadow-xl">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-4">
+                      <div className="text-5xl animate-bounce">🥇</div>
+                      <div>
+                        <div className="text-2xl font-bold text-gray-900">{firstPlace.nickname}</div>
+                        <div className="text-base text-gray-600 mt-1">
+                          {firstPlace.school ? `${firstPlace.school.name}` : `Lv.${firstPlace.level}`}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="text-right">
-                    <div className="flex items-center gap-2 justify-end mb-1">
-                      <span className="text-lg">{tierEmoji}</span>
-                      <span className="text-sm font-semibold text-gray-800">
-                        {tierName}
-                      </span>
+                    <div className="text-right">
+                      <div className="flex items-center gap-2 justify-end mb-2">
+                        <span className="text-2xl">{tierEmoji}</span>
+                        <span className="text-lg font-bold text-gray-800">
+                          {tierName}
+                        </span>
+                      </div>
+                      <div className="text-3xl font-bold text-yellow-600">{firstPlace.totalScore.toLocaleString()}점</div>
                     </div>
-                    <div className="text-xl font-bold text-gray-900">{student.totalScore.toLocaleString()}점</div>
                   </div>
+
+                  {/* 티어 진행도 바 */}
+                  {firstPlace.tier && firstPlace.tier.nextTier && (
+                    <div className="mt-4 pt-4 border-t border-yellow-200">
+                      <div className="flex justify-between text-sm text-gray-700 mb-2 font-semibold">
+                        <span>다음: {firstPlace.tier.nextTierKorean} {firstPlace.tier.icon}</span>
+                        <span>{firstPlace.tier.remainingScore.toLocaleString()}점 남음</span>
+                      </div>
+                      <div className="w-full bg-yellow-200 rounded-full h-3">
+                        <div
+                          className="h-3 rounded-full transition-all bg-gradient-to-r from-yellow-400 to-orange-400"
+                          style={{ width: `${firstPlace.tier.progress}%` }}
+                        ></div>
+                      </div>
+                    </div>
+                  )}
                 </div>
+              );
+            })()}
 
-                {/* 티어 진행도 바 */}
-                {student.tier && student.tier.nextTier && (
-                  <div className="mt-3 pt-3 border-t border-gray-200">
-                    <div className="flex justify-between text-xs text-gray-600 mb-1">
-                      <span>다음: {student.tier.nextTierKorean} {student.tier.icon}</span>
-                      <span>{student.tier.remainingScore.toLocaleString()}점 남음</span>
+            {/* 2-10등 */}
+            {restStudents.length > 0 && (
+              <div className="space-y-2">
+                {restStudents.map((student, index) => {
+                  const fallbackTier = getFallbackTier(student.totalScore, true);
+                  const tierInfo = student.tier || fallbackTier;
+                  const tierEmoji = student.tier?.icon || fallbackTier.emoji;
+                  const tierName = student.tier?.currentKorean || fallbackTier.nameKorean;
+
+                  return (
+                    <div
+                      key={student.id}
+                      className="p-3 rounded-lg bg-gray-50 border border-gray-200 hover:shadow-md transition-all"
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="text-lg font-bold text-gray-400 w-8">
+                            {index + 2}위
+                          </div>
+                          <div>
+                            <div className="font-bold text-gray-900">{student.nickname}</div>
+                            <div className="text-xs text-gray-500">
+                              {student.school ? `${student.school.name}` : `Lv.${student.level}`}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <div className="flex items-center gap-1 justify-end mb-1">
+                            <span className="text-sm">{tierEmoji}</span>
+                            <span className="text-xs font-semibold text-gray-800">
+                              {tierName}
+                            </span>
+                          </div>
+                          <div className="text-base font-bold text-gray-900">{student.totalScore.toLocaleString()}점</div>
+                        </div>
+                      </div>
                     </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2">
-                      <div
-                        className="h-2 rounded-full transition-all"
-                        style={{
-                          width: `${student.tier.progress}%`,
-                          backgroundColor: student.tier.color
-                        }}
-                      ></div>
-                    </div>
-                  </div>
-                )}
+                  );
+                })}
               </div>
-            );
-          })}
-        </div>
-      )}
-    </div>
-  );
+            )}
+          </div>
+        )}
+      </div>
+    );
+  };
 
-  const renderRankingList = (schools: School[], level: SchoolLevel) => (
-    <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
-      <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-        <span>{SCHOOL_LABELS[level]}</span>
-        <span className="text-sm font-normal text-gray-500">TOP 10</span>
-      </h3>
+  const renderRankingList = (schools: School[], level: SchoolLevel) => {
+    const firstPlace = schools[0];
+    const restSchools = schools.slice(1);
 
-      {schools.length === 0 ? (
-        <div className="text-center py-8 text-gray-500">
-          데이터가 없습니다
-        </div>
-      ) : (
-        <div className="space-y-3">
-          {schools.map((school, index) => {
-            // API tier 정보 사용, 없으면 폴백
-            const fallbackTier = getFallbackTier(school.totalScore, false);
-            const tierInfo = school.tier || fallbackTier;
-            const tierEmoji = school.tier?.icon || fallbackTier.emoji;
-            const tierName = school.tier?.currentKorean || fallbackTier.nameKorean;
+    return (
+      <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
+        <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+          <span>{SCHOOL_LABELS[level]}</span>
+          <span className="text-sm font-normal text-gray-500">TOP 10</span>
+        </h3>
 
-            return (
-              <div
-                key={school.id}
-                className={`p-4 rounded-xl transition-all hover:shadow-md ${
-                  index === 0 ? 'bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-300' :
-                  'bg-gray-50 border border-gray-200'
-                }`}
-              >
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-4">
-                    <div className={`text-2xl font-bold ${
-                      index === 0 ? 'text-yellow-600' : 'text-gray-400'
-                    }`}>
-                      {index === 0 ? '🥇' : `${index + 1}위`}
+        {schools.length === 0 ? (
+          <div className="text-center py-8 text-gray-500">
+            데이터가 없습니다
+          </div>
+        ) : (
+          <div className="space-y-6">
+            {/* 1등 - 크게 표시 */}
+            {firstPlace && (() => {
+              const fallbackTier = getFallbackTier(firstPlace.totalScore, false);
+              const tierInfo = firstPlace.tier || fallbackTier;
+              const tierEmoji = firstPlace.tier?.icon || fallbackTier.emoji;
+              const tierName = firstPlace.tier?.currentKorean || fallbackTier.nameKorean;
+
+              return (
+                <div className="bg-gradient-to-r from-yellow-50 via-orange-50 to-yellow-50 border-4 border-yellow-400 rounded-2xl p-6 shadow-xl">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-4">
+                      <div className="text-5xl animate-bounce">🥇</div>
+                      <div>
+                        <div className="text-2xl font-bold text-gray-900">{firstPlace.name}</div>
+                        <div className="text-base text-gray-600 mt-1">{firstPlace.region1} {firstPlace.region2}</div>
+                      </div>
                     </div>
-                    <div>
-                      <div className="font-bold text-gray-900">{school.name}</div>
-                      <div className="text-sm text-gray-600">{school.region1} {school.region2}</div>
+                    <div className="text-right">
+                      <div className="flex items-center gap-2 justify-end mb-2">
+                        <span className="text-2xl">{tierEmoji}</span>
+                        <span className="text-lg font-bold text-gray-800">
+                          {tierName}
+                        </span>
+                      </div>
+                      <div className="text-3xl font-bold text-yellow-600">{firstPlace.normalizedScore.toLocaleString()}점</div>
                     </div>
                   </div>
-                  <div className="text-right">
-                    <div className="flex items-center gap-2 justify-end mb-1">
-                      <span className="text-lg">{tierEmoji}</span>
-                      <span className="text-sm font-semibold text-gray-800">
-                        {tierName}
-                      </span>
+
+                  {/* 티어 진행도 바 */}
+                  {firstPlace.tier && firstPlace.tier.nextTier && (
+                    <div className="mt-4 pt-4 border-t border-yellow-200">
+                      <div className="flex justify-between text-sm text-gray-700 mb-2 font-semibold">
+                        <span>다음: {firstPlace.tier.nextTierKorean} {firstPlace.tier.icon}</span>
+                        <span>{firstPlace.tier.remainingScore.toLocaleString()}점 남음</span>
+                      </div>
+                      <div className="w-full bg-yellow-200 rounded-full h-3">
+                        <div
+                          className="h-3 rounded-full transition-all bg-gradient-to-r from-yellow-400 to-orange-400"
+                          style={{ width: `${firstPlace.tier.progress}%` }}
+                        ></div>
+                      </div>
                     </div>
-                    <div className="text-xl font-bold text-gray-900">{school.normalizedScore.toLocaleString()}점</div>
-                  </div>
+                  )}
                 </div>
+              );
+            })()}
 
-                {/* 티어 진행도 바 */}
-                {school.tier && school.tier.nextTier && (
-                  <div className="mt-3 pt-3 border-t border-gray-200">
-                    <div className="flex justify-between text-xs text-gray-600 mb-1">
-                      <span>다음: {school.tier.nextTierKorean} {school.tier.icon}</span>
-                      <span>{school.tier.remainingScore.toLocaleString()}점 남음</span>
+            {/* 2-10등 */}
+            {restSchools.length > 0 && (
+              <div className="space-y-2">
+                {restSchools.map((school, index) => {
+                  const fallbackTier = getFallbackTier(school.totalScore, false);
+                  const tierInfo = school.tier || fallbackTier;
+                  const tierEmoji = school.tier?.icon || fallbackTier.emoji;
+                  const tierName = school.tier?.currentKorean || fallbackTier.nameKorean;
+
+                  return (
+                    <div
+                      key={school.id}
+                      className="p-3 rounded-lg bg-gray-50 border border-gray-200 hover:shadow-md transition-all"
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="text-lg font-bold text-gray-400 w-8">
+                            {index + 2}위
+                          </div>
+                          <div>
+                            <div className="font-bold text-gray-900">{school.name}</div>
+                            <div className="text-xs text-gray-500">{school.region1} {school.region2}</div>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <div className="flex items-center gap-1 justify-end mb-1">
+                            <span className="text-sm">{tierEmoji}</span>
+                            <span className="text-xs font-semibold text-gray-800">
+                              {tierName}
+                            </span>
+                          </div>
+                          <div className="text-base font-bold text-gray-900">{school.normalizedScore.toLocaleString()}점</div>
+                        </div>
+                      </div>
                     </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2">
-                      <div
-                        className="h-2 rounded-full transition-all"
-                        style={{
-                          width: `${school.tier.progress}%`,
-                          backgroundColor: school.tier.color
-                        }}
-                      ></div>
-                    </div>
-                  </div>
-                )}
+                  );
+                })}
               </div>
-            );
-          })}
-        </div>
-      )}
-    </div>
-  );
+            )}
+          </div>
+        )}
+      </div>
+    );
+  };
 
   if (loading) {
     return (
