@@ -74,6 +74,7 @@ export default function DetailPage() {
   const [schoolsLoading, setSchoolsLoading] = useState(false);
   const [schoolRegion1, setSchoolRegion1] = useState('');
   const [schoolRegion2, setSchoolRegion2] = useState('');
+  const [schoolSearchQuery, setSchoolSearchQuery] = useState('');
 
   // 학생 순위 관련
   const [studentRankingType, setStudentRankingType] = useState<RankingType>('national');
@@ -81,10 +82,17 @@ export default function DetailPage() {
   const [studentsLoading, setStudentsLoading] = useState(false);
   const [studentRegion1, setStudentRegion1] = useState('');
   const [studentRegion2, setStudentRegion2] = useState('');
+  const [studentSearchQuery, setStudentSearchQuery] = useState('');
 
   // 지역 목록
   const [regions, setRegions] = useState<string[]>([]);
-  const [regions2, setRegions2] = useState<string[]>([]);
+  const [allSchools, setAllSchools] = useState<any[]>([]);
+
+  // 학교용 region2 목록 (schoolRegion1에 따라 필터링)
+  const [schoolRegion2Options, setSchoolRegion2Options] = useState<string[]>([]);
+
+  // 학생용 region2 목록 (studentRegion1에 따라 필터링)
+  const [studentRegion2Options, setStudentRegion2Options] = useState<string[]>([]);
 
   useEffect(() => {
     fetchRegions();
@@ -98,25 +106,54 @@ export default function DetailPage() {
     fetchStudentRankings();
   }, [schoolLevel, studentRankingType, studentRegion1, studentRegion2]);
 
+  // 학교 섹션: schoolRegion1이 변경되면 해당 지역의 region2만 필터링
+  useEffect(() => {
+    if (schoolRegion1 && allSchools.length > 0) {
+      const filteredRegion2 = Array.from(
+        new Set(
+          allSchools
+            .filter((s: any) => s.region1 === schoolRegion1)
+            .map((s: any) => s.region2)
+            .filter(Boolean)
+        )
+      );
+      setSchoolRegion2Options(filteredRegion2 as string[]);
+      if (filteredRegion2.length > 0) {
+        setSchoolRegion2(filteredRegion2[0] as string);
+      }
+    }
+  }, [schoolRegion1, allSchools]);
+
+  // 학생 섹션: studentRegion1이 변경되면 해당 지역의 region2만 필터링
+  useEffect(() => {
+    if (studentRegion1 && allSchools.length > 0) {
+      const filteredRegion2 = Array.from(
+        new Set(
+          allSchools
+            .filter((s: any) => s.region1 === studentRegion1)
+            .map((s: any) => s.region2)
+            .filter(Boolean)
+        )
+      );
+      setStudentRegion2Options(filteredRegion2 as string[]);
+      if (filteredRegion2.length > 0) {
+        setStudentRegion2(filteredRegion2[0] as string);
+      }
+    }
+  }, [studentRegion1, allSchools]);
+
   async function fetchRegions() {
     try {
       const res = await fetch(`${API_BASE}/schools`);
-      const allSchools = await res.json();
+      const schoolsData = await res.json();
+      setAllSchools(schoolsData);
 
-      const uniqueRegions = Array.from(new Set(allSchools.map((s: any) => s.region1).filter(Boolean)));
+      const uniqueRegions = Array.from(new Set(schoolsData.map((s: any) => s.region1).filter(Boolean)));
       setRegions(uniqueRegions as string[]);
       if (uniqueRegions.length > 0) {
         const firstRegion = uniqueRegions[0] as string;
         setSchoolRegion1(firstRegion);
         setStudentRegion1(firstRegion);
-      }
-
-      const uniqueRegions2 = Array.from(new Set(allSchools.map((s: any) => s.region2).filter(Boolean)));
-      setRegions2(uniqueRegions2 as string[]);
-      if (uniqueRegions2.length > 0) {
-        const firstRegion2 = uniqueRegions2[0] as string;
-        setSchoolRegion2(firstRegion2);
-        setStudentRegion2(firstRegion2);
       }
     } catch (error) {
       console.error('Failed to fetch regions:', error);
@@ -302,19 +339,44 @@ export default function DetailPage() {
               )}
 
               {schoolRankingType === 'nearby' && (
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">시/군 선택</label>
-                  <select
-                    value={schoolRegion2}
-                    onChange={(e) => setSchoolRegion2(e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500"
-                  >
-                    {regions2.map((region) => (
-                      <option key={region} value={region}>{region}</option>
-                    ))}
-                  </select>
-                </div>
+                <>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">시/도 선택</label>
+                    <select
+                      value={schoolRegion1}
+                      onChange={(e) => setSchoolRegion1(e.target.value)}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500"
+                    >
+                      {regions.map((region) => (
+                        <option key={region} value={region}>{region}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">시/군 선택</label>
+                    <select
+                      value={schoolRegion2}
+                      onChange={(e) => setSchoolRegion2(e.target.value)}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500"
+                    >
+                      {schoolRegion2Options.map((region) => (
+                        <option key={region} value={region}>{region}</option>
+                      ))}
+                    </select>
+                  </div>
+                </>
               )}
+            </div>
+
+            {/* 학교 검색 */}
+            <div className="mb-4">
+              <input
+                type="text"
+                placeholder="학교 이름으로 검색..."
+                value={schoolSearchQuery}
+                onChange={(e) => setSchoolSearchQuery(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              />
             </div>
 
             {/* 학교 목록 */}
@@ -329,11 +391,23 @@ export default function DetailPage() {
               </div>
             ) : (
               <div>
-                <div className="text-sm text-gray-600 mb-4">
-                  총 <span className="font-bold text-purple-600">{schools.length}개</span> 학교
-                </div>
-                <div className="space-y-2 max-h-[600px] overflow-y-auto pr-2">
-                  {schools.map((school) => {
+                {(() => {
+                  const filteredSchools = schools.filter(school =>
+                    school.name.toLowerCase().includes(schoolSearchQuery.toLowerCase())
+                  );
+                  return (
+                    <>
+                      <div className="text-sm text-gray-600 mb-4">
+                        총 <span className="font-bold text-purple-600">{filteredSchools.length}개</span> 학교
+                        {schoolSearchQuery && ` (전체 ${schools.length}개 중 검색 결과)`}
+                      </div>
+                      {filteredSchools.length === 0 ? (
+                        <div className="text-center py-12 text-gray-500">
+                          검색 결과가 없습니다.
+                        </div>
+                      ) : (
+                        <div className="space-y-2 max-h-[600px] overflow-y-auto pr-2">
+                          {filteredSchools.map((school) => {
                     const fallbackTier = getFallbackTier(school.normalizedScore, false);
                     const tierEmoji = school.tier?.icon || fallbackTier.emoji;
                     const tierName = school.tier?.currentKorean || fallbackTier.name;
@@ -379,7 +453,11 @@ export default function DetailPage() {
                       </div>
                     );
                   })}
-                </div>
+                        </div>
+                      )}
+                    </>
+                  );
+                })()}
               </div>
             )}
           </div>
@@ -444,19 +522,44 @@ export default function DetailPage() {
               )}
 
               {studentRankingType === 'nearby' && (
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">시/군 선택</label>
-                  <select
-                    value={studentRegion2}
-                    onChange={(e) => setStudentRegion2(e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500"
-                  >
-                    {regions2.map((region) => (
-                      <option key={region} value={region}>{region}</option>
-                    ))}
-                  </select>
-                </div>
+                <>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">시/도 선택</label>
+                    <select
+                      value={studentRegion1}
+                      onChange={(e) => setStudentRegion1(e.target.value)}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500"
+                    >
+                      {regions.map((region) => (
+                        <option key={region} value={region}>{region}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">시/군 선택</label>
+                    <select
+                      value={studentRegion2}
+                      onChange={(e) => setStudentRegion2(e.target.value)}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500"
+                    >
+                      {studentRegion2Options.map((region) => (
+                        <option key={region} value={region}>{region}</option>
+                      ))}
+                    </select>
+                  </div>
+                </>
               )}
+            </div>
+
+            {/* 학생 검색 */}
+            <div className="mb-4">
+              <input
+                type="text"
+                placeholder="학생 닉네임으로 검색..."
+                value={studentSearchQuery}
+                onChange={(e) => setStudentSearchQuery(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              />
             </div>
 
             {/* 학생 목록 */}
@@ -471,11 +574,23 @@ export default function DetailPage() {
               </div>
             ) : (
               <div>
-                <div className="text-sm text-gray-600 mb-4">
-                  총 <span className="font-bold text-purple-600">{students.length}명</span> 학생
-                </div>
-                <div className="space-y-2 max-h-[600px] overflow-y-auto pr-2">
-                  {students.map((student) => {
+                {(() => {
+                  const filteredStudents = students.filter(student =>
+                    student.nickname.toLowerCase().includes(studentSearchQuery.toLowerCase())
+                  );
+                  return (
+                    <>
+                      <div className="text-sm text-gray-600 mb-4">
+                        총 <span className="font-bold text-purple-600">{filteredStudents.length}명</span> 학생
+                        {studentSearchQuery && ` (전체 ${students.length}명 중 검색 결과)`}
+                      </div>
+                      {filteredStudents.length === 0 ? (
+                        <div className="text-center py-12 text-gray-500">
+                          검색 결과가 없습니다.
+                        </div>
+                      ) : (
+                        <div className="space-y-2 max-h-[600px] overflow-y-auto pr-2">
+                          {filteredStudents.map((student) => {
                     const fallbackTier = getFallbackTier(student.totalScore, true);
                     const tierEmoji = student.tier?.icon || fallbackTier.emoji;
                     const tierName = student.tier?.currentKorean || fallbackTier.name;
@@ -521,7 +636,11 @@ export default function DetailPage() {
                       </div>
                     );
                   })}
-                </div>
+                        </div>
+                      )}
+                    </>
+                  );
+                })()}
               </div>
             )}
           </div>
