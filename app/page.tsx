@@ -9,12 +9,11 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center">
             <div className="flex items-center gap-3">
-              <div className="text-3xl">🦛</div>
               <div>
                 <div className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                   하마스쿨
                 </div>
-                <div className="text-xs text-purple-600 font-semibold -mt-1">초등학교 전쟁</div>
+                <div className="text-xs text-purple-600 font-semibold -mt-1">학교 전쟁</div>
               </div>
             </div>
           </div>
@@ -32,7 +31,7 @@ export default function Home() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
                 </span>
-                전국 초등학교가 참여하는 학습 전쟁!
+                전국 학교가 참여하는 학습 전쟁!
               </div>
 
               <h1 className="text-6xl font-extrabold tracking-tight sm:text-7xl lg:text-8xl">
@@ -44,7 +43,7 @@ export default function Home() {
               </h1>
 
               <p className="mt-6 text-xl leading-8 text-gray-600 max-w-2xl mx-auto">
-                하루 30문제, 3초의 타임어택!<br />
+                하루 최대 100문제, 7초의 타임어택!!<br />
                 문제를 풀면 우리 학교 점수가 올라가요 🚀
               </p>
 
@@ -87,7 +86,7 @@ export default function Home() {
                   href="/dashboard"
                   className="rounded-full bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-4 text-lg font-bold text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all"
                 >
-                  📊 실시간 대시보드
+                  📊 실시간 순위 보드
                 </Link>
                 <button className="rounded-full border-2 border-purple-600 bg-white px-8 py-4 text-lg font-bold text-purple-600 shadow-xl hover:bg-purple-50 transition-all">
                   📱 앱 다운로드
@@ -130,8 +129,8 @@ export default function Home() {
                   <div className="text-6xl mb-4">2️⃣</div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-3">문제 풀기</h3>
                   <p className="text-gray-600">
-                    하루 30문제!<br />
-                    3-5초 안에 정답을 맞춰요 ⚡
+                    하루 100문제!<br />
+                    7~10초 안에 정답을 맞춰요 ⚡
                   </p>
                   <div className="mt-4 flex gap-2 text-sm">
                     <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full font-semibold">한자</span>

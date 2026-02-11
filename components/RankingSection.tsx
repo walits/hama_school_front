@@ -5,27 +5,36 @@ import { useState, useEffect } from 'react';
 interface School {
   id: number;
   name: string;
-  region1: string;  // 시/도 (경기, 서울 등)
-  region2: string;  // 시/군 (광명시, 중랑구 등)
-  address: string;
-  latitude: number;
-  longitude: number;
+  region1: string;
+  region2: string;
   totalScore: number;
   studentCount: number;
 }
 
-interface TopContributor {
-  rank: number;
-  nickname: string;
-  totalScore: number;
-  level: number;
-}
+type SchoolLevel = 'elementary' | 'middle' | 'high';
+
+const SCHOOL_LABELS = {
+  elementary: '초등학교',
+  middle: '중학교',
+  high: '고등학교'
+};
+
+const SCHOOL_PATHS = {
+  elementary: 'schools',
+  middle: 'mid-schools',
+  high: 'high-schools'
+};
 
 export default function RankingSection() {
-  const [nationalRanking, setNationalRanking] = useState<School[]>([]);
-  const [allSchools, setAllSchools] = useState<School[]>([]);
-  const [selectedRegion, setSelectedRegion] = useState<string>('전국');
-  const [topStudent, setTopStudent] = useState<TopContributor | null>(null);
+  const [rankings, setRankings] = useState<{
+    elementary: School[];
+    middle: School[];
+    high: School[];
+  }>({
+    elementary: [],
+    middle: [],
+    high: []
+  });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -34,25 +43,24 @@ export default function RankingSection() {
 
   async function fetchRankings() {
     try {
-      // 전국 TOP 10
-      const rankingRes = await fetch('http://localhost:3000/schools/ranking?limit=10');
-      const rankings = await rankingRes.json();
-      setNationalRanking(rankings);
+      // 초등학교, 중학교, 고등학교 각각 TOP 10 가져오기
+      const [elementaryRes, middleRes, highRes] = await Promise.all([
+        fetch('http://localhost:3810/schools/ranking/national?limit=10'),
+        fetch('http://localhost:3810/mid-schools/ranking/national?limit=10'),
+        fetch('http://localhost:3810/high-schools/ranking/national?limit=10')
+      ]);
 
-      // 전체 학교 데이터
-      const schoolsRes = await fetch('http://localhost:3000/schools');
-      const schools = await schoolsRes.json();
-      setAllSchools(schools);
+      const [elementaryData, middleData, highData] = await Promise.all([
+        elementaryRes.json(),
+        middleRes.json(),
+        highRes.json()
+      ]);
 
-      // 1등 학교의 1등 학생
-      if (rankings.length > 0) {
-        const topSchool = rankings[0];
-        const contributorsRes = await fetch(`http://localhost:3000/schools/${topSchool.id}/top-contributors?limit=1`);
-        const contributors = await contributorsRes.json();
-        if (contributors.length > 0) {
-          setTopStudent(contributors[0]);
-        }
-      }
+      setRankings({
+        elementary: elementaryData.data || elementaryData || [],
+        middle: middleData.data || middleData || [],
+        high: highData.data || highData || []
+      });
 
       setLoading(false);
     } catch (error) {
@@ -60,15 +68,6 @@ export default function RankingSection() {
       setLoading(false);
     }
   }
-
-  // 지역별 필터링 (region1 기준)
-  const regions = ['전국', ...Array.from(new Set(allSchools.map(s => s.region1).filter(Boolean)))];
-  const filteredSchools = selectedRegion === '전국'
-    ? nationalRanking
-    : allSchools
-        .filter(s => s.region1 === selectedRegion)
-        .sort((a, b) => b.totalScore - a.totalScore)
-        .slice(0, 10);
 
   const getTierBadge = (score: number) => {
     if (score >= 2000) return { emoji: '💎', name: 'Diamond', color: 'text-cyan-600' };
@@ -78,21 +77,79 @@ export default function RankingSection() {
     return { emoji: '🥉', name: 'Bronze', color: 'text-amber-700' };
   };
 
+  const renderRankingList = (schools: School[], level: SchoolLevel) => (
+    <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
+      <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+        <span>{SCHOOL_LABELS[level]}</span>
+        <span className="text-sm font-normal text-gray-500">TOP 10</span>
+      </h3>
+
+      {schools.length === 0 ? (
+        <div className="text-center py-8 text-gray-500">
+          데이터가 없습니다
+        </div>
+      ) : (
+        <div className="space-y-3">
+          {schools.map((school, index) => {
+            const tier = getTierBadge(school.totalScore);
+            return (
+              <div
+                key={school.id}
+                className={`flex items-center justify-between p-4 rounded-xl transition-all hover:shadow-md ${
+                  index === 0 ? 'bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-300' :
+                  index === 1 ? 'bg-gradient-to-r from-gray-50 to-gray-100 border-2 border-gray-300' :
+                  index === 2 ? 'bg-gradient-to-r from-orange-50 to-amber-50 border-2 border-orange-300' :
+                  'bg-gray-50 border border-gray-200'
+                }`}
+              >
+                <div className="flex items-center gap-4">
+                  <div className={`text-2xl font-bold ${
+                    index === 0 ? 'text-yellow-600' :
+                    index === 1 ? 'text-gray-600' :
+                    index === 2 ? 'text-orange-600' :
+                    'text-gray-400'
+                  }`}>
+                    {index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `${index + 1}위`}
+                  </div>
+                  <div>
+                    <div className="font-bold text-gray-900">{school.name}</div>
+                    <div className="text-sm text-gray-600">{school.region1} {school.region2}</div>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="flex items-center gap-2 justify-end mb-1">
+                    <span className="text-lg">{tier.emoji}</span>
+                    <span className={`text-xs font-semibold ${tier.color}`}>{tier.name}</span>
+                  </div>
+                  <div className="text-xl font-bold text-gray-900">{school.totalScore.toLocaleString()}점</div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+
   if (loading) {
     return (
-      <div className="flex items-center justify-center py-20">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">실시간 랭킹 불러오는 중...</p>
+      <section className="py-20 bg-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-center py-20">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4"></div>
+              <p className="text-gray-600">실시간 랭킹 불러오는 중...</p>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
     );
   }
 
   return (
     <section className="py-20 bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* 상단 통계 */}
+        {/* 상단 제목 */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 rounded-full bg-green-100 px-4 py-2 text-sm font-semibold text-green-700 mb-4">
             <span className="relative flex h-2 w-2">
@@ -102,109 +159,35 @@ export default function RankingSection() {
             실시간 업데이트
           </div>
           <h2 className="text-4xl font-bold text-gray-900 mb-4">전국 학교 전쟁 순위</h2>
-
-          {nationalRanking.length > 0 && (
-            <div className="mt-8 max-w-3xl mx-auto">
-              <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-6 border-2 border-yellow-300 shadow-xl">
-                <div className="flex items-center justify-between flex-wrap gap-4">
-                  <div className="flex items-center gap-4">
-                    <div className="text-5xl">👑</div>
-                    <div className="text-left">
-                      <div className="text-sm text-gray-600 mb-1">🏆 전국 1등 학교</div>
-                      <div className="text-3xl font-bold text-gray-900">{nationalRanking[0].name}</div>
-                      <div className="text-sm text-gray-600">{nationalRanking[0].region1} {nationalRanking[0].region2}</div>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-4xl font-bold text-yellow-600">{nationalRanking[0].totalScore.toLocaleString()}점</div>
-                    <div className="text-sm text-gray-600 mt-1">학생 {nationalRanking[0].studentCount}명</div>
-                  </div>
-                </div>
-
-                {topStudent && (
-                  <div className="mt-4 pt-4 border-t border-yellow-200">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <span className="text-sm text-gray-600">⭐ 최고 학생: </span>
-                        <span className="text-lg font-bold text-purple-600">{topStudent.nickname}</span>
-                        <span className="ml-2 text-sm text-gray-600">Lv.{topStudent.level}</span>
-                      </div>
-                      <div className="text-xl font-bold text-purple-600">{topStudent.totalScore.toLocaleString()}점</div>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
         </div>
 
-        {/* 랭킹 */}
-        <div className="max-w-4xl mx-auto mt-12">
-          {/* 랭킹 리스트 */}
-          <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
-            {/* 지역 선택 */}
-            <div className="mb-6">
-              <label className="block text-sm font-semibold text-gray-700 mb-3">지역 선택</label>
-              <div className="flex flex-wrap gap-2">
-                {regions.map((region) => (
-                  <button
-                    key={region}
-                    onClick={() => setSelectedRegion(region)}
-                    className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${
-                      selectedRegion === region
-                        ? 'bg-purple-600 text-white shadow-lg scale-105'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                    }`}
-                  >
-                    {region}
-                  </button>
-                ))}
+        {/* 초등학교 1등 하이라이트 */}
+        {rankings.elementary.length > 0 && (
+          <div className="mt-8 max-w-3xl mx-auto mb-12">
+            <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-6 border-2 border-yellow-300 shadow-xl">
+              <div className="flex items-center justify-between flex-wrap gap-4">
+                <div className="flex items-center gap-4">
+                  <div className="text-5xl">👑</div>
+                  <div className="text-left">
+                    <div className="text-sm text-gray-600 mb-1">🏆 초등학교 전국 1등</div>
+                    <div className="text-3xl font-bold text-gray-900">{rankings.elementary[0].name}</div>
+                    <div className="text-sm text-gray-600">{rankings.elementary[0].region1} {rankings.elementary[0].region2}</div>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="text-4xl font-bold text-yellow-600">{rankings.elementary[0].totalScore.toLocaleString()}점</div>
+                  <div className="text-sm text-gray-600 mt-1">학생 {rankings.elementary[0].studentCount}명</div>
+                </div>
               </div>
             </div>
-
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">
-              {selectedRegion === '전국' ? '전국 TOP 10' : `${selectedRegion} TOP 10`}
-            </h3>
-
-            <div className="space-y-3">
-              {filteredSchools.map((school, index) => {
-                const tier = getTierBadge(school.totalScore);
-                return (
-                  <div
-                    key={school.id}
-                    className={`flex items-center justify-between p-4 rounded-xl transition-all hover:shadow-md ${
-                      index === 0 ? 'bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-300' :
-                      index === 1 ? 'bg-gradient-to-r from-gray-50 to-gray-100 border-2 border-gray-300' :
-                      index === 2 ? 'bg-gradient-to-r from-orange-50 to-amber-50 border-2 border-orange-300' :
-                      'bg-gray-50 border border-gray-200'
-                    }`}
-                  >
-                    <div className="flex items-center gap-4">
-                      <div className={`text-2xl font-bold ${
-                        index === 0 ? 'text-yellow-600' :
-                        index === 1 ? 'text-gray-600' :
-                        index === 2 ? 'text-orange-600' :
-                        'text-gray-400'
-                      }`}>
-                        {index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `${index + 1}위`}
-                      </div>
-                      <div>
-                        <div className="font-bold text-gray-900">{school.name}</div>
-                        <div className="text-sm text-gray-600">{school.region1} {school.region2}</div>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <div className="flex items-center gap-2 justify-end mb-1">
-                        <span className="text-lg">{tier.emoji}</span>
-                        <span className={`text-xs font-semibold ${tier.color}`}>{tier.name}</span>
-                      </div>
-                      <div className="text-xl font-bold text-gray-900">{school.totalScore.toLocaleString()}점</div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
           </div>
+        )}
+
+        {/* 학교급별 랭킹 */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-12">
+          {renderRankingList(rankings.elementary, 'elementary')}
+          {renderRankingList(rankings.middle, 'middle')}
+          {renderRankingList(rankings.high, 'high')}
         </div>
       </div>
     </section>
