@@ -105,111 +105,181 @@ export default function Home() {
         {/* Real-time Rankings Section */}
         <RankingSection />
 
-        {/* How It Works */}
-        <section id="how-it-works" className="py-20 bg-white">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900">어떻게 놀까요?</h2>
-              <p className="mt-4 text-lg text-gray-600">간단하지만 중독성 있는 게임 방식!</p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="relative group">
-                <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition-opacity"></div>
-                <div className="relative bg-white rounded-2xl p-8 border-2 border-purple-100">
-                  <div className="text-6xl mb-4">1️⃣</div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">학교 선택</h3>
-                  <p className="text-gray-600">
-                    우리 학교를 선택하고<br />
-                    전쟁에 참여하세요!
-                  </p>
-                </div>
-              </div>
-
-              <div className="relative group">
-                <div className="absolute -inset-1 bg-gradient-to-r from-pink-600 to-indigo-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition-opacity"></div>
-                <div className="relative bg-white rounded-2xl p-8 border-2 border-pink-100">
-                  <div className="text-6xl mb-4">2️⃣</div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">문제 풀기</h3>
-                  <p className="text-gray-600">
-                    하루 100문제!<br />
-                    7~10초 안에 정답을 맞춰요 ⚡
-                  </p>
-                  <div className="mt-4 flex gap-2 text-sm">
-                    <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full font-semibold">한자</span>
-                    <span className="px-3 py-1 bg-pink-100 text-pink-700 rounded-full font-semibold">영어</span>
-                    <span className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full font-semibold">수학</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="relative group">
-                <div className="absolute -inset-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition-opacity"></div>
-                <div className="relative bg-white rounded-2xl p-8 border-2 border-indigo-100">
-                  <div className="text-6xl mb-4">3️⃣</div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">학교 랭킹 상승</h3>
-                  <p className="text-gray-600">
-                    내 점수가 학교 점수!<br />
-                    전국 1등 학교를 향해 🏆
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Tier System */}
         <section className="py-20 bg-gradient-to-br from-purple-50 to-pink-50">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-900">학교 티어 시스템</h2>
-              <p className="mt-4 text-lg text-gray-600">점수를 모아 상위 티어로 올라가세요!</p>
+              <p className="mt-4 text-lg text-gray-600">학교 전체 학생들의 누적 점수로 티어가 결정됩니다!</p>
+              <p className="mt-2 text-sm text-gray-500">💡 티어가 높을수록 더 많은 배지와 보상을 획득할 수 있어요</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
               <div className="bg-white rounded-2xl p-6 shadow-lg text-center border-2 border-amber-200 hover:scale-105 transition-transform">
                 <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-amber-700 to-amber-900 flex items-center justify-center text-4xl shadow-xl mb-4">
-                  🛡️
+                  🥉
                 </div>
                 <h3 className="text-xl font-bold text-amber-900 mb-2">Bronze</h3>
                 <p className="text-3xl font-bold text-amber-700 mb-1">0+</p>
-                <p className="text-sm text-gray-600">시작 단계</p>
+                <p className="text-sm text-gray-600 mb-3">시작 단계</p>
+                <div className="space-y-1 text-xs text-gray-500">
+                  <p>✓ 기본 배지 획득 가능</p>
+                  <p>✓ 전국 랭킹 참여</p>
+                  <p className="text-amber-700 font-semibold">모든 학교의 시작!</p>
+                </div>
               </div>
 
               <div className="bg-white rounded-2xl p-6 shadow-lg text-center border-2 border-gray-300 hover:scale-105 transition-transform">
                 <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-gray-300 to-gray-500 flex items-center justify-center text-4xl shadow-xl mb-4">
-                  🛡️
+                  🥈
                 </div>
                 <h3 className="text-xl font-bold text-gray-700 mb-2">Silver</h3>
-                <p className="text-3xl font-bold text-gray-600 mb-1">100+</p>
-                <p className="text-sm text-gray-600">초급 학교</p>
+                <p className="text-3xl font-bold text-gray-600 mb-1">5,000+</p>
+                <p className="text-sm text-gray-600 mb-3">활동적인 학교</p>
+                <div className="space-y-1 text-xs text-gray-500">
+                  <p>✓ 은빛 배지 잠금 해제</p>
+                  <p>✓ 지역 랭킹 강화</p>
+                  <p className="text-gray-700 font-semibold">학생들이 열심히!</p>
+                </div>
               </div>
 
               <div className="bg-white rounded-2xl p-6 shadow-lg text-center border-2 border-yellow-300 hover:scale-105 transition-transform ring-4 ring-yellow-200">
                 <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-yellow-300 to-yellow-600 flex items-center justify-center text-4xl shadow-xl mb-4 animate-pulse">
-                  🛡️
+                  🥇
                 </div>
                 <h3 className="text-xl font-bold text-yellow-900 mb-2">Gold</h3>
-                <p className="text-3xl font-bold text-yellow-600 mb-1">500+</p>
-                <p className="text-sm text-gray-600">중급 학교</p>
-              </div>
-
-              <div className="bg-white rounded-2xl p-6 shadow-lg text-center border-2 border-gray-200 hover:scale-105 transition-transform">
-                <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-gray-200 to-gray-400 flex items-center justify-center text-4xl shadow-xl mb-4">
-                  🛡️
+                <p className="text-3xl font-bold text-yellow-600 mb-1">20,000+</p>
+                <p className="text-sm text-gray-600 mb-3">경쟁력 있는 학교</p>
+                <div className="space-y-1 text-xs text-gray-500">
+                  <p>✓ 금빛 배지 획득</p>
+                  <p>✓ 전국 TOP 50 진입</p>
+                  <p className="text-yellow-700 font-semibold">명문의 시작!</p>
                 </div>
-                <h3 className="text-xl font-bold text-gray-700 mb-2">Platinum</h3>
-                <p className="text-3xl font-bold text-gray-600 mb-1">1000+</p>
-                <p className="text-sm text-gray-600">고급 학교</p>
               </div>
 
-              <div className="bg-white rounded-2xl p-6 shadow-lg text-center border-2 border-cyan-300 hover:scale-105 transition-transform">
-                <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-cyan-300 to-cyan-600 flex items-center justify-center text-4xl shadow-xl mb-4">
-                  🛡️
+              <div className="bg-white rounded-2xl p-6 shadow-lg text-center border-2 border-purple-200 hover:scale-105 transition-transform">
+                <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-purple-300 to-purple-600 flex items-center justify-center text-4xl shadow-xl mb-4">
+                  💎
+                </div>
+                <h3 className="text-xl font-bold text-purple-700 mb-2">Platinum</h3>
+                <p className="text-3xl font-bold text-purple-600 mb-1">50,000+</p>
+                <p className="text-sm text-gray-600 mb-3">상위권 학교</p>
+                <div className="space-y-1 text-xs text-gray-500">
+                  <p>✓ 백금 배지 특전</p>
+                  <p>✓ 전국 TOP 20 진입</p>
+                  <p className="text-purple-700 font-semibold">최상위권 도전!</p>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 shadow-lg text-center border-2 border-cyan-300 hover:scale-105 transition-transform ring-4 ring-cyan-200">
+                <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-cyan-300 to-cyan-600 flex items-center justify-center text-4xl shadow-xl mb-4 animate-pulse">
+                  💠
                 </div>
                 <h3 className="text-xl font-bold text-cyan-900 mb-2">Diamond</h3>
-                <p className="text-3xl font-bold text-cyan-600 mb-1">2000+</p>
-                <p className="text-sm text-gray-600">최강 학교</p>
+                <p className="text-3xl font-bold text-cyan-600 mb-1">100,000+</p>
+                <p className="text-sm text-gray-600 mb-3">최강 학교</p>
+                <div className="space-y-1 text-xs text-gray-500">
+                  <p>✓ 다이아몬드 배지</p>
+                  <p>✓ 전국 TOP 10 진입</p>
+                  <p className="text-cyan-700 font-semibold">전설의 학교!</p>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 shadow-lg text-center border-2 border-yellow-400 hover:scale-105 transition-transform ring-4 ring-yellow-300">
+                <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-yellow-400 to-orange-600 flex items-center justify-center text-4xl shadow-xl mb-4 animate-pulse">
+                  👑
+                </div>
+                <h3 className="text-xl font-bold text-orange-900 mb-2">Master</h3>
+                <p className="text-3xl font-bold text-orange-600 mb-1">500,000+</p>
+                <p className="text-sm text-gray-600 mb-3">마스터 학교</p>
+                <div className="space-y-1 text-xs text-gray-500">
+                  <p>✓ 마스터 왕관 배지</p>
+                  <p>✓ 전국 TOP 3 진입</p>
+                  <p className="text-orange-700 font-semibold">진정한 1등!</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-12 bg-white rounded-2xl p-8 shadow-lg border-2 border-purple-100">
+              <h4 className="text-2xl font-bold text-gray-900 mb-4 text-center">📊 티어 승급 예시</h4>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+                <div className="text-center p-4 bg-purple-50 rounded-xl">
+                  <p className="font-bold text-purple-900 mb-2">학생 1명당 평균</p>
+                  <p className="text-gray-600">하루 100문제 × 100점 = <span className="font-bold text-purple-600">10,000점</span></p>
+                </div>
+                <div className="text-center p-4 bg-pink-50 rounded-xl">
+                  <p className="font-bold text-pink-900 mb-2">학생 10명 학교</p>
+                  <p className="text-gray-600">일주일이면 <span className="font-bold text-pink-600">Silver 티어</span> 달성!</p>
+                </div>
+                <div className="text-center p-4 bg-indigo-50 rounded-xl">
+                  <p className="font-bold text-indigo-900 mb-2">학생 50명 학교</p>
+                  <p className="text-gray-600">한 달이면 <span className="font-bold text-indigo-600">Gold 티어</span> 가능!</p>
+                </div>
+              </div>
+            </div>
+
+            {/* 학생 티어 시스템 */}
+            <div className="mt-20">
+              <div className="text-center mb-16">
+                <h2 className="text-4xl font-bold text-gray-900">학생 티어 시스템</h2>
+                <p className="mt-4 text-lg text-gray-600">개인 점수로 동물 티어가 결정됩니다!</p>
+                <p className="mt-2 text-sm text-gray-500">💡 더 높은 티어로 성장하면 특별한 칭호를 얻어요</p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
+                <div className="bg-white rounded-2xl p-6 shadow-lg text-center border-2 border-yellow-200 hover:scale-105 transition-transform">
+                  <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-yellow-100 to-yellow-300 flex items-center justify-center text-4xl shadow-xl mb-4">
+                    🐣
+                  </div>
+                  <h3 className="text-xl font-bold text-yellow-900 mb-2">병아리</h3>
+                  <p className="text-3xl font-bold text-yellow-700 mb-1">0+</p>
+                  <p className="text-sm text-gray-600">처음 시작!</p>
+                </div>
+
+                <div className="bg-white rounded-2xl p-6 shadow-lg text-center border-2 border-pink-200 hover:scale-105 transition-transform">
+                  <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-pink-100 to-pink-300 flex items-center justify-center text-4xl shadow-xl mb-4">
+                    🐰
+                  </div>
+                  <h3 className="text-xl font-bold text-pink-900 mb-2">토끼</h3>
+                  <p className="text-3xl font-bold text-pink-700 mb-1">500+</p>
+                  <p className="text-sm text-gray-600">귀여운 토끼</p>
+                </div>
+
+                <div className="bg-white rounded-2xl p-6 shadow-lg text-center border-2 border-orange-200 hover:scale-105 transition-transform">
+                  <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-orange-100 to-orange-400 flex items-center justify-center text-4xl shadow-xl mb-4">
+                    🦊
+                  </div>
+                  <h3 className="text-xl font-bold text-orange-900 mb-2">여우</h3>
+                  <p className="text-3xl font-bold text-orange-700 mb-1">2,000+</p>
+                  <p className="text-sm text-gray-600">영리한 여우</p>
+                </div>
+
+                <div className="bg-white rounded-2xl p-6 shadow-lg text-center border-2 border-gray-300 hover:scale-105 transition-transform">
+                  <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-gray-300 to-gray-600 flex items-center justify-center text-4xl shadow-xl mb-4">
+                    🐺
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">늑대</h3>
+                  <p className="text-3xl font-bold text-gray-700 mb-1">5,000+</p>
+                  <p className="text-sm text-gray-600">강한 늑대</p>
+                </div>
+
+                <div className="bg-white rounded-2xl p-6 shadow-lg text-center border-2 border-yellow-300 hover:scale-105 transition-transform ring-4 ring-yellow-200">
+                  <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-yellow-300 to-yellow-600 flex items-center justify-center text-4xl shadow-xl mb-4 animate-pulse">
+                    🦁
+                  </div>
+                  <h3 className="text-xl font-bold text-yellow-900 mb-2">사자</h3>
+                  <p className="text-3xl font-bold text-yellow-700 mb-1">15,000+</p>
+                  <p className="text-sm text-gray-600">백수의 왕</p>
+                </div>
+
+                <div className="bg-white rounded-2xl p-6 shadow-lg text-center border-2 border-red-300 hover:scale-105 transition-transform ring-4 ring-red-200">
+                  <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-red-400 to-red-700 flex items-center justify-center text-4xl shadow-xl mb-4 animate-pulse">
+                    🐉
+                  </div>
+                  <h3 className="text-xl font-bold text-red-900 mb-2">용</h3>
+                  <p className="text-3xl font-bold text-red-700 mb-1">50,000+</p>
+                  <p className="text-sm text-gray-600">최강 전설</p>
+                </div>
               </div>
             </div>
           </div>

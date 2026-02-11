@@ -125,10 +125,10 @@ export default function DashboardPage() {
   }
 
   const getTier = (score: number) => {
-    if (score >= 2000) return { name: 'Diamond', color: 'bg-gradient-to-r from-cyan-400 to-cyan-600', emoji: '💎' };
-    if (score >= 1000) return { name: 'Platinum', color: 'bg-gradient-to-r from-gray-300 to-gray-500', emoji: '🔷' };
-    if (score >= 500) return { name: 'Gold', color: 'bg-gradient-to-r from-yellow-400 to-yellow-600', emoji: '🥇' };
-    if (score >= 100) return { name: 'Silver', color: 'bg-gradient-to-r from-gray-400 to-gray-600', emoji: '🥈' };
+    if (score >= 300000) return { name: 'Diamond', color: 'bg-gradient-to-r from-cyan-400 to-cyan-600', emoji: '💎' };
+    if (score >= 150000) return { name: 'Platinum', color: 'bg-gradient-to-r from-gray-300 to-gray-500', emoji: '🔷' };
+    if (score >= 50000) return { name: 'Gold', color: 'bg-gradient-to-r from-yellow-400 to-yellow-600', emoji: '🥇' };
+    if (score >= 10000) return { name: 'Silver', color: 'bg-gradient-to-r from-gray-400 to-gray-600', emoji: '🥈' };
     return { name: 'Bronze', color: 'bg-gradient-to-r from-amber-600 to-amber-800', emoji: '🥉' };
   };
 
