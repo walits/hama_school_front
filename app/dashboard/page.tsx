@@ -149,11 +149,11 @@ export default function DashboardPage() {
       return { name: '병아리', color: '#FFF9C4', emoji: '🐣' };
     } else {
       // 학교 티어
-      if (score >= 500000) return { name: '마스터', color: '#FFD700', emoji: '👑' };
-      if (score >= 100000) return { name: '다이아몬드', color: '#B9F2FF', emoji: '💎' };
-      if (score >= 50000) return { name: '플래티넘', color: '#E5E4E2', emoji: '🔷' };
-      if (score >= 20000) return { name: '골드', color: '#FFD700', emoji: '🥇' };
-      if (score >= 5000) return { name: '실버', color: '#C0C0C0', emoji: '🥈' };
+      if (score >= 1000000) return { name: '마스터', color: '#FFD700', emoji: '👑' };
+      if (score >= 500000) return { name: '다이아몬드', color: '#B9F2FF', emoji: '💎' };
+      if (score >= 200000) return { name: '플래티넘', color: '#E5E4E2', emoji: '🔷' };
+      if (score >= 50000) return { name: '골드', color: '#FFD700', emoji: '🥇' };
+      if (score >= 10000) return { name: '실버', color: '#C0C0C0', emoji: '🥈' };
       return { name: '브론즈', color: '#CD7F32', emoji: '🥉' };
     }
   };
