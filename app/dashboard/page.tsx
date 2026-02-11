@@ -336,7 +336,7 @@ export default function DashboardPage() {
                         <div className="text-right">
                           <div className="flex items-center gap-1 justify-end mb-1">
                             <span className="text-lg">{tierEmoji}</span>
-                            <span className="text-sm font-semibold" style={{ color: school.tier?.color || tierInfo.color }}>
+                            <span className="text-sm font-semibold text-gray-800">
                               {tierName}
                             </span>
                           </div>
@@ -419,7 +419,7 @@ export default function DashboardPage() {
                               <span>Lv.{student.level}</span>
                               <span className="flex items-center gap-1">
                                 <span>{tierEmoji}</span>
-                                <span className="text-sm font-semibold" style={{ color: student.tier?.color || tierInfo.color }}>
+                                <span className="text-sm font-semibold text-gray-800">
                                   {tierName}
                                 </span>
                               </span>
