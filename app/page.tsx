@@ -205,7 +205,6 @@ export default function Home() {
                     <span className="text-3xl">🏫</span>
                     <p className="font-bold text-green-900 mt-2">소규모 학교</p>
                   </div>
-                  <p className="text-gray-600 text-center">학생 10명 이하</p>
                   <p className="text-green-700 font-bold text-center mt-2">⭐ 높은 보너스!</p>
                   <p className="text-xs text-gray-500 text-center mt-2">작은 학교도 경쟁력 있게!</p>
                 </div>
@@ -215,7 +214,6 @@ export default function Home() {
                     <span className="text-3xl">🏢</span>
                     <p className="font-bold text-blue-900 mt-2">중규모 학교</p>
                   </div>
-                  <p className="text-gray-600 text-center">학생 11-50명</p>
                   <p className="text-blue-700 font-bold text-center mt-2">⭐ 적정 보너스</p>
                   <p className="text-xs text-gray-500 text-center mt-2">균형잡힌 경쟁</p>
                 </div>
@@ -225,7 +223,6 @@ export default function Home() {
                     <span className="text-3xl">🏛️</span>
                     <p className="font-bold text-purple-900 mt-2">대규모 학교</p>
                   </div>
-                  <p className="text-gray-600 text-center">학생 51명 이상</p>
                   <p className="text-purple-700 font-bold text-center mt-2">⭐ 기본 점수</p>
                   <p className="text-xs text-gray-500 text-center mt-2">참여자가 많으면 유리!</p>
                 </div>
