@@ -11,8 +11,8 @@ export default function ComingSoon() {
   });
 
   useEffect(() => {
-    // 출시일: 2026년 3월 12일
-    const launchDate = new Date('2026-03-12T00:00:00').getTime();
+    // 출시일: 2026년 3월 1일 (신학기)
+    const launchDate = new Date('2026-03-01T00:00:00').getTime();
 
     const timer = setInterval(() => {
       const now = new Date().getTime();
@@ -113,7 +113,7 @@ export default function ComingSoon() {
 
         {/* Launch info */}
         <div className="text-white/80 text-lg">
-          <p className="mb-2">📅 정식 출시: 2026년 3월 12일</p>
+          <p className="mb-2">📅 정식 출시: 2026년 3월 1일 (신학기)</p>
           <p>💡 준비 중인 멋진 경험을 기대해주세요!</p>
         </div>
       </div>
