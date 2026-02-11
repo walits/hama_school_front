@@ -45,9 +45,9 @@ export default function RankingSection() {
     try {
       // 초등학교, 중학교, 고등학교 각각 TOP 10 가져오기
       const [elementaryRes, middleRes, highRes] = await Promise.all([
-        fetch('http://localhost:3810/schools/ranking/national?limit=10'),
-        fetch('http://localhost:3810/mid-schools/ranking/national?limit=10'),
-        fetch('http://localhost:3810/high-schools/ranking/national?limit=10')
+        fetch('https://api.schoolwar.kr/schools/ranking/national?limit=10'),
+        fetch('https://api.schoolwar.kr/mid-schools/ranking/national?limit=10'),
+        fetch('https://api.schoolwar.kr/high-schools/ranking/national?limit=10')
       ]);
 
       const [elementaryData, middleData, highData] = await Promise.all([

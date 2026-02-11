@@ -26,7 +26,7 @@ interface Student {
   level: number;
 }
 
-const API_BASE = 'http://localhost:3810';
+const API_BASE = 'https://api.schoolwar.kr';
 
 const SCHOOL_LABELS = {
   elementary: '초등학교',
