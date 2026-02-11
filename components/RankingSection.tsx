@@ -197,31 +197,31 @@ export default function RankingSection() {
 
               return (
                 <div className="bg-gradient-to-r from-yellow-50 via-orange-50 to-yellow-50 border-4 border-yellow-400 rounded-2xl p-6 shadow-xl">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-4">
-                      <div className="text-5xl animate-bounce">🥇</div>
-                      <div>
-                        <div className="text-2xl font-bold text-gray-900">{firstPlace.nickname}</div>
-                        <div className="text-base text-gray-600 mt-1">
+                  <div className="flex items-center justify-between gap-6 mb-4 flex-nowrap">
+                    <div className="flex items-center gap-3 min-w-0 flex-1">
+                      <div className="text-3xl animate-bounce flex-shrink-0">🥇</div>
+                      <div className="min-w-0">
+                        <div className="text-lg font-bold text-gray-900 truncate">{firstPlace.nickname}</div>
+                        <div className="text-xs text-gray-600 mt-1 truncate">
                           {firstPlace.school ? `${firstPlace.school.name}` : `Lv.${firstPlace.level}`}
                         </div>
                       </div>
                     </div>
-                    <div className="text-right">
-                      <div className="flex items-center gap-2 justify-end mb-2">
-                        <span className="text-2xl">{tierEmoji}</span>
-                        <span className="text-lg font-bold text-gray-800">
+                    <div className="text-right flex-shrink-0">
+                      <div className="flex items-center gap-1 justify-end mb-1">
+                        <span className="text-lg">{tierEmoji}</span>
+                        <span className="text-sm font-bold text-gray-800">
                           {tierName}
                         </span>
                       </div>
-                      <div className="text-3xl font-bold text-yellow-600">{firstPlace.totalScore.toLocaleString()}점</div>
+                      <div className="text-xl font-bold text-yellow-600 whitespace-nowrap">{firstPlace.totalScore.toLocaleString()}점</div>
                     </div>
                   </div>
 
                   {/* 티어 진행도 바 */}
                   {firstPlace.tier && firstPlace.tier.nextTier && (
                     <div className="mt-4 pt-4 border-t border-yellow-200">
-                      <div className="flex justify-between text-sm text-gray-700 mb-2 font-semibold">
+                      <div className="flex justify-between text-xs text-gray-700 mb-2 font-semibold">
                         <span>다음: {firstPlace.tier.nextTierKorean} {firstPlace.tier.icon}</span>
                         <span>{firstPlace.tier.remainingScore.toLocaleString()}점 남음</span>
                       </div>
@@ -310,22 +310,22 @@ export default function RankingSection() {
 
               return (
                 <div className="bg-gradient-to-r from-yellow-50 via-orange-50 to-yellow-50 border-4 border-yellow-400 rounded-2xl p-6 shadow-xl">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-4">
-                      <div className="text-5xl animate-bounce">🥇</div>
-                      <div>
-                        <div className="text-2xl font-bold text-gray-900">{firstPlace.name}</div>
-                        <div className="text-base text-gray-600 mt-1">{firstPlace.region1} {firstPlace.region2}</div>
+                  <div className="flex items-center justify-between gap-6 mb-4 flex-nowrap">
+                    <div className="flex items-center gap-3 min-w-0 flex-1">
+                      <div className="text-3xl animate-bounce flex-shrink-0">🥇</div>
+                      <div className="min-w-0">
+                        <div className="text-lg font-bold text-gray-900 truncate">{firstPlace.name}</div>
+                        <div className="text-xs text-gray-600 mt-1 truncate">{firstPlace.region1} {firstPlace.region2}</div>
                       </div>
                     </div>
-                    <div className="text-right">
+                    <div className="text-right flex-shrink-0">
                       <div className="flex items-center gap-2 justify-end mb-2">
-                        <span className="text-2xl">{tierEmoji}</span>
-                        <span className="text-lg font-bold text-gray-800">
+                        <span className="text-lg">{tierEmoji}</span>
+                        <span className="text-sm font-bold text-gray-800">
                           {tierName}
                         </span>
                       </div>
-                      <div className="text-3xl font-bold text-yellow-600">{firstPlace.normalizedScore.toLocaleString()}점</div>
+                      <div className="text-xl font-bold text-yellow-600 whitespace-nowrap">{firstPlace.normalizedScore.toLocaleString()}점</div>
                     </div>
                   </div>
 
@@ -427,18 +427,18 @@ export default function RankingSection() {
         {rankings.elementary.length > 0 && (
           <div className="mt-8 max-w-3xl mx-auto mb-12">
             <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-6 border-2 border-yellow-300 shadow-xl">
-              <div className="flex items-center justify-between flex-wrap gap-4">
-                <div className="flex items-center gap-4">
-                  <div className="text-5xl">👑</div>
-                  <div className="text-left">
-                    <div className="text-sm text-gray-600 mb-1">🏆 초등학교 전국 1등</div>
-                    <div className="text-3xl font-bold text-gray-900">{rankings.elementary[0].name}</div>
-                    <div className="text-sm text-gray-600">{rankings.elementary[0].region1} {rankings.elementary[0].region2}</div>
+              <div className="flex items-center justify-between gap-6 flex-nowrap">
+                <div className="flex items-center gap-3 min-w-0 flex-1">
+                  <div className="text-3xl flex-shrink-0">👑</div>
+                  <div className="text-left min-w-0">
+                    <div className="text-xs text-gray-600 mb-1">🏆 초등학교 전국 1등</div>
+                    <div className="text-lg font-bold text-gray-900 truncate">{rankings.elementary[0].name}</div>
+                    <div className="text-xs text-gray-600 truncate">{rankings.elementary[0].region1} {rankings.elementary[0].region2}</div>
                   </div>
                 </div>
-                <div className="text-right">
-                  <div className="text-4xl font-bold text-yellow-600">{rankings.elementary[0].totalScore.toLocaleString()}점</div>
-                  <div className="text-sm text-gray-600 mt-1">학생 {rankings.elementary[0].studentCount}명</div>
+                <div className="text-right flex-shrink-0">
+                  <div className="text-xl font-bold text-yellow-600 whitespace-nowrap">{rankings.elementary[0].totalScore.toLocaleString()}점</div>
+                  <div className="text-xs text-gray-600 mt-1 whitespace-nowrap">학생 {rankings.elementary[0].studentCount}명</div>
                 </div>
               </div>
             </div>
