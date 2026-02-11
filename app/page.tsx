@@ -91,12 +91,6 @@ export default function Home() {
                 <button className="rounded-full border-2 border-purple-600 bg-white px-8 py-4 text-lg font-bold text-purple-600 shadow-xl hover:bg-purple-50 transition-all">
                   📱 앱 다운로드
                 </button>
-                <Link
-                  href="#how-it-works"
-                  className="rounded-full border-2 border-purple-600 px-8 py-4 text-lg font-semibold text-purple-600 hover:bg-purple-50 transition-colors"
-                >
-                  게임 방식 보기
-                </Link>
               </div>
             </div>
           </div>
@@ -323,9 +317,6 @@ export default function Home() {
               <div className="flex items-center justify-center gap-4">
                 <button className="rounded-full bg-white px-8 py-4 text-lg font-bold text-purple-600 shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
                   📱 Android 다운로드
-                </button>
-                <button className="rounded-full border-2 border-white px-8 py-4 text-lg font-bold text-white hover:bg-white/10 transition-colors">
-                  더 알아보기
                 </button>
               </div>
             </div>
