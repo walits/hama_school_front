@@ -102,6 +102,9 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Real-time Rankings Section */}
+        <RankingSection />
+
         {/* How It Works */}
         <section id="how-it-works" className="py-20 bg-white">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -212,9 +215,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Real-time Rankings Section */}
-        <RankingSection />
-
         {/* CTA Section */}
         <section className="py-20 bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -241,10 +241,9 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="text-2xl">🦛</div>
               <div>
                 <div className="text-xl font-bold text-gray-900">하마스쿨</div>
-                <div className="text-xs text-gray-500">초등학교 전쟁</div>
+                <div className="text-xs text-gray-500">학교 전쟁</div>
               </div>
             </div>
             <p className="text-sm text-gray-500">
