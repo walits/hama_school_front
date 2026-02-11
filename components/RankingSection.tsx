@@ -11,6 +11,18 @@ interface School {
   studentCount: number;
 }
 
+interface Student {
+  id: number;
+  nickname: string;
+  totalScore: number;
+  level: number;
+  school?: {
+    name: string;
+    region1: string;
+    region2: string;
+  };
+}
+
 type SchoolLevel = 'elementary' | 'middle' | 'high';
 
 const SCHOOL_LABELS = {
@@ -35,10 +47,20 @@ export default function RankingSection() {
     middle: [],
     high: []
   });
+  const [studentRankings, setStudentRankings] = useState<{
+    elementary: Student[];
+    middle: Student[];
+    high: Student[];
+  }>({
+    elementary: [],
+    middle: [],
+    high: []
+  });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchRankings();
+    fetchStudentRankings();
   }, []);
 
   async function fetchRankings() {
@@ -69,13 +91,95 @@ export default function RankingSection() {
     }
   }
 
+  async function fetchStudentRankings() {
+    try {
+      // 초등학생, 중학생, 고등학생 각각 TOP 10 가져오기
+      const [elementaryRes, middleRes, highRes] = await Promise.all([
+        fetch('https://api.schoolwar.kr/users/ranking/national?limit=10'),
+        fetch('https://api.schoolwar.kr/mid-users/ranking/national?limit=10'),
+        fetch('https://api.schoolwar.kr/high-users/ranking/national?limit=10')
+      ]);
+
+      const [elementaryData, middleData, highData] = await Promise.all([
+        elementaryRes.json(),
+        middleRes.json(),
+        highRes.json()
+      ]);
+
+      setStudentRankings({
+        elementary: elementaryData.data || elementaryData || [],
+        middle: middleData.data || middleData || [],
+        high: highData.data || highData || []
+      });
+    } catch (error) {
+      console.error('Failed to fetch student rankings:', error);
+      // 에러 발생 시 빈 배열 유지
+    }
+  }
+
   const getTierBadge = (score: number) => {
-    if (score >= 2000) return { emoji: '💎', name: 'Diamond', color: 'text-cyan-600' };
-    if (score >= 1000) return { emoji: '🔷', name: 'Platinum', color: 'text-gray-600' };
-    if (score >= 500) return { emoji: '🥇', name: 'Gold', color: 'text-yellow-600' };
-    if (score >= 100) return { emoji: '🥈', name: 'Silver', color: 'text-gray-500' };
+    if (score >= 300000) return { emoji: '💎', name: 'Diamond', color: 'text-cyan-600' };
+    if (score >= 150000) return { emoji: '🔷', name: 'Platinum', color: 'text-gray-600' };
+    if (score >= 50000) return { emoji: '🥇', name: 'Gold', color: 'text-yellow-600' };
+    if (score >= 10000) return { emoji: '🥈', name: 'Silver', color: 'text-gray-500' };
     return { emoji: '🥉', name: 'Bronze', color: 'text-amber-700' };
   };
+
+  const renderStudentRankingList = (students: Student[], level: SchoolLevel) => (
+    <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
+      <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+        <span>{SCHOOL_LABELS[level]} 학생</span>
+        <span className="text-sm font-normal text-gray-500">TOP 10</span>
+      </h3>
+
+      {students.length === 0 ? (
+        <div className="text-center py-8 text-gray-500">
+          데이터가 없습니다
+        </div>
+      ) : (
+        <div className="space-y-3">
+          {students.map((student, index) => {
+            const tier = getTierBadge(student.totalScore);
+            return (
+              <div
+                key={student.id}
+                className={`flex items-center justify-between p-4 rounded-xl transition-all hover:shadow-md ${
+                  index === 0 ? 'bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-300' :
+                  index === 1 ? 'bg-gradient-to-r from-gray-50 to-gray-100 border-2 border-gray-300' :
+                  index === 2 ? 'bg-gradient-to-r from-orange-50 to-amber-50 border-2 border-orange-300' :
+                  'bg-gray-50 border border-gray-200'
+                }`}
+              >
+                <div className="flex items-center gap-4">
+                  <div className={`text-2xl font-bold ${
+                    index === 0 ? 'text-yellow-600' :
+                    index === 1 ? 'text-gray-600' :
+                    index === 2 ? 'text-orange-600' :
+                    'text-gray-400'
+                  }`}>
+                    {index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `${index + 1}위`}
+                  </div>
+                  <div>
+                    <div className="font-bold text-gray-900">{student.nickname}</div>
+                    <div className="text-sm text-gray-600">
+                      {student.school ? `${student.school.name}` : 'Lv.' + student.level}
+                    </div>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="flex items-center gap-2 justify-end mb-1">
+                    <span className="text-lg">{tier.emoji}</span>
+                    <span className={`text-xs font-semibold ${tier.color}`}>{tier.name}</span>
+                  </div>
+                  <div className="text-xl font-bold text-gray-900">{student.totalScore.toLocaleString()}점</div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
 
   const renderRankingList = (schools: School[], level: SchoolLevel) => (
     <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
@@ -188,6 +292,19 @@ export default function RankingSection() {
           {renderRankingList(rankings.elementary, 'elementary')}
           {renderRankingList(rankings.middle, 'middle')}
           {renderRankingList(rankings.high, 'high')}
+        </div>
+
+        {/* 학생 랭킹 제목 */}
+        <div className="text-center mt-20 mb-12">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">전국 학생 순위</h2>
+          <p className="text-lg text-gray-600">최고의 학생들을 확인해보세요!</p>
+        </div>
+
+        {/* 학생 랭킹 */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {renderStudentRankingList(studentRankings.elementary, 'elementary')}
+          {renderStudentRankingList(studentRankings.middle, 'middle')}
+          {renderStudentRankingList(studentRankings.high, 'high')}
         </div>
       </div>
     </section>
