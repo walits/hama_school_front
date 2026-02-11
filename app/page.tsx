@@ -83,7 +83,7 @@ export default function Home() {
 
               <div className="mt-12 flex items-center justify-center gap-4 flex-wrap">
                 <Link
-                  href="/dashboard"
+                  href="/dashboard/"
                   className="rounded-full bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-4 text-lg font-bold text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all"
                 >
                   📊 실시간 순위 보드
