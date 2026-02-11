@@ -140,21 +140,21 @@ export default function DashboardPage() {
   // 폴백용 티어 계산 (API에서 tier 정보가 없을 경우)
   const getFallbackTier = (score: number, isStudent: boolean = false) => {
     if (isStudent) {
-      // 학생 티어 (가독성을 위해 더 진한 색상 사용)
-      if (score >= 50000) return { name: '용', color: '#7B1FA2', emoji: '🐉' };
-      if (score >= 15000) return { name: '사자', color: '#F57F17', emoji: '🦁' };
-      if (score >= 5000) return { name: '늑대', color: '#616161', emoji: '🐺' };
-      if (score >= 2000) return { name: '여우', color: '#E65100', emoji: '🦊' };
-      if (score >= 500) return { name: '토끼', color: '#C2185B', emoji: '🐰' };
-      return { name: '병아리', color: '#F57F17', emoji: '🐣' };
+      // 학생 티어 (모두 검은색으로 통일)
+      if (score >= 50000) return { name: '용', color: '#1F2937', emoji: '🐉' };
+      if (score >= 15000) return { name: '사자', color: '#1F2937', emoji: '🦁' };
+      if (score >= 5000) return { name: '늑대', color: '#1F2937', emoji: '🐺' };
+      if (score >= 2000) return { name: '여우', color: '#1F2937', emoji: '🦊' };
+      if (score >= 500) return { name: '토끼', color: '#1F2937', emoji: '🐰' };
+      return { name: '병아리', color: '#1F2937', emoji: '🐣' };
     } else {
-      // 학교 티어
-      if (score >= 1000000) return { name: '마스터', color: '#FFD700', emoji: '👑' };
-      if (score >= 500000) return { name: '다이아몬드', color: '#B9F2FF', emoji: '💎' };
-      if (score >= 200000) return { name: '플래티넘', color: '#E5E4E2', emoji: '🔷' };
-      if (score >= 50000) return { name: '골드', color: '#FFD700', emoji: '🥇' };
-      if (score >= 10000) return { name: '실버', color: '#C0C0C0', emoji: '🥈' };
-      return { name: '브론즈', color: '#CD7F32', emoji: '🥉' };
+      // 학교 티어 (모두 검은색으로 통일)
+      if (score >= 1000000) return { name: '마스터', color: '#1F2937', emoji: '👑' };
+      if (score >= 500000) return { name: '다이아몬드', color: '#1F2937', emoji: '💎' };
+      if (score >= 200000) return { name: '플래티넘', color: '#1F2937', emoji: '🔷' };
+      if (score >= 50000) return { name: '골드', color: '#1F2937', emoji: '🥇' };
+      if (score >= 10000) return { name: '실버', color: '#1F2937', emoji: '🥈' };
+      return { name: '브론즈', color: '#1F2937', emoji: '🥉' };
     }
   };
 

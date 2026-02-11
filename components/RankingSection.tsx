@@ -152,21 +152,21 @@ export default function RankingSection() {
   // 폴백용 티어 계산 (API에서 tier 정보가 없을 경우)
   const getFallbackTier = (score: number, isStudent: boolean = false) => {
     if (isStudent) {
-      // 학생 티어 (가독성을 위해 더 진한 색상 사용)
-      if (score >= 50000) return { emoji: '🐉', name: 'DRAGON', nameKorean: '용', color: '#7B1FA2' };
-      if (score >= 15000) return { emoji: '🦁', name: 'LION', nameKorean: '사자', color: '#F57F17' };
-      if (score >= 5000) return { emoji: '🐺', name: 'WOLF', nameKorean: '늑대', color: '#616161' };
-      if (score >= 2000) return { emoji: '🦊', name: 'FOX', nameKorean: '여우', color: '#E65100' };
-      if (score >= 500) return { emoji: '🐰', name: 'RABBIT', nameKorean: '토끼', color: '#C2185B' };
-      return { emoji: '🐣', name: 'CHICK', nameKorean: '병아리', color: '#F57F17' };
+      // 학생 티어 (모두 검은색으로 통일)
+      if (score >= 50000) return { emoji: '🐉', name: 'DRAGON', nameKorean: '용', color: '#1F2937' };
+      if (score >= 15000) return { emoji: '🦁', name: 'LION', nameKorean: '사자', color: '#1F2937' };
+      if (score >= 5000) return { emoji: '🐺', name: 'WOLF', nameKorean: '늑대', color: '#1F2937' };
+      if (score >= 2000) return { emoji: '🦊', name: 'FOX', nameKorean: '여우', color: '#1F2937' };
+      if (score >= 500) return { emoji: '🐰', name: 'RABBIT', nameKorean: '토끼', color: '#1F2937' };
+      return { emoji: '🐣', name: 'CHICK', nameKorean: '병아리', color: '#1F2937' };
     } else {
-      // 학교 티어
-      if (score >= 1000000) return { emoji: '👑', name: 'MASTER', nameKorean: '마스터', color: '#FFD700' };
-      if (score >= 500000) return { emoji: '💎', name: 'DIAMOND', nameKorean: '다이아몬드', color: '#B9F2FF' };
-      if (score >= 200000) return { emoji: '🔷', name: 'PLATINUM', nameKorean: '플래티넘', color: '#E5E4E2' };
-      if (score >= 50000) return { emoji: '🥇', name: 'GOLD', nameKorean: '골드', color: '#FFD700' };
-      if (score >= 10000) return { emoji: '🥈', name: 'SILVER', nameKorean: '실버', color: '#C0C0C0' };
-      return { emoji: '🥉', name: 'BRONZE', nameKorean: '브론즈', color: '#CD7F32' };
+      // 학교 티어 (모두 검은색으로 통일)
+      if (score >= 1000000) return { emoji: '👑', name: 'MASTER', nameKorean: '마스터', color: '#1F2937' };
+      if (score >= 500000) return { emoji: '💎', name: 'DIAMOND', nameKorean: '다이아몬드', color: '#1F2937' };
+      if (score >= 200000) return { emoji: '🔷', name: 'PLATINUM', nameKorean: '플래티넘', color: '#1F2937' };
+      if (score >= 50000) return { emoji: '🥇', name: 'GOLD', nameKorean: '골드', color: '#1F2937' };
+      if (score >= 10000) return { emoji: '🥈', name: 'SILVER', nameKorean: '실버', color: '#1F2937' };
+      return { emoji: '🥉', name: 'BRONZE', nameKorean: '브론즈', color: '#1F2937' };
     }
   };
 
