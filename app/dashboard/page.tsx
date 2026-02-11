@@ -47,6 +47,7 @@ export default function DashboardPage() {
   const [selectedSchool, setSelectedSchool] = useState<School | null>(null);
   const [topStudents, setTopStudents] = useState<Student[]>([]);
   const [regions, setRegions] = useState<string[]>([]);
+  const [regions2, setRegions2] = useState<string[]>([]);
   const [selectedRegion1, setSelectedRegion1] = useState('');
   const [selectedRegion2, setSelectedRegion2] = useState('');
   const [loading, setLoading] = useState(false);
@@ -63,10 +64,19 @@ export default function DashboardPage() {
     try {
       const res = await fetch(`${API_BASE}/schools`);
       const allSchools = await res.json();
+
+      // region1 목록 (시/도)
       const uniqueRegions = Array.from(new Set(allSchools.map((s: any) => s.region1).filter(Boolean)));
       setRegions(uniqueRegions as string[]);
       if (uniqueRegions.length > 0) {
         setSelectedRegion1(uniqueRegions[0] as string);
+      }
+
+      // region2 목록 (시/군)
+      const uniqueRegions2 = Array.from(new Set(allSchools.map((s: any) => s.region2).filter(Boolean)));
+      setRegions2(uniqueRegions2 as string[]);
+      if (uniqueRegions2.length > 0) {
+        setSelectedRegion2(uniqueRegions2[0] as string);
       }
     } catch (error) {
       console.error('Failed to fetch regions:', error);
@@ -229,14 +239,18 @@ export default function DashboardPage() {
             {/* 근처 선택 (region2) */}
             {rankingType === 'nearby' && (
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-3">시/군 입력</label>
-                <input
-                  type="text"
+                <label className="block text-sm font-semibold text-gray-700 mb-3">시/군 선택</label>
+                <select
                   value={selectedRegion2}
                   onChange={(e) => setSelectedRegion2(e.target.value)}
-                  placeholder="예: 광명시, 수원시"
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                />
+                >
+                  {regions2.map((region) => (
+                    <option key={region} value={region}>
+                      {region}
+                    </option>
+                  ))}
+                </select>
               </div>
             )}
           </div>
