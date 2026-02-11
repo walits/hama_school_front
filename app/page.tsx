@@ -82,12 +82,12 @@ export default function Home() {
               </div>
 
               <div className="mt-12 flex items-center justify-center gap-4 flex-wrap">
-                <Link
+                <a
                   href="/dashboard/"
                   className="rounded-full bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-4 text-lg font-bold text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all"
                 >
-                  📊 실시간 순위 보드
-                </Link>
+                  📊 상세 순위 보드
+                </a>
                 <button className="rounded-full border-2 border-purple-600 bg-white px-8 py-4 text-lg font-bold text-purple-600 shadow-xl hover:bg-purple-50 transition-all">
                   📱 앱 다운로드
                 </button>
