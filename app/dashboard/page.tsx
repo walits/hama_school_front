@@ -140,13 +140,13 @@ export default function DashboardPage() {
   // 폴백용 티어 계산 (API에서 tier 정보가 없을 경우)
   const getFallbackTier = (score: number, isStudent: boolean = false) => {
     if (isStudent) {
-      // 학생 티어
-      if (score >= 50000) return { name: '용', color: '#9C27B0', emoji: '🐉' };
-      if (score >= 15000) return { name: '사자', color: '#FFD700', emoji: '🦁' };
-      if (score >= 5000) return { name: '늑대', color: '#9E9E9E', emoji: '🐺' };
-      if (score >= 2000) return { name: '여우', color: '#FF9800', emoji: '🦊' };
-      if (score >= 500) return { name: '토끼', color: '#FFCCBC', emoji: '🐰' };
-      return { name: '병아리', color: '#FFF9C4', emoji: '🐣' };
+      // 학생 티어 (가독성을 위해 더 진한 색상 사용)
+      if (score >= 50000) return { name: '용', color: '#7B1FA2', emoji: '🐉' };
+      if (score >= 15000) return { name: '사자', color: '#F57F17', emoji: '🦁' };
+      if (score >= 5000) return { name: '늑대', color: '#616161', emoji: '🐺' };
+      if (score >= 2000) return { name: '여우', color: '#E65100', emoji: '🦊' };
+      if (score >= 500) return { name: '토끼', color: '#C2185B', emoji: '🐰' };
+      return { name: '병아리', color: '#F57F17', emoji: '🐣' };
     } else {
       // 학교 티어
       if (score >= 1000000) return { name: '마스터', color: '#FFD700', emoji: '👑' };
