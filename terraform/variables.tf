@@ -25,11 +25,11 @@ variable "environment" {
 variable "domain_name" {
   description = "Custom domain name for CloudFront (optional, leave empty for CloudFront default domain)"
   type        = string
-  default     = "" # 커스텀 도메인이 없으면 빈 문자열
+  default     = "schoolwar.kr"
 }
 
 variable "acm_certificate_arn" {
   description = "ACM certificate ARN for CloudFront (must be in us-east-1, only needed if domain_name is set)"
   type        = string
-  default     = "" # 커스텀 도메인이 없으면 빈 문자열
+  default     = "arn:aws:acm:us-east-1:971551576213:certificate/276d981f-09b8-451b-9de8-eafd2f6fc75f"
 }
