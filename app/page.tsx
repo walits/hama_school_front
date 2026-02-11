@@ -44,11 +44,6 @@ export default function ComingSoon() {
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto text-center">
-        {/* Logo/Icon */}
-        <div className="mb-8 animate-bounce">
-          <div className="text-9xl mb-4">🦛</div>
-        </div>
-
         {/* Brand name */}
         <h1 className="text-6xl md:text-7xl font-extrabold text-white mb-12 drop-shadow-2xl">
           대한민국 학교 전쟁
