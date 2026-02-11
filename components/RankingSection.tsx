@@ -220,7 +220,7 @@ export default function RankingSection() {
                   <div className="text-right">
                     <div className="flex items-center gap-2 justify-end mb-1">
                       <span className="text-lg">{tierEmoji}</span>
-                      <span className="text-xs font-semibold" style={{ color: student.tier?.color || tierInfo.color }}>
+                      <span className="text-sm font-semibold" style={{ color: student.tier?.color || tierInfo.color }}>
                         {tierName}
                       </span>
                     </div>
@@ -302,7 +302,7 @@ export default function RankingSection() {
                   <div className="text-right">
                     <div className="flex items-center gap-2 justify-end mb-1">
                       <span className="text-lg">{tierEmoji}</span>
-                      <span className="text-xs font-semibold" style={{ color: school.tier?.color || tierInfo.color }}>
+                      <span className="text-sm font-semibold" style={{ color: school.tier?.color || tierInfo.color }}>
                         {tierName}
                       </span>
                     </div>
