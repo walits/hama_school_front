@@ -37,6 +37,12 @@ interface Student {
   totalScore: number;
   level: number;
   tier?: TierInfo;
+  school?: {
+    id: number;
+    name: string;
+    region1: string;
+    region2: string;
+  };
 }
 
 const API_BASE = 'https://api.schoolwar.kr';
@@ -53,94 +59,128 @@ const SCHOOL_PATHS = {
   high: 'high-schools'
 };
 
-export default function DashboardPage() {
+const STUDENT_PATHS = {
+  elementary: 'users',
+  middle: 'mid-users',
+  high: 'high-users'
+};
+
+export default function DetailPage() {
   const [schoolLevel, setSchoolLevel] = useState<SchoolLevel>('elementary');
-  const [rankingType, setRankingType] = useState<RankingType>('national');
+
+  // 학교 순위 관련
+  const [schoolRankingType, setSchoolRankingType] = useState<RankingType>('national');
   const [schools, setSchools] = useState<School[]>([]);
-  const [selectedSchool, setSelectedSchool] = useState<School | null>(null);
-  const [topStudents, setTopStudents] = useState<Student[]>([]);
+  const [schoolsLoading, setSchoolsLoading] = useState(false);
+  const [schoolRegion1, setSchoolRegion1] = useState('');
+  const [schoolRegion2, setSchoolRegion2] = useState('');
+
+  // 학생 순위 관련
+  const [studentRankingType, setStudentRankingType] = useState<RankingType>('national');
+  const [students, setStudents] = useState<Student[]>([]);
+  const [studentsLoading, setStudentsLoading] = useState(false);
+  const [studentRegion1, setStudentRegion1] = useState('');
+  const [studentRegion2, setStudentRegion2] = useState('');
+
+  // 지역 목록
   const [regions, setRegions] = useState<string[]>([]);
   const [regions2, setRegions2] = useState<string[]>([]);
-  const [selectedRegion1, setSelectedRegion1] = useState('');
-  const [selectedRegion2, setSelectedRegion2] = useState('');
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetchRegions();
   }, []);
 
   useEffect(() => {
-    fetchRankings();
-  }, [schoolLevel, rankingType, selectedRegion1, selectedRegion2]);
+    fetchSchoolRankings();
+  }, [schoolLevel, schoolRankingType, schoolRegion1, schoolRegion2]);
+
+  useEffect(() => {
+    fetchStudentRankings();
+  }, [schoolLevel, studentRankingType, studentRegion1, studentRegion2]);
 
   async function fetchRegions() {
     try {
       const res = await fetch(`${API_BASE}/schools`);
       const allSchools = await res.json();
 
-      // region1 목록 (시/도)
       const uniqueRegions = Array.from(new Set(allSchools.map((s: any) => s.region1).filter(Boolean)));
       setRegions(uniqueRegions as string[]);
       if (uniqueRegions.length > 0) {
-        setSelectedRegion1(uniqueRegions[0] as string);
+        const firstRegion = uniqueRegions[0] as string;
+        setSchoolRegion1(firstRegion);
+        setStudentRegion1(firstRegion);
       }
 
-      // region2 목록 (시/군)
       const uniqueRegions2 = Array.from(new Set(allSchools.map((s: any) => s.region2).filter(Boolean)));
       setRegions2(uniqueRegions2 as string[]);
       if (uniqueRegions2.length > 0) {
-        setSelectedRegion2(uniqueRegions2[0] as string);
+        const firstRegion2 = uniqueRegions2[0] as string;
+        setSchoolRegion2(firstRegion2);
+        setStudentRegion2(firstRegion2);
       }
     } catch (error) {
       console.error('Failed to fetch regions:', error);
     }
   }
 
-  async function fetchRankings() {
-    setLoading(true);
+  async function fetchSchoolRankings() {
+    setSchoolsLoading(true);
     try {
       const basePath = SCHOOL_PATHS[schoolLevel];
-      let url = `${API_BASE}/${basePath}/ranking/${rankingType}?limit=50`;
+      let url = `${API_BASE}/${basePath}/ranking/${schoolRankingType}?limit=1000`;
 
-      if (rankingType === 'regional' && selectedRegion1) {
-        url += `&region1=${encodeURIComponent(selectedRegion1)}`;
-      } else if (rankingType === 'nearby' && selectedRegion2) {
-        url += `&region2=${encodeURIComponent(selectedRegion2)}`;
+      if (schoolRankingType === 'regional' && schoolRegion1) {
+        url += `&region1=${encodeURIComponent(schoolRegion1)}`;
+      } else if (schoolRankingType === 'nearby' && schoolRegion2) {
+        url += `&region2=${encodeURIComponent(schoolRegion2)}`;
       }
 
       const res = await fetch(url);
+      if (!res.ok) {
+        console.warn(`School API returned ${res.status}`);
+        setSchools([]);
+        return;
+      }
       const data = await res.json();
       setSchools(data.data || data || []);
-
-      // 자동으로 1등 학교 선택
-      if (data.data && data.data.length > 0) {
-        await fetchTopStudents(data.data[0]);
-      }
     } catch (error) {
-      console.error('Failed to fetch rankings:', error);
+      console.error('Failed to fetch school rankings:', error);
       setSchools([]);
     } finally {
-      setLoading(false);
+      setSchoolsLoading(false);
     }
   }
 
-  async function fetchTopStudents(school: School) {
-    setSelectedSchool(school);
+  async function fetchStudentRankings() {
+    setStudentsLoading(true);
     try {
-      const basePath = SCHOOL_PATHS[schoolLevel];
-      const res = await fetch(`${API_BASE}/${basePath}/${school.id}/top-contributors?limit=10`);
+      const basePath = STUDENT_PATHS[schoolLevel];
+      let url = `${API_BASE}/${basePath}/ranking/${studentRankingType}?limit=1000`;
+
+      if (studentRankingType === 'regional' && studentRegion1) {
+        url += `&region1=${encodeURIComponent(studentRegion1)}`;
+      } else if (studentRankingType === 'nearby' && studentRegion2) {
+        url += `&region2=${encodeURIComponent(studentRegion2)}`;
+      }
+
+      const res = await fetch(url);
+      if (!res.ok) {
+        console.warn(`Student API returned ${res.status}`);
+        setStudents([]);
+        return;
+      }
       const data = await res.json();
-      setTopStudents(data.data || data || []);
+      setStudents(data.data || data || []);
     } catch (error) {
-      console.error('Failed to fetch top students:', error);
-      setTopStudents([]);
+      console.error('Failed to fetch student rankings:', error);
+      setStudents([]);
+    } finally {
+      setStudentsLoading(false);
     }
   }
 
-  // 폴백용 티어 계산 (API에서 tier 정보가 없을 경우)
   const getFallbackTier = (score: number, isStudent: boolean = false) => {
     if (isStudent) {
-      // 학생 티어 (모두 검은색으로 통일)
       if (score >= 50000) return { name: '용', color: '#1F2937', emoji: '🐉' };
       if (score >= 15000) return { name: '사자', color: '#1F2937', emoji: '🦁' };
       if (score >= 5000) return { name: '늑대', color: '#1F2937', emoji: '🐺' };
@@ -148,7 +188,6 @@ export default function DashboardPage() {
       if (score >= 500) return { name: '토끼', color: '#1F2937', emoji: '🐰' };
       return { name: '병아리', color: '#1F2937', emoji: '🐣' };
     } else {
-      // 학교 티어 (모두 검은색으로 통일)
       if (score >= 1000000) return { name: '마스터', color: '#1F2937', emoji: '👑' };
       if (score >= 500000) return { name: '다이아몬드', color: '#1F2937', emoji: '💎' };
       if (score >= 200000) return { name: '플래티넘', color: '#1F2937', emoji: '🔷' };
@@ -186,7 +225,7 @@ export default function DashboardPage() {
       <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         {/* 학교 레벨 선택 */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-6">📊 실시간 학교 전쟁 대시보드</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-6">📊 상세 순위 보드</h1>
           <div className="flex gap-3">
             {(Object.keys(SCHOOL_LABELS) as SchoolLevel[]).map((level) => (
               <button
@@ -204,95 +243,82 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* 랭킹 타입 & 지역 선택 */}
-        <div className="bg-white rounded-2xl p-6 shadow-lg mb-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* 랭킹 타입 */}
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-3">랭킹 타입</label>
-              <div className="flex flex-col gap-2">
-                <button
-                  onClick={() => setRankingType('national')}
-                  className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
-                    rankingType === 'national'
-                      ? 'bg-purple-600 text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  🌍 전국 순위
-                </button>
-                <button
-                  onClick={() => setRankingType('regional')}
-                  className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
-                    rankingType === 'regional'
-                      ? 'bg-purple-600 text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  📍 지역 순위
-                </button>
-                <button
-                  onClick={() => setRankingType('nearby')}
-                  className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
-                    rankingType === 'nearby'
-                      ? 'bg-purple-600 text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  📌 근처 순위
-                </button>
+        {/* 학교 순위 섹션 */}
+        <div className="mb-12">
+          <div className="bg-white rounded-2xl p-6 shadow-lg">
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">🏫 학교 순위</h2>
+
+            {/* 학교 랭킹 타입 & 지역 선택 */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">랭킹 타입</label>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setSchoolRankingType('national')}
+                    className={`flex-1 px-3 py-2 rounded-lg text-sm font-semibold transition-all ${
+                      schoolRankingType === 'national'
+                        ? 'bg-purple-600 text-white'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    🌍 전국
+                  </button>
+                  <button
+                    onClick={() => setSchoolRankingType('regional')}
+                    className={`flex-1 px-3 py-2 rounded-lg text-sm font-semibold transition-all ${
+                      schoolRankingType === 'regional'
+                        ? 'bg-purple-600 text-white'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    📍 지역
+                  </button>
+                  <button
+                    onClick={() => setSchoolRankingType('nearby')}
+                    className={`flex-1 px-3 py-2 rounded-lg text-sm font-semibold transition-all ${
+                      schoolRankingType === 'nearby'
+                        ? 'bg-purple-600 text-white'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    📌 근처
+                  </button>
+                </div>
               </div>
+
+              {schoolRankingType === 'regional' && (
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">시/도 선택</label>
+                  <select
+                    value={schoolRegion1}
+                    onChange={(e) => setSchoolRegion1(e.target.value)}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500"
+                  >
+                    {regions.map((region) => (
+                      <option key={region} value={region}>{region}</option>
+                    ))}
+                  </select>
+                </div>
+              )}
+
+              {schoolRankingType === 'nearby' && (
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">시/군 선택</label>
+                  <select
+                    value={schoolRegion2}
+                    onChange={(e) => setSchoolRegion2(e.target.value)}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500"
+                  >
+                    {regions2.map((region) => (
+                      <option key={region} value={region}>{region}</option>
+                    ))}
+                  </select>
+                </div>
+              )}
             </div>
 
-            {/* 지역 선택 (region1) */}
-            {rankingType === 'regional' && (
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-3">시/도 선택</label>
-                <select
-                  value={selectedRegion1}
-                  onChange={(e) => setSelectedRegion1(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                >
-                  {regions.map((region) => (
-                    <option key={region} value={region}>
-                      {region}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            )}
-
-            {/* 근처 선택 (region2) */}
-            {rankingType === 'nearby' && (
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-3">시/군 선택</label>
-                <select
-                  value={selectedRegion2}
-                  onChange={(e) => setSelectedRegion2(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                >
-                  {regions2.map((region) => (
-                    <option key={region} value={region}>
-                      {region}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* 메인 컨텐츠 */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* 학교 랭킹 */}
-          <div className="bg-white rounded-2xl p-6 shadow-lg">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              {rankingType === 'national' && '🌍 전국 순위'}
-              {rankingType === 'regional' && `📍 ${selectedRegion1} 순위`}
-              {rankingType === 'nearby' && `📌 ${selectedRegion2} 순위`}
-            </h2>
-
-            {loading ? (
+            {/* 학교 목록 */}
+            {schoolsLoading ? (
               <div className="text-center py-12">
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4"></div>
                 <p className="text-gray-600">로딩 중...</p>
@@ -302,156 +328,200 @@ export default function DashboardPage() {
                 데이터가 없습니다.
               </div>
             ) : (
-              <div className="space-y-2 max-h-[600px] overflow-y-auto">
-                {schools.map((school, index) => {
-                  // API tier 정보 사용, 없으면 폴백
-                  const fallbackTier = getFallbackTier(school.totalScore, false);
-                  const tierInfo = school.tier || fallbackTier;
-                  const tierEmoji = school.tier?.icon || fallbackTier.emoji;
-                  const tierName = school.tier?.currentKorean || fallbackTier.name;
+              <div>
+                <div className="text-sm text-gray-600 mb-4">
+                  총 <span className="font-bold text-purple-600">{schools.length}개</span> 학교
+                </div>
+                <div className="space-y-2 max-h-[600px] overflow-y-auto pr-2">
+                  {schools.map((school) => {
+                    const fallbackTier = getFallbackTier(school.normalizedScore, false);
+                    const tierEmoji = school.tier?.icon || fallbackTier.emoji;
+                    const tierName = school.tier?.currentKorean || fallbackTier.name;
 
-                  return (
-                    <button
-                      key={school.id}
-                      onClick={() => fetchTopStudents(school)}
-                      className={`w-full text-left p-4 rounded-lg transition-all hover:shadow-md ${
-                        selectedSchool?.id === school.id
-                          ? 'bg-purple-50 border-2 border-purple-300'
-                          : 'bg-gray-50 border border-gray-200 hover:bg-gray-100'
-                      }`}
-                    >
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="flex items-center gap-3">
-                          <div className={`text-xl font-bold ${
-                            school.rank === 1 ? 'text-yellow-600' : 'text-gray-400'
-                          }`}>
-                            {school.rank === 1 ? '🥇' : `${school.rank}위`}
+                    return (
+                      <div
+                        key={school.id}
+                        className={`p-4 rounded-lg border transition-all ${
+                          school.rank === 1
+                            ? 'bg-gradient-to-r from-yellow-50 to-orange-50 border-yellow-300 border-2'
+                            : 'bg-gray-50 border-gray-200 hover:bg-gray-100'
+                        }`}
+                      >
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-3 min-w-0 flex-1">
+                            <div className={`text-lg font-bold ${
+                              school.rank === 1 ? 'text-yellow-600' :
+                              school.rank <= 3 ? 'text-gray-600' : 'text-gray-400'
+                            }`}>
+                              {school.rank === 1 ? '🥇' :
+                               school.rank === 2 ? '🥈' :
+                               school.rank === 3 ? '🥉' :
+                               `${school.rank}위`}
+                            </div>
+                            <div className="min-w-0 flex-1">
+                              <div className="font-bold text-gray-900 truncate">{school.name}</div>
+                              <div className="text-xs text-gray-600 truncate">
+                                {school.region1} {school.region2} · 학생 {school.studentCount}명
+                              </div>
+                            </div>
                           </div>
-                          <div>
-                            <div className="font-bold text-gray-900">{school.name}</div>
-                            <div className="text-sm text-gray-600">{school.region1} {school.region2}</div>
-                            <div className="text-xs text-gray-500">학생 {school.studentCount}명 · 배수 {school.scoreMultiplier}x</div>
+                          <div className="text-right flex-shrink-0 ml-4">
+                            <div className="flex items-center gap-1 justify-end mb-1">
+                              <span className="text-base">{tierEmoji}</span>
+                              <span className="text-xs font-semibold text-gray-800">{tierName}</span>
+                            </div>
+                            <div className="text-base font-bold text-gray-900">
+                              {school.normalizedScore.toLocaleString()}
+                            </div>
+                            <div className="text-xs text-gray-500">보정 점수</div>
                           </div>
-                        </div>
-                        <div className="text-right">
-                          <div className="flex items-center gap-1 justify-end mb-1">
-                            <span className="text-lg">{tierEmoji}</span>
-                            <span className="text-sm font-semibold text-gray-800">
-                              {tierName}
-                            </span>
-                          </div>
-                          <div className="text-xl font-bold text-gray-900">{school.normalizedScore.toLocaleString()}</div>
-                          <div className="text-xs text-gray-500">보정 점수</div>
                         </div>
                       </div>
-
-                      {/* 티어 진행도 바 */}
-                      {school.tier && school.tier.nextTier && (
-                        <div className="mt-2 pt-2 border-t border-gray-200">
-                          <div className="flex justify-between text-xs text-gray-600 mb-1">
-                            <span>→ {school.tier.nextTierKorean}</span>
-                            <span>{school.tier.remainingScore.toLocaleString()}점 남음</span>
-                          </div>
-                          <div className="w-full bg-gray-200 rounded-full h-1.5">
-                            <div
-                              className="h-1.5 rounded-full transition-all"
-                              style={{
-                                width: `${school.tier.progress}%`,
-                                backgroundColor: school.tier.color
-                              }}
-                            ></div>
-                          </div>
-                        </div>
-                      )}
-                    </button>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
             )}
           </div>
+        </div>
 
-          {/* 우수 학생 */}
+        {/* 학생 순위 섹션 */}
+        <div className="mb-12">
           <div className="bg-white rounded-2xl p-6 shadow-lg">
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">
-              ⭐ 학교를 빛낸 학생들
-            </h2>
-            {selectedSchool && (
-              <p className="text-sm text-gray-600 mb-6">
-                {selectedSchool.name} ({selectedSchool.region1} {selectedSchool.region2})
-              </p>
-            )}
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">👨‍🎓 학생 순위</h2>
 
-            {!selectedSchool ? (
-              <div className="text-center py-12 text-gray-500">
-                학교를 선택하세요
+            {/* 학생 랭킹 타입 & 지역 선택 */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">랭킹 타입</label>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setStudentRankingType('national')}
+                    className={`flex-1 px-3 py-2 rounded-lg text-sm font-semibold transition-all ${
+                      studentRankingType === 'national'
+                        ? 'bg-purple-600 text-white'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    🌍 전국
+                  </button>
+                  <button
+                    onClick={() => setStudentRankingType('regional')}
+                    className={`flex-1 px-3 py-2 rounded-lg text-sm font-semibold transition-all ${
+                      studentRankingType === 'regional'
+                        ? 'bg-purple-600 text-white'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    📍 지역
+                  </button>
+                  <button
+                    onClick={() => setStudentRankingType('nearby')}
+                    className={`flex-1 px-3 py-2 rounded-lg text-sm font-semibold transition-all ${
+                      studentRankingType === 'nearby'
+                        ? 'bg-purple-600 text-white'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    📌 근처
+                  </button>
+                </div>
               </div>
-            ) : topStudents.length === 0 ? (
+
+              {studentRankingType === 'regional' && (
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">시/도 선택</label>
+                  <select
+                    value={studentRegion1}
+                    onChange={(e) => setStudentRegion1(e.target.value)}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500"
+                  >
+                    {regions.map((region) => (
+                      <option key={region} value={region}>{region}</option>
+                    ))}
+                  </select>
+                </div>
+              )}
+
+              {studentRankingType === 'nearby' && (
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">시/군 선택</label>
+                  <select
+                    value={studentRegion2}
+                    onChange={(e) => setStudentRegion2(e.target.value)}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500"
+                  >
+                    {regions2.map((region) => (
+                      <option key={region} value={region}>{region}</option>
+                    ))}
+                  </select>
+                </div>
+              )}
+            </div>
+
+            {/* 학생 목록 */}
+            {studentsLoading ? (
+              <div className="text-center py-12">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4"></div>
+                <p className="text-gray-600">로딩 중...</p>
+              </div>
+            ) : students.length === 0 ? (
               <div className="text-center py-12 text-gray-500">
-                등록된 학생이 없습니다
+                데이터가 없습니다.
               </div>
             ) : (
-              <div className="space-y-2">
-                {topStudents.map((student) => {
-                  // API tier 정보 사용, 없으면 폴백
-                  const fallbackTier = getFallbackTier(student.totalScore, true);
-                  const tierInfo = student.tier || fallbackTier;
-                  const tierEmoji = student.tier?.icon || fallbackTier.emoji;
-                  const tierName = student.tier?.currentKorean || fallbackTier.name;
+              <div>
+                <div className="text-sm text-gray-600 mb-4">
+                  총 <span className="font-bold text-purple-600">{students.length}명</span> 학생
+                </div>
+                <div className="space-y-2 max-h-[600px] overflow-y-auto pr-2">
+                  {students.map((student) => {
+                    const fallbackTier = getFallbackTier(student.totalScore, true);
+                    const tierEmoji = student.tier?.icon || fallbackTier.emoji;
+                    const tierName = student.tier?.currentKorean || fallbackTier.name;
 
-                  return (
-                    <div
-                      key={student.id}
-                      className={`p-4 rounded-lg ${
-                        student.rank === 1 ? 'bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-300' :
-                        'bg-gray-50 border border-gray-200'
-                      }`}
-                    >
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="flex items-center gap-3">
-                          <div className={`text-2xl font-bold ${
-                            student.rank === 1 ? 'text-yellow-600' : 'text-gray-400'
-                          }`}>
-                            {student.rank === 1 ? '🥇' : `${student.rank}위`}
-                          </div>
-                          <div>
-                            <div className="font-bold text-gray-900">{student.nickname}</div>
-                            <div className="text-sm text-gray-600 flex items-center gap-2">
-                              <span>Lv.{student.level}</span>
-                              <span className="flex items-center gap-1">
-                                <span>{tierEmoji}</span>
-                                <span className="text-sm font-semibold text-gray-800">
-                                  {tierName}
-                                </span>
-                              </span>
+                    return (
+                      <div
+                        key={student.id}
+                        className={`p-4 rounded-lg border transition-all ${
+                          student.rank === 1
+                            ? 'bg-gradient-to-r from-yellow-50 to-orange-50 border-yellow-300 border-2'
+                            : 'bg-gray-50 border-gray-200 hover:bg-gray-100'
+                        }`}
+                      >
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-3 min-w-0 flex-1">
+                            <div className={`text-lg font-bold ${
+                              student.rank === 1 ? 'text-yellow-600' :
+                              student.rank <= 3 ? 'text-gray-600' : 'text-gray-400'
+                            }`}>
+                              {student.rank === 1 ? '🥇' :
+                               student.rank === 2 ? '🥈' :
+                               student.rank === 3 ? '🥉' :
+                               `${student.rank}위`}
+                            </div>
+                            <div className="min-w-0 flex-1">
+                              <div className="font-bold text-gray-900 truncate">{student.nickname}</div>
+                              <div className="text-xs text-gray-600 truncate">
+                                {student.school ? `${student.school.name}` : `Lv.${student.level}`}
+                              </div>
                             </div>
                           </div>
-                        </div>
-                        <div className="text-xl font-bold text-purple-600">
-                          {student.totalScore.toLocaleString()}점
+                          <div className="text-right flex-shrink-0 ml-4">
+                            <div className="flex items-center gap-1 justify-end mb-1">
+                              <span className="text-base">{tierEmoji}</span>
+                              <span className="text-xs font-semibold text-gray-800">{tierName}</span>
+                            </div>
+                            <div className="text-base font-bold text-purple-600">
+                              {student.totalScore.toLocaleString()}
+                            </div>
+                            <div className="text-xs text-gray-500">점수</div>
+                          </div>
                         </div>
                       </div>
-
-                      {/* 티어 진행도 바 */}
-                      {student.tier && student.tier.nextTier && (
-                        <div className="mt-2 pt-2 border-t border-gray-200">
-                          <div className="flex justify-between text-xs text-gray-600 mb-1">
-                            <span>→ {student.tier.nextTierKorean}</span>
-                            <span>{student.tier.remainingScore.toLocaleString()}점 남음</span>
-                          </div>
-                          <div className="w-full bg-gray-200 rounded-full h-1.5">
-                            <div
-                              className="h-1.5 rounded-full transition-all"
-                              style={{
-                                width: `${student.tier.progress}%`,
-                                backgroundColor: student.tier.color
-                              }}
-                            ></div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
             )}
           </div>
