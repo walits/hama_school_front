@@ -6,6 +6,17 @@ import Link from 'next/link';
 type SchoolLevel = 'elementary' | 'middle' | 'high';
 type RankingType = 'national' | 'regional' | 'nearby';
 
+interface TierInfo {
+  current: string;
+  currentKorean: string;
+  color: string;
+  icon: string;
+  nextTier: string | null;
+  nextTierKorean: string | null;
+  progress: number;
+  remainingScore: number;
+}
+
 interface School {
   id: number;
   name: string;
@@ -16,6 +27,7 @@ interface School {
   studentCount: number;
   rank: number;
   normalizedScore: number;
+  tier?: TierInfo;
 }
 
 interface Student {
@@ -24,6 +36,7 @@ interface Student {
   nickname: string;
   totalScore: number;
   level: number;
+  tier?: TierInfo;
 }
 
 const API_BASE = 'https://api.schoolwar.kr';
@@ -124,12 +137,25 @@ export default function DashboardPage() {
     }
   }
 
-  const getTier = (score: number) => {
-    if (score >= 300000) return { name: 'Diamond', color: 'bg-gradient-to-r from-cyan-400 to-cyan-600', emoji: '💎' };
-    if (score >= 150000) return { name: 'Platinum', color: 'bg-gradient-to-r from-gray-300 to-gray-500', emoji: '🔷' };
-    if (score >= 50000) return { name: 'Gold', color: 'bg-gradient-to-r from-yellow-400 to-yellow-600', emoji: '🥇' };
-    if (score >= 10000) return { name: 'Silver', color: 'bg-gradient-to-r from-gray-400 to-gray-600', emoji: '🥈' };
-    return { name: 'Bronze', color: 'bg-gradient-to-r from-amber-600 to-amber-800', emoji: '🥉' };
+  // 폴백용 티어 계산 (API에서 tier 정보가 없을 경우)
+  const getFallbackTier = (score: number, isStudent: boolean = false) => {
+    if (isStudent) {
+      // 학생 티어
+      if (score >= 50000) return { name: '용', color: '#9C27B0', emoji: '🐉' };
+      if (score >= 15000) return { name: '사자', color: '#FFD700', emoji: '🦁' };
+      if (score >= 5000) return { name: '늑대', color: '#9E9E9E', emoji: '🐺' };
+      if (score >= 2000) return { name: '여우', color: '#FF9800', emoji: '🦊' };
+      if (score >= 500) return { name: '토끼', color: '#FFCCBC', emoji: '🐰' };
+      return { name: '병아리', color: '#FFF9C4', emoji: '🐣' };
+    } else {
+      // 학교 티어
+      if (score >= 500000) return { name: '마스터', color: '#FFD700', emoji: '👑' };
+      if (score >= 100000) return { name: '다이아몬드', color: '#B9F2FF', emoji: '💎' };
+      if (score >= 50000) return { name: '플래티넘', color: '#E5E4E2', emoji: '🔷' };
+      if (score >= 20000) return { name: '골드', color: '#FFD700', emoji: '🥇' };
+      if (score >= 5000) return { name: '실버', color: '#C0C0C0', emoji: '🥈' };
+      return { name: '브론즈', color: '#CD7F32', emoji: '🥉' };
+    }
   };
 
   return (
@@ -278,7 +304,11 @@ export default function DashboardPage() {
             ) : (
               <div className="space-y-2 max-h-[600px] overflow-y-auto">
                 {schools.map((school, index) => {
-                  const tier = getTier(school.totalScore);
+                  // API tier 정보 사용, 없으면 폴백
+                  const tierInfo = school.tier || getFallbackTier(school.totalScore, false);
+                  const tierEmoji = school.tier?.icon || tierInfo.emoji;
+                  const tierName = school.tier?.currentKorean || tierInfo.name;
+
                   return (
                     <button
                       key={school.id}
@@ -289,7 +319,7 @@ export default function DashboardPage() {
                           : 'bg-gray-50 border border-gray-200 hover:bg-gray-100'
                       }`}
                     >
-                      <div className="flex items-center justify-between">
+                      <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center gap-3">
                           <div className={`text-xl font-bold ${
                             school.rank === 1 ? 'text-yellow-600' :
@@ -307,13 +337,34 @@ export default function DashboardPage() {
                         </div>
                         <div className="text-right">
                           <div className="flex items-center gap-1 justify-end mb-1">
-                            <span className="text-lg">{tier.emoji}</span>
-                            <span className="text-xs font-semibold text-gray-600">{tier.name}</span>
+                            <span className="text-lg">{tierEmoji}</span>
+                            <span className="text-xs font-semibold" style={{ color: school.tier?.color || tierInfo.color }}>
+                              {tierName}
+                            </span>
                           </div>
                           <div className="text-xl font-bold text-gray-900">{school.totalScore.toLocaleString()}</div>
                           <div className="text-xs text-purple-600">정규화 {school.normalizedScore.toLocaleString()}</div>
                         </div>
                       </div>
+
+                      {/* 티어 진행도 바 */}
+                      {school.tier && school.tier.nextTier && (
+                        <div className="mt-2 pt-2 border-t border-gray-200">
+                          <div className="flex justify-between text-xs text-gray-600 mb-1">
+                            <span>→ {school.tier.nextTierKorean}</span>
+                            <span>{school.tier.remainingScore.toLocaleString()}점 남음</span>
+                          </div>
+                          <div className="w-full bg-gray-200 rounded-full h-1.5">
+                            <div
+                              className="h-1.5 rounded-full transition-all"
+                              style={{
+                                width: `${school.tier.progress}%`,
+                                backgroundColor: school.tier.color
+                              }}
+                            ></div>
+                          </div>
+                        </div>
+                      )}
                     </button>
                   );
                 })}
@@ -342,37 +393,71 @@ export default function DashboardPage() {
               </div>
             ) : (
               <div className="space-y-2">
-                {topStudents.map((student) => (
-                  <div
-                    key={student.id}
-                    className={`p-4 rounded-lg ${
-                      student.rank === 1 ? 'bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-300' :
-                      student.rank === 2 ? 'bg-gradient-to-r from-gray-50 to-gray-100 border-2 border-gray-300' :
-                      student.rank === 3 ? 'bg-gradient-to-r from-orange-50 to-amber-50 border-2 border-orange-300' :
-                      'bg-gray-50 border border-gray-200'
-                    }`}
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className={`text-2xl font-bold ${
-                          student.rank === 1 ? 'text-yellow-600' :
-                          student.rank === 2 ? 'text-gray-600' :
-                          student.rank === 3 ? 'text-orange-600' :
-                          'text-gray-400'
-                        }`}>
-                          {student.rank === 1 ? '🥇' : student.rank === 2 ? '🥈' : student.rank === 3 ? '🥉' : `${student.rank}위`}
+                {topStudents.map((student) => {
+                  // API tier 정보 사용, 없으면 폴백
+                  const tierInfo = student.tier || getFallbackTier(student.totalScore, true);
+                  const tierEmoji = student.tier?.icon || tierInfo.emoji;
+                  const tierName = student.tier?.currentKorean || tierInfo.name;
+
+                  return (
+                    <div
+                      key={student.id}
+                      className={`p-4 rounded-lg ${
+                        student.rank === 1 ? 'bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-300' :
+                        student.rank === 2 ? 'bg-gradient-to-r from-gray-50 to-gray-100 border-2 border-gray-300' :
+                        student.rank === 3 ? 'bg-gradient-to-r from-orange-50 to-amber-50 border-2 border-orange-300' :
+                        'bg-gray-50 border border-gray-200'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center gap-3">
+                          <div className={`text-2xl font-bold ${
+                            student.rank === 1 ? 'text-yellow-600' :
+                            student.rank === 2 ? 'text-gray-600' :
+                            student.rank === 3 ? 'text-orange-600' :
+                            'text-gray-400'
+                          }`}>
+                            {student.rank === 1 ? '🥇' : student.rank === 2 ? '🥈' : student.rank === 3 ? '🥉' : `${student.rank}위`}
+                          </div>
+                          <div>
+                            <div className="font-bold text-gray-900">{student.nickname}</div>
+                            <div className="text-sm text-gray-600 flex items-center gap-2">
+                              <span>Lv.{student.level}</span>
+                              <span className="flex items-center gap-1">
+                                <span>{tierEmoji}</span>
+                                <span className="text-xs" style={{ color: student.tier?.color || tierInfo.color }}>
+                                  {tierName}
+                                </span>
+                              </span>
+                            </div>
+                          </div>
                         </div>
-                        <div>
-                          <div className="font-bold text-gray-900">{student.nickname}</div>
-                          <div className="text-sm text-gray-600">Lv.{student.level}</div>
+                        <div className="text-xl font-bold text-purple-600">
+                          {student.totalScore.toLocaleString()}점
                         </div>
                       </div>
-                      <div className="text-xl font-bold text-purple-600">
-                        {student.totalScore.toLocaleString()}점
-                      </div>
+
+                      {/* 티어 진행도 바 */}
+                      {student.tier && student.tier.nextTier && (
+                        <div className="mt-2 pt-2 border-t border-gray-200">
+                          <div className="flex justify-between text-xs text-gray-600 mb-1">
+                            <span>→ {student.tier.nextTierKorean}</span>
+                            <span>{student.tier.remainingScore.toLocaleString()}점 남음</span>
+                          </div>
+                          <div className="w-full bg-gray-200 rounded-full h-1.5">
+                            <div
+                              className="h-1.5 rounded-full transition-all"
+                              style={{
+                                width: `${student.tier.progress}%`,
+                                backgroundColor: student.tier.color
+                              }}
+                            ></div>
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             )}
           </div>
