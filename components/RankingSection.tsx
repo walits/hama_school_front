@@ -19,6 +19,7 @@ interface School {
   region1: string;
   region2: string;
   totalScore: number;
+  normalizedScore: number;
   studentCount: number;
   tier?: TierInfo;
 }
@@ -306,7 +307,7 @@ export default function RankingSection() {
                         {tierName}
                       </span>
                     </div>
-                    <div className="text-xl font-bold text-gray-900">{school.totalScore.toLocaleString()}점</div>
+                    <div className="text-xl font-bold text-gray-900">{school.normalizedScore.toLocaleString()}점</div>
                   </div>
                 </div>
 

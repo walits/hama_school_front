@@ -343,8 +343,8 @@ export default function DashboardPage() {
                               {tierName}
                             </span>
                           </div>
-                          <div className="text-xl font-bold text-gray-900">{school.totalScore.toLocaleString()}</div>
-                          <div className="text-xs text-purple-600">정규화 {school.normalizedScore.toLocaleString()}</div>
+                          <div className="text-xl font-bold text-gray-900">{school.normalizedScore.toLocaleString()}</div>
+                          <div className="text-xs text-gray-500">보정 점수</div>
                         </div>
                       </div>
 
