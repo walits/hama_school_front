@@ -305,9 +305,10 @@ export default function DashboardPage() {
               <div className="space-y-2 max-h-[600px] overflow-y-auto">
                 {schools.map((school, index) => {
                   // API tier 정보 사용, 없으면 폴백
-                  const tierInfo = school.tier || getFallbackTier(school.totalScore, false);
-                  const tierEmoji = school.tier?.icon || tierInfo.emoji;
-                  const tierName = school.tier?.currentKorean || tierInfo.name;
+                  const fallbackTier = getFallbackTier(school.totalScore, false);
+                  const tierInfo = school.tier || fallbackTier;
+                  const tierEmoji = school.tier?.icon || fallbackTier.emoji;
+                  const tierName = school.tier?.currentKorean || fallbackTier.name;
 
                   return (
                     <button
@@ -395,9 +396,10 @@ export default function DashboardPage() {
               <div className="space-y-2">
                 {topStudents.map((student) => {
                   // API tier 정보 사용, 없으면 폴백
-                  const tierInfo = student.tier || getFallbackTier(student.totalScore, true);
-                  const tierEmoji = student.tier?.icon || tierInfo.emoji;
-                  const tierName = student.tier?.currentKorean || tierInfo.name;
+                  const fallbackTier = getFallbackTier(student.totalScore, true);
+                  const tierInfo = student.tier || fallbackTier;
+                  const tierEmoji = student.tier?.icon || fallbackTier.emoji;
+                  const tierName = student.tier?.currentKorean || fallbackTier.name;
 
                   return (
                     <div
