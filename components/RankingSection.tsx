@@ -113,20 +113,39 @@ export default function RankingSection() {
         fetch('https://api.schoolwar.kr/high-users/ranking/national?limit=10')
       ]);
 
+      // 각 응답을 안전하게 처리 (404 등의 에러 대응)
+      const parseResponse = async (res: Response) => {
+        if (!res.ok) {
+          console.warn(`API returned ${res.status}: ${res.url}`);
+          return [];
+        }
+        try {
+          const data = await res.json();
+          return data.data || data || [];
+        } catch {
+          return [];
+        }
+      };
+
       const [elementaryData, middleData, highData] = await Promise.all([
-        elementaryRes.json(),
-        middleRes.json(),
-        highRes.json()
+        parseResponse(elementaryRes),
+        parseResponse(middleRes),
+        parseResponse(highRes)
       ]);
 
       setStudentRankings({
-        elementary: elementaryData.data || elementaryData || [],
-        middle: middleData.data || middleData || [],
-        high: highData.data || highData || []
+        elementary: elementaryData,
+        middle: middleData,
+        high: highData
       });
     } catch (error) {
       console.error('Failed to fetch student rankings:', error);
       // 에러 발생 시 빈 배열 유지
+      setStudentRankings({
+        elementary: [],
+        middle: [],
+        high: []
+      });
     }
   }
 
