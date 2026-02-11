@@ -50,12 +50,9 @@ export default function ComingSoon() {
         </div>
 
         {/* Brand name */}
-        <h1 className="text-7xl md:text-8xl font-extrabold text-white mb-4 drop-shadow-2xl">
-          하마스쿨
+        <h1 className="text-6xl md:text-7xl font-extrabold text-white mb-12 drop-shadow-2xl">
+          대한민국 학교 전쟁
         </h1>
-        <div className="text-2xl md:text-3xl font-bold text-purple-200 mb-12 drop-shadow-lg">
-          초등학교 전쟁
-        </div>
 
         {/* Coming Soon message */}
         <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 md:p-12 mb-8 border border-white/20 shadow-2xl">
@@ -118,11 +115,6 @@ export default function ComingSoon() {
         <div className="text-white/80 text-lg">
           <p className="mb-2">📅 정식 출시: 2026년 3월 12일</p>
           <p>💡 준비 중인 멋진 경험을 기대해주세요!</p>
-        </div>
-
-        {/* Admin/Detail access note (hidden, only for dev) */}
-        <div className="mt-12 text-xs text-white/40">
-          <p>개발자용: <a href="/detail/" className="underline hover:text-white/60">/detail</a></p>
         </div>
       </div>
 
