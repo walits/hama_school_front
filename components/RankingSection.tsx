@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import KoreaMap from './KoreaMap';
 
 interface School {
   id: number;
@@ -139,31 +138,8 @@ export default function RankingSection() {
           )}
         </div>
 
-        {/* 지도와 랭킹 */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12">
-          {/* 한국 지도 */}
-          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 shadow-lg">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">전국 학교 지도</h3>
-            <p className="text-sm text-gray-600 text-center mb-6">아이콘 위에 마우스를 올려보세요!</p>
-            <KoreaMap schools={nationalRanking} />
-
-            {/* 범례 */}
-            <div className="mt-6 flex flex-wrap gap-3 justify-center">
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-cyan-400 to-cyan-600 flex items-center justify-center text-xs">💎</div>
-                <span className="text-xs text-gray-600">Diamond 2000+</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-gray-300 to-gray-500 flex items-center justify-center text-xs">🔷</div>
-                <span className="text-xs text-gray-600">Platinum 1000+</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center text-xs">🥇</div>
-                <span className="text-xs text-gray-600">Gold 500+</span>
-              </div>
-            </div>
-          </div>
-
+        {/* 랭킹 */}
+        <div className="max-w-4xl mx-auto mt-12">
           {/* 랭킹 리스트 */}
           <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
             {/* 지역 선택 */}

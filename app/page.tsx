@@ -7,7 +7,7 @@ export default function Home() {
       {/* Navigation */}
       <nav className="border-b border-purple-100 bg-white/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 items-center justify-between">
+          <div className="flex h-16 items-center">
             <div className="flex items-center gap-3">
               <div className="text-3xl">🦛</div>
               <div>
@@ -17,12 +17,6 @@ export default function Home() {
                 <div className="text-xs text-purple-600 font-semibold -mt-1">초등학교 전쟁</div>
               </div>
             </div>
-            <Link
-              href="/admin/login"
-              className="rounded-lg bg-purple-600 px-4 py-2 text-sm font-medium text-white hover:bg-purple-700 transition-colors"
-            >
-              관리자 로그인
-            </Link>
           </div>
         </div>
       </nav>

@@ -5,7 +5,7 @@ resource "aws_cloudfront_distribution" "website" {
   price_class         = "PriceClass_200" # 미국, 유럽, 아시아
 
   # 커스텀 도메인 설정 (선택사항)
-  aliases = var.domain_name != "" ? [var.domain_name] : []
+  aliases = var.domain_name != "" ? [var.domain_name, "www.${var.domain_name}"] : []
 
   origin {
     domain_name              = aws_s3_bucket.website.bucket_regional_domain_name
