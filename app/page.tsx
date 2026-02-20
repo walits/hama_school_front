@@ -44,7 +44,7 @@ export default function Home() {
               </h1>
 
               <p className="mt-6 text-xl leading-8 text-gray-600 max-w-2xl mx-auto">
-                하루 최대 100문제, 7초의 타임어택!!<br />
+                하루 최대 100문제, 10초의 타임어택!!<br />
                 문제를 풀면 우리 학교 점수가 올라가요 🚀
               </p>
 
