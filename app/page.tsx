@@ -101,84 +101,13 @@ export default function Home() {
         <RankingSection />
 
         {/* Game Mechanics Section */}
-        <section className="py-20 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900">게임 방식</h2>
-              <p className="mt-4 text-lg text-gray-600">전략적인 학교 전쟁! 공격과 방어를 모두 생각하세요</p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              {/* 기본 모드 */}
-              <div className="bg-white rounded-2xl p-8 shadow-xl border-2 border-green-200 hover:scale-105 transition-transform">
-                <div className="text-center mb-6">
-                  <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center text-5xl shadow-xl mb-4">
-                    📚
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900">기본 모드</h3>
-                  <p className="text-sm text-gray-500 mt-2">상대 학교를 선택하지 않은 경우</p>
-                </div>
-                <div className="space-y-4">
-                  <div className="bg-green-50 rounded-xl p-4 border border-green-200">
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="text-2xl">✅</span>
-                      <span className="font-bold text-green-900">우리 학교</span>
-                    </div>
-                    <p className="text-gray-700 ml-11">문제를 풀면 <span className="font-bold text-green-600">점수 획득!</span></p>
-                  </div>
-                  <p className="text-center text-gray-600 text-sm">
-                    💡 안전하게 우리 학교 점수만 올리고 싶을 때
-                  </p>
-                </div>
-              </div>
-
-              {/* 전쟁 모드 */}
-              <div className="bg-white rounded-2xl p-8 shadow-xl border-2 border-red-200 hover:scale-105 transition-transform ring-4 ring-red-100">
-                <div className="text-center mb-6">
-                  <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center text-5xl shadow-xl mb-4 animate-pulse">
-                    ⚔️
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900">전쟁 모드</h3>
-                  <p className="text-sm text-gray-500 mt-2">상대 학교를 선택한 경우</p>
-                </div>
-                <div className="space-y-4">
-                  <div className="bg-green-50 rounded-xl p-4 border border-green-200">
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="text-2xl">✅</span>
-                      <span className="font-bold text-green-900">우리 학교</span>
-                    </div>
-                    <p className="text-gray-700 ml-11">문제를 풀면 <span className="font-bold text-green-600">점수 획득!</span></p>
-                  </div>
-                  <div className="bg-red-50 rounded-xl p-4 border border-red-200">
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="text-2xl">⚔️</span>
-                      <span className="font-bold text-red-900">상대 학교</span>
-                    </div>
-                    <p className="text-gray-700 ml-11">내가 얻은 점수의 <span className="font-bold text-red-600">절반(-50%) 차감!</span></p>
-                  </div>
-                  <p className="text-center text-gray-600 text-sm">
-                    🎯 라이벌 학교를 공격하면서 우리 학교도 성장!
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* 전략 팁 */}
-            <div className="mt-12 bg-gradient-to-r from-purple-100 to-pink-100 rounded-2xl p-8 border-2 border-purple-200">
-              <h4 className="text-xl font-bold text-gray-900 mb-4 text-center">💡 전략 팁</h4>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                <div className="bg-white rounded-xl p-4 shadow-md">
-                  <p className="font-bold text-purple-900 mb-2">🎯 공격형 플레이</p>
-                  <p className="text-gray-600">1등 학교를 선택해서 격차를 좁혀보세요!</p>
-                </div>
-                <div className="bg-white rounded-xl p-4 shadow-md">
-                  <p className="font-bold text-blue-900 mb-2">🛡️ 방어형 플레이</p>
-                  <p className="text-gray-600">상대 선택 없이 안정적으로 점수를 쌓으세요!</p>
-                </div>
-                <div className="bg-white rounded-xl p-4 shadow-md">
-                  <p className="font-bold text-red-900 mb-2">⚡ 역전 전략</p>
-                  <p className="text-gray-600">우리보다 높은 순위의 학교를 집중 공격!</p>
-                </div>
+        <section className="py-12 bg-gradient-to-br from-indigo-50 to-purple-50">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <div className="bg-white rounded-2xl p-8 shadow-xl border-2 border-purple-200">
+              <h3 className="text-2xl font-bold text-center text-gray-900 mb-6">⚔️ 게임 방식</h3>
+              <div className="space-y-3 text-gray-700">
+                <p className="text-lg">✅ 문제를 풀면 <span className="font-bold text-green-600">우리 학교 점수 획득!</span></p>
+                <p className="text-lg">⚔️ 상대 학교를 선택하면 <span className="font-bold text-red-600">그 학교 점수 -50% 차감!</span></p>
               </div>
             </div>
           </div>
