@@ -107,7 +107,7 @@ export default function Home() {
               <h3 className="text-2xl font-bold text-center text-gray-900 mb-6">⚔️ 게임 방식</h3>
               <div className="space-y-3 text-gray-700">
                 <p className="text-lg">✅ 문제를 풀면 <span className="font-bold text-green-600">우리 학교 점수 획득!</span></p>
-                <p className="text-lg">⚔️ 상대 학교를 선택하면 <span className="font-bold text-red-600">그 학교 점수 -50% 차감!</span></p>
+                <p className="text-lg">⚔️ 상대 학교를 선택하면 <span className="font-bold text-red-600">그 학교 점수 -10% 차감!</span></p>
               </div>
             </div>
           </div>
