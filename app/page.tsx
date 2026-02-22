@@ -106,6 +106,8 @@ export default function Home() {
             <div className="bg-white rounded-2xl p-8 shadow-xl border-2 border-purple-200">
               <h3 className="text-2xl font-bold text-center text-gray-900 mb-6">⚔️ 게임 방식</h3>
               <div className="space-y-3 text-gray-700">
+                <p className="text-lg">📚 전과목 또는 영어만 선택해서 문제를 풀 수 있어요</p>
+                <p className="text-lg">🎯 난이도 별로 <span className="font-bold text-purple-600">1, 2, 3점</span>을 획득하고 연속콤보에 따라 추가 점수!</p>
                 <p className="text-lg">✅ 문제를 풀면 <span className="font-bold text-green-600">우리 학교 점수 획득!</span></p>
                 <p className="text-lg">⚔️ 상대 학교를 선택하면 <span className="font-bold text-red-600">그 학교 점수 -10% 차감!</span></p>
               </div>
