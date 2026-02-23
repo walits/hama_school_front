@@ -10,11 +10,8 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center">
             <div className="flex items-center gap-3">
-              <div>
-                <div className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                  하마스쿨
-                </div>
-                <div className="text-xs text-purple-600 font-semibold -mt-1">학교 전쟁</div>
+              <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                대한민국 학교 전쟁
               </div>
             </div>
           </div>
