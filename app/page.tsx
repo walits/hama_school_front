@@ -82,13 +82,28 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="mt-12 flex items-center justify-center gap-4 flex-wrap">
-                <a
-                  href="/detail/"
-                  className="rounded-full bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-4 text-lg font-bold text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all cursor-pointer inline-block"
-                >
-                  📊 상세 순위 보드
-                </a>
+              <div className="mt-12 flex flex-col items-center justify-center gap-6">
+                <div className="text-sm font-semibold text-gray-700">📊 상세 순위 보드</div>
+                <div className="flex items-center justify-center gap-4 flex-wrap">
+                  <a
+                    href="/elementary"
+                    className="rounded-full bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-3 text-base font-bold text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all cursor-pointer inline-block"
+                  >
+                    🏫 초등학교 전쟁
+                  </a>
+                  <a
+                    href="/middle"
+                    className="rounded-full bg-gradient-to-r from-green-500 to-green-600 px-6 py-3 text-base font-bold text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all cursor-pointer inline-block"
+                  >
+                    🏫 중학교 전쟁
+                  </a>
+                  <a
+                    href="/high"
+                    className="rounded-full bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-3 text-base font-bold text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all cursor-pointer inline-block"
+                  >
+                    🏫 고등학교 전쟁
+                  </a>
+                </div>
                 <button className="rounded-full border-2 border-purple-600 bg-white px-8 py-4 text-lg font-bold text-purple-600 shadow-xl hover:bg-purple-50 transition-all">
                   📱 앱 다운로드
                 </button>
