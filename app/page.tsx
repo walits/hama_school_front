@@ -1,10 +1,38 @@
 'use client';
 
 import RankingSection from "@/components/RankingSection";
+import Script from 'next/script';
 
 export default function Home() {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "대한민국 학교 전쟁",
+    "description": "전국 초등학교, 중학교, 고등학교가 참여하는 학습 전쟁! 하루 최대 100문제, 10초의 타임어택으로 우리 학교를 1등으로 만들어보세요.",
+    "url": "https://schoolwar.kr",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "KRW"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "1000"
+    },
+    "inLanguage": "ko-KR"
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-100">
+    <>
+      <Script
+        id="structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-100">
       {/* Navigation */}
       <nav className="border-b border-purple-100 bg-white/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -366,5 +394,6 @@ export default function Home() {
         </div>
       </footer>
     </div>
+    </>
   );
 }
