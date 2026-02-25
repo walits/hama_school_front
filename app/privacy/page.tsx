@@ -120,8 +120,7 @@ export default function PrivacyPolicy() {
             <h2 className="text-2xl font-bold text-orange-600 mb-4">11. 개인정보 보호책임자</h2>
             <div className="bg-gray-100 p-6 rounded-lg">
               <p className="mb-2"><strong>개인정보 보호책임자: 하마스쿨 운영팀</strong></p>
-              <p className="mb-2">📧 이메일: [담당자 이메일 주소]</p>
-              <p className="mb-2">📞 연락처: [담당자 연락처]</p>
+              <p className="mb-2">📧 이메일: hamacraftstudio@gmail.com</p>
               <p>💬 문의사항: 앱 내 설정 &gt; 문의하기</p>
             </div>
             <p className="mt-4 mb-3">개인정보 침해에 대한 신고나 상담이 필요하신 경우에는 아래 기관으로 문의하실 수 있습니다.</p>
