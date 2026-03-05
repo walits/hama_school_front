@@ -1,6 +1,7 @@
 'use client';
 
 import RankingSection from "@/components/RankingSection";
+import ActiveUsersDisplay from "@/components/ActiveUsersDisplay";
 import Script from 'next/script';
 
 export default function Home() {
@@ -376,6 +377,9 @@ export default function Home() {
           </div>
         </section>
       </main>
+
+      {/* Active Users Display */}
+      <ActiveUsersDisplay />
 
       {/* Footer */}
       <footer className="border-t border-gray-200 bg-white">
