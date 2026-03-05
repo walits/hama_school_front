@@ -130,6 +130,12 @@ export default function Home() {
                     🏫 고등학교 전쟁
                   </a>
                 </div>
+
+                {/* Active Users Display */}
+                <div className="w-full">
+                  <ActiveUsersDisplay />
+                </div>
+
                 <button className="rounded-full border-2 border-purple-600 bg-white px-8 py-4 text-lg font-bold text-purple-600 shadow-xl hover:bg-purple-50 transition-all">
                   📱 앱 다운로드
                 </button>
@@ -377,9 +383,6 @@ export default function Home() {
           </div>
         </section>
       </main>
-
-      {/* Active Users Display */}
-      <ActiveUsersDisplay />
 
       {/* Footer */}
       <footer className="border-t border-gray-200 bg-white">
