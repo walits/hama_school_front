@@ -36,7 +36,22 @@ export default function ActiveUsersDisplay() {
     try {
       const response = await fetch('https://api.schoolwar.kr/stats/active-users?minutes=5');
       const data = await response.json();
-      setActiveUsers(data);
+
+      // 기본 접속자 수 추가
+      const baselineElementary = 1001;
+      const baselineMiddle = 352;
+      const baselineHigh = 283;
+
+      const updatedData = {
+        elementary: data.elementary + baselineElementary,
+        middle: data.middle + baselineMiddle,
+        high: data.high + baselineHigh,
+        total: data.elementary + data.middle + data.high + baselineElementary + baselineMiddle + baselineHigh,
+        minutes: data.minutes,
+        timestamp: data.timestamp,
+      };
+
+      setActiveUsers(updatedData);
       setIsLoading(false);
     } catch (error) {
       console.error('Failed to fetch active users:', error);
