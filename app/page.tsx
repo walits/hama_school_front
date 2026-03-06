@@ -46,15 +46,15 @@ export default function Home() {
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <Link href="/elementary" className="hover:opacity-80 transition-opacity">
+              <a href="#ranking-board" className="hover:opacity-80 transition-opacity">
                 <Image src="/elemenatry.png" alt="초등학교" width={40} height={40} className="object-contain" />
-              </Link>
-              <Link href="/middle" className="hover:opacity-80 transition-opacity">
+              </a>
+              <a href="#ranking-board" className="hover:opacity-80 transition-opacity">
                 <Image src="/mid.png" alt="중학교" width={40} height={40} className="object-contain" />
-              </Link>
-              <Link href="/high" className="hover:opacity-80 transition-opacity">
+              </a>
+              <a href="#ranking-board" className="hover:opacity-80 transition-opacity">
                 <Image src="/high.png" alt="고등학교" width={40} height={40} className="object-contain" />
-              </Link>
+              </a>
             </div>
           </div>
         </div>
@@ -121,7 +121,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="mt-12 flex flex-col items-center justify-center gap-6">
+              <div id="ranking-board" className="mt-12 flex flex-col items-center justify-center gap-6">
                 <div className="text-sm font-semibold text-gray-700">📊 상세 순위 보드</div>
                 <div className="flex items-center justify-center gap-4 flex-wrap">
                   <a
