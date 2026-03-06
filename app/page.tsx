@@ -44,13 +44,13 @@ export default function Home() {
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <a href="#ranking-board" className="hover:opacity-80 transition-opacity cursor-pointer">
+              <a href="/elementary" className="hover:opacity-80 transition-opacity cursor-pointer">
                 <img src="/elemenatry.png" alt="초등학교" className="h-12 w-12 object-contain" />
               </a>
-              <a href="#ranking-board" className="hover:opacity-80 transition-opacity cursor-pointer">
+              <a href="/middle" className="hover:opacity-80 transition-opacity cursor-pointer">
                 <img src="/mid.png" alt="중학교" className="h-12 w-12 object-contain" />
               </a>
-              <a href="#ranking-board" className="hover:opacity-80 transition-opacity cursor-pointer">
+              <a href="/high" className="hover:opacity-80 transition-opacity cursor-pointer">
                 <img src="/high.png" alt="고등학교" className="h-12 w-12 object-contain" />
               </a>
             </div>
