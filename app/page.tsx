@@ -45,13 +45,13 @@ export default function Home() {
             </div>
             <div className="flex items-center gap-4">
               <a href="/elementary" className="hover:opacity-80 transition-opacity cursor-pointer">
-                <img src="/elemenatry.png" alt="초등학교" className="h-12 w-12 object-contain" />
+                <img src="./elementary.png" alt="초등학교" className="h-12 w-12 object-contain" />
               </a>
               <a href="/middle" className="hover:opacity-80 transition-opacity cursor-pointer">
-                <img src="/mid.png" alt="중학교" className="h-12 w-12 object-contain" />
+                <img src="./mid.png" alt="중학교" className="h-12 w-12 object-contain" />
               </a>
               <a href="/high" className="hover:opacity-80 transition-opacity cursor-pointer">
-                <img src="/high.png" alt="고등학교" className="h-12 w-12 object-contain" />
+                <img src="./high.png" alt="고등학교" className="h-12 w-12 object-contain" />
               </a>
             </div>
           </div>
