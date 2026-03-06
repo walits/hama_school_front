@@ -106,7 +106,7 @@ export default function MonitoringPage() {
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center gap-3">
               <Link href="/" className="text-2xl font-bold text-white hover:text-blue-300 transition-colors">
-                ← 대한민국 학교 전쟁
+                ← 대한민국 학교 퀴즈 전쟁
               </Link>
             </div>
             <div className="text-white font-semibold">시스템 모니터링</div>

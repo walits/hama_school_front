@@ -8,7 +8,7 @@ export default function Home() {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "대한민국 학교 전쟁",
+    "name": "대한민국 학교 퀴즈 전쟁",
     "description": "전국 초등학교, 중학교, 고등학교가 참여하는 학습 전쟁! 하루 최대 100문제, 10초의 타임어택으로 우리 학교를 1등으로 만들어보세요.",
     "url": "https://schoolwar.kr",
     "applicationCategory": "EducationalApplication",
@@ -40,7 +40,7 @@ export default function Home() {
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                대한민국 학교 전쟁
+                대한민국 학교 퀴즈 전쟁
               </div>
             </div>
             <div className="flex items-center gap-6">

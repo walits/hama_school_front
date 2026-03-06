@@ -219,7 +219,7 @@ export default function MiddlePage() {
               <img src="/mid.png" alt="중학교" className="h-12 w-12 object-contain" />
               <div>
                 <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-sky-600 bg-clip-text text-transparent">
-                  대한민국 학교 전쟁
+                  대한민국 학교 퀴즈 전쟁
                 </div>
                 <div className="text-xs text-blue-600 font-semibold -mt-1">{PAGE_TITLE}</div>
               </div>
