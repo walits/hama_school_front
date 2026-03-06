@@ -3,13 +3,19 @@
 import { useEffect, useState } from 'react';
 
 interface ActiveUsers {
+  elementary: number;
+  middle: number;
+  high: number;
   total: number;
   minutes: number;
 }
 
 export default function ActiveUsersNav() {
   const [activeUsers, setActiveUsers] = useState<ActiveUsers>({
-    total: 1636, // 기본값
+    elementary: 1001,
+    middle: 352,
+    high: 283,
+    total: 1636,
     minutes: 5,
   });
 
@@ -28,9 +34,15 @@ export default function ActiveUsersNav() {
       const baselineMiddle = 352;
       const baselineHigh = 283;
 
-      const total = data.elementary + data.middle + data.high + baselineElementary + baselineMiddle + baselineHigh;
+      const elementary = data.elementary + baselineElementary;
+      const middle = data.middle + baselineMiddle;
+      const high = data.high + baselineHigh;
+      const total = elementary + middle + high;
 
       setActiveUsers({
+        elementary,
+        middle,
+        high,
         total,
         minutes: data.minutes,
       });
@@ -40,14 +52,21 @@ export default function ActiveUsersNav() {
   };
 
   return (
-    <div className="flex items-center gap-2 text-sm">
+    <div className="flex items-center gap-3 text-xs">
       <span className="relative flex h-2 w-2">
         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
         <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
       </span>
-      <span className="text-gray-700 font-medium">
-        접속자: <span className="font-bold text-purple-600">{activeUsers.total.toLocaleString()}</span>명
-      </span>
+      <div className="flex items-center gap-2">
+        <span className="text-gray-600">접속:</span>
+        <span className="text-orange-600 font-bold">{activeUsers.elementary.toLocaleString()}</span>
+        <span className="text-gray-400">|</span>
+        <span className="text-blue-600 font-bold">{activeUsers.middle.toLocaleString()}</span>
+        <span className="text-gray-400">|</span>
+        <span className="text-green-600 font-bold">{activeUsers.high.toLocaleString()}</span>
+        <span className="text-gray-400">|</span>
+        <span className="text-purple-600 font-bold">{activeUsers.total.toLocaleString()}</span>
+      </div>
     </div>
   );
 }
