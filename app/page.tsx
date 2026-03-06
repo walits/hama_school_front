@@ -37,11 +37,22 @@ export default function Home() {
       {/* Navigation */}
       <nav className="border-b border-purple-100 bg-white/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 items-center">
+          <div className="flex h-16 items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                 대한민국 학교 전쟁
               </div>
+            </div>
+            <div className="flex items-center gap-4">
+              <a href="/elementary" className="hover:opacity-80 transition-opacity">
+                <img src="/elemenatry.png" alt="초등학교" className="h-10 w-10 object-contain" />
+              </a>
+              <a href="/middle" className="hover:opacity-80 transition-opacity">
+                <img src="/mid.png" alt="중학교" className="h-10 w-10 object-contain" />
+              </a>
+              <a href="/high" className="hover:opacity-80 transition-opacity">
+                <img src="/high.png" alt="고등학교" className="h-10 w-10 object-contain" />
+              </a>
             </div>
           </div>
         </div>
