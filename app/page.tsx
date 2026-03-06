@@ -1,7 +1,7 @@
 'use client';
 
 import RankingSection from "@/components/RankingSection";
-import ActiveUsersDisplay from "@/components/ActiveUsersDisplay";
+import ActiveUsersNav from "@/components/ActiveUsersNav";
 import Script from 'next/script';
 
 export default function Home() {
@@ -43,16 +43,19 @@ export default function Home() {
                 대한민국 학교 전쟁
               </div>
             </div>
-            <div className="flex items-center gap-4">
-              <a href="/elementary" className="hover:opacity-80 transition-opacity cursor-pointer">
-                <img src="/elementary.png" alt="초등학교" className="h-12 w-12 object-contain" />
-              </a>
-              <a href="/middle" className="hover:opacity-80 transition-opacity cursor-pointer">
-                <img src="/mid.png" alt="중학교" className="h-12 w-12 object-contain" />
-              </a>
-              <a href="/high" className="hover:opacity-80 transition-opacity cursor-pointer">
-                <img src="/high.png" alt="고등학교" className="h-12 w-12 object-contain" />
-              </a>
+            <div className="flex items-center gap-6">
+              <ActiveUsersNav />
+              <div className="flex items-center gap-4">
+                <a href="/elementary" className="hover:opacity-80 transition-opacity cursor-pointer">
+                  <img src="/elementary.png" alt="초등학교" className="h-12 w-12 object-contain" />
+                </a>
+                <a href="/middle" className="hover:opacity-80 transition-opacity cursor-pointer">
+                  <img src="/mid.png" alt="중학교" className="h-12 w-12 object-contain" />
+                </a>
+                <a href="/high" className="hover:opacity-80 transition-opacity cursor-pointer">
+                  <img src="/high.png" alt="고등학교" className="h-12 w-12 object-contain" />
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -143,11 +146,6 @@ export default function Home() {
                   >
                     🏫 고등학교 전쟁
                   </a>
-                </div>
-
-                {/* Active Users Display */}
-                <div className="w-full">
-                  <ActiveUsersDisplay />
                 </div>
 
                 <button className="rounded-full border-2 border-purple-600 bg-white px-8 py-4 text-lg font-bold text-purple-600 shadow-xl hover:bg-purple-50 transition-all">

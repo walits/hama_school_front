@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import ActiveUsersNav from '@/components/ActiveUsersNav';
 
 type SchoolLevel = 'elementary' | 'middle' | 'high';
 type RankingType = 'national' | 'regional' | 'nearby';
@@ -223,13 +224,16 @@ export default function ElementaryPage() {
                 <div className="text-xs text-orange-600 font-semibold -mt-1">{PAGE_TITLE}</div>
               </div>
             </Link>
-            <div className="flex items-center gap-3">
-              <Link href="/middle" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
-                중학교
-              </Link>
-              <Link href="/high" className="text-sm text-gray-600 hover:text-green-600 transition-colors">
-                고등학교
-              </Link>
+            <div className="flex items-center gap-4">
+              <ActiveUsersNav />
+              <div className="flex items-center gap-3">
+                <Link href="/middle" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
+                  중학교
+                </Link>
+                <Link href="/high" className="text-sm text-gray-600 hover:text-green-600 transition-colors">
+                  고등학교
+                </Link>
+              </div>
               <Link
                 href="/"
                 className="rounded-lg bg-orange-600 px-4 py-2 text-sm font-medium text-white hover:bg-orange-700 transition-colors"

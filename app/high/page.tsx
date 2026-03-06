@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import ActiveUsersNav from '@/components/ActiveUsersNav';
 
 type SchoolLevel = 'elementary' | 'middle' | 'high';
 type RankingType = 'national' | 'regional' | 'nearby';
@@ -223,19 +224,22 @@ export default function HighPage() {
                 <div className="text-xs text-green-600 font-semibold -mt-1">{PAGE_TITLE}</div>
               </div>
             </Link>
-            <div className="flex items-center gap-3">
-              <Link href="/elementary" className="text-sm text-gray-600 hover:text-orange-600 transition-colors">
-                초등학교
-              </Link>
-              <Link href="/middle" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
-                중학교
-              </Link>
-              <Link
-                href="/"
-                className="rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700 transition-colors"
-              >
-                홈으로
-              </Link>
+            <div className="flex items-center gap-4">
+              <ActiveUsersNav />
+              <div className="flex items-center gap-3">
+                <Link href="/elementary" className="text-sm text-gray-600 hover:text-orange-600 transition-colors">
+                  초등학교
+                </Link>
+                <Link href="/middle" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
+                  중학교
+                </Link>
+                <Link
+                  href="/"
+                  className="rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700 transition-colors"
+                >
+                  홈으로
+                </Link>
+              </div>
             </div>
           </div>
         </div>
