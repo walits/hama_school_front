@@ -39,12 +39,28 @@ export default function MonitoringPage() {
   const fetchMetrics = async () => {
     try {
       const response = await fetch('https://api.schoolwar.kr/system/metrics');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
       const data = await response.json();
       setMetrics(data);
       setLastUpdate(new Date());
       setIsLoading(false);
     } catch (error) {
       console.error('Failed to fetch system metrics:', error);
+      // API가 준비되지 않았을 경우 더미 데이터 표시
+      setMetrics({
+        server: {
+          status: 'preparing',
+          uptime: 0,
+          uptimeFormatted: 'API 준비 중'
+        },
+        system: {
+          cpu: { cores: 0, usage: 0 },
+          memory: { usagePercent: 0, used: '0 GB', total: '0 GB' }
+        },
+        database: { connected: false }
+      });
       setIsLoading(false);
     }
   };
