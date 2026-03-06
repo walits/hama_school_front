@@ -3,6 +3,8 @@
 import RankingSection from "@/components/RankingSection";
 import ActiveUsersDisplay from "@/components/ActiveUsersDisplay";
 import Script from 'next/script';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Home() {
   const structuredData = {
@@ -44,15 +46,15 @@ export default function Home() {
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <a href="/elementary" className="hover:opacity-80 transition-opacity">
-                <img src="/elemenatry.png" alt="초등학교" className="h-10 w-10 object-contain" />
-              </a>
-              <a href="/middle" className="hover:opacity-80 transition-opacity">
-                <img src="/mid.png" alt="중학교" className="h-10 w-10 object-contain" />
-              </a>
-              <a href="/high" className="hover:opacity-80 transition-opacity">
-                <img src="/high.png" alt="고등학교" className="h-10 w-10 object-contain" />
-              </a>
+              <Link href="/elementary" className="hover:opacity-80 transition-opacity">
+                <Image src="/elemenatry.png" alt="초등학교" width={40} height={40} className="object-contain" />
+              </Link>
+              <Link href="/middle" className="hover:opacity-80 transition-opacity">
+                <Image src="/mid.png" alt="중학교" width={40} height={40} className="object-contain" />
+              </Link>
+              <Link href="/high" className="hover:opacity-80 transition-opacity">
+                <Image src="/high.png" alt="고등학교" width={40} height={40} className="object-contain" />
+              </Link>
             </div>
           </div>
         </div>
