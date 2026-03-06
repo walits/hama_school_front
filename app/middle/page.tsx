@@ -215,7 +215,7 @@ export default function MiddlePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             <Link href="/" className="flex items-center gap-3">
-              <img src="../mid.png" alt="중학교" className="h-12 w-12 object-contain" />
+              <img src="/mid.png" alt="중학교" className="h-12 w-12 object-contain" />
               <div>
                 <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-sky-600 bg-clip-text text-transparent">
                   대한민국 학교 전쟁
