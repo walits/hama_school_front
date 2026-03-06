@@ -82,7 +82,10 @@ export default function Home() {
 
               <p className="mt-6 text-xl leading-8 text-gray-600 max-w-2xl mx-auto">
                 하루 최대 100문제, 10초의 타임어택!!<br />
-                문제를 풀면 우리 학교 점수가 올라가요 🚀
+                문제를 풀면 우리 학교 점수가 올라가요{' '}
+                <a href="/monitoring" className="inline-block hover:scale-125 transition-transform cursor-pointer" title="시스템 모니터링">
+                  🚀
+                </a>
               </p>
 
               {/* Tier Badges Preview */}
