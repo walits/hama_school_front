@@ -67,7 +67,7 @@ export default function MonitoringPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 flex items-center justify-center">
         <div className="text-center">
           <div className="inline-flex items-center gap-3 text-white">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
@@ -80,7 +80,7 @@ export default function MonitoringPage() {
 
   if (!metrics) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 flex items-center justify-center">
         <div className="text-center text-white">
           <p className="text-xl">시스템 정보를 불러올 수 없습니다.</p>
         </div>
@@ -99,13 +99,13 @@ export default function MonitoringPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900">
       {/* Header */}
-      <nav className="border-b border-purple-700 bg-black/30 backdrop-blur-sm">
+      <nav className="border-b border-blue-800 bg-black/30 backdrop-blur-sm">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center gap-3">
-              <Link href="/" className="text-2xl font-bold text-white hover:text-purple-300 transition-colors">
+              <Link href="/" className="text-2xl font-bold text-white hover:text-blue-300 transition-colors">
                 ← 대한민국 학교 전쟁
               </Link>
             </div>
@@ -133,7 +133,7 @@ export default function MonitoringPage() {
         {/* Status Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {/* Server Status */}
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-purple-500/30">
+          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-blue-800/30">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold text-white">서버 상태</h3>
               <span className="text-3xl">🖥️</span>
@@ -147,7 +147,7 @@ export default function MonitoringPage() {
           </div>
 
           {/* CPU Usage */}
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-purple-500/30">
+          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-blue-800/30">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold text-white">CPU</h3>
               <span className="text-3xl">⚡</span>
@@ -167,7 +167,7 @@ export default function MonitoringPage() {
           </div>
 
           {/* Memory Usage */}
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-purple-500/30">
+          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-blue-800/30">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold text-white">메모리</h3>
               <span className="text-3xl">💾</span>
@@ -187,7 +187,7 @@ export default function MonitoringPage() {
           </div>
 
           {/* Database Status */}
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-purple-500/30">
+          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-blue-800/30">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold text-white">데이터베이스</h3>
               <span className="text-3xl">🗄️</span>
@@ -202,11 +202,11 @@ export default function MonitoringPage() {
         </div>
 
         {/* Detailed Info */}
-        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-purple-500/30">
+        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-blue-800/30">
           <h2 className="text-2xl font-bold text-white mb-6">상세 정보</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <h3 className="text-lg font-semibold text-purple-300 mb-3">서버 정보</h3>
+              <h3 className="text-lg font-semibold text-blue-300 mb-3">서버 정보</h3>
               <div className="space-y-2 text-gray-300">
                 <p>• 상태: <span className={getStatusColor(metrics.server.status)}>{metrics.server.status}</span></p>
                 <p>• 가동 시간: {metrics.server.uptimeFormatted}</p>
@@ -214,7 +214,7 @@ export default function MonitoringPage() {
               </div>
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-purple-300 mb-3">시스템 리소스</h3>
+              <h3 className="text-lg font-semibold text-blue-300 mb-3">시스템 리소스</h3>
               <div className="space-y-2 text-gray-300">
                 <p>• CPU 코어: {metrics.system.cpu.cores}개</p>
                 <p>• CPU 사용률: {metrics.system.cpu.usage}%</p>
