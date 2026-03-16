@@ -148,9 +148,44 @@ export default function Home() {
                   </a>
                 </div>
 
-                <button className="rounded-full border-2 border-purple-600 bg-white px-8 py-4 text-lg font-bold text-purple-600 shadow-xl hover:bg-purple-50 transition-all">
-                  📱 앱 다운로드
-                </button>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                  <a
+                    href="https://play.google.com/store/apps/details?id=io.hama.hama_school_android"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 rounded-xl bg-black px-5 py-3 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+                  >
+                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.65.19.97.07l11.4-6.58-2.45-2.45-9.92 8.96zm-1.46-19.3C1.27 4.86 1 5.35 1 6v12c0 .65.27 1.14.72 1.54l.08.07 6.72-6.72v-.16L1.72 4.46zm16.9 8.32-2.28-1.32-2.72 2.72 2.72 2.72 2.3-1.33c.66-.38.66-1.41-.02-1.79zM4.15.49l11.4 6.6-2.45 2.45L3.18.58C3.5.46 3.85.49 4.15.67z"/></svg>
+                    <div className="text-left">
+                      <div className="text-xs text-gray-300 leading-none">Google Play</div>
+                      <div className="text-sm font-bold leading-tight">초등학교 전쟁</div>
+                    </div>
+                  </a>
+                  <a
+                    href="https://play.google.com/store/apps/details?id=io.hama.hama_mid_school_android"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 rounded-xl bg-black px-5 py-3 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+                  >
+                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.65.19.97.07l11.4-6.58-2.45-2.45-9.92 8.96zm-1.46-19.3C1.27 4.86 1 5.35 1 6v12c0 .65.27 1.14.72 1.54l.08.07 6.72-6.72v-.16L1.72 4.46zm16.9 8.32-2.28-1.32-2.72 2.72 2.72 2.72 2.3-1.33c.66-.38.66-1.41-.02-1.79zM4.15.49l11.4 6.6-2.45 2.45L3.18.58C3.5.46 3.85.49 4.15.67z"/></svg>
+                    <div className="text-left">
+                      <div className="text-xs text-gray-300 leading-none">Google Play</div>
+                      <div className="text-sm font-bold leading-tight">중학교 전쟁</div>
+                    </div>
+                  </a>
+                  <a
+                    href="https://play.google.com/store/apps/details?id=io.hama.hama_high_school_android"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 rounded-xl bg-black px-5 py-3 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+                  >
+                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.65.19.97.07l11.4-6.58-2.45-2.45-9.92 8.96zm-1.46-19.3C1.27 4.86 1 5.35 1 6v12c0 .65.27 1.14.72 1.54l.08.07 6.72-6.72v-.16L1.72 4.46zm16.9 8.32-2.28-1.32-2.72 2.72 2.72 2.72 2.3-1.33c.66-.38.66-1.41-.02-1.79zM4.15.49l11.4 6.6-2.45 2.45L3.18.58C3.5.46 3.85.49 4.15.67z"/></svg>
+                    <div className="text-left">
+                      <div className="text-xs text-gray-300 leading-none">Google Play</div>
+                      <div className="text-sm font-bold leading-tight">고등학교 전쟁</div>
+                    </div>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -386,10 +421,43 @@ export default function Home() {
               <p className="text-xl mb-8 text-purple-100">
                 우리 학교를 전국 1등으로 만들어봐요 🏆
               </p>
-              <div className="flex items-center justify-center gap-4">
-                <button className="rounded-full bg-white px-8 py-4 text-lg font-bold text-purple-600 shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
-                  📱 Android 다운로드
-                </button>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a
+                  href="https://play.google.com/store/apps/details?id=io.hama.hama_school_android"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 rounded-2xl bg-white px-6 py-4 text-gray-900 shadow-xl hover:shadow-2xl hover:scale-105 transition-all"
+                >
+                  <svg className="w-7 h-7 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.65.19.97.07l11.4-6.58-2.45-2.45-9.92 8.96zm-1.46-19.3C1.27 4.86 1 5.35 1 6v12c0 .65.27 1.14.72 1.54l.08.07 6.72-6.72v-.16L1.72 4.46zm16.9 8.32-2.28-1.32-2.72 2.72 2.72 2.72 2.3-1.33c.66-.38.66-1.41-.02-1.79zM4.15.49l11.4 6.6-2.45 2.45L3.18.58C3.5.46 3.85.49 4.15.67z"/></svg>
+                  <div className="text-left">
+                    <div className="text-xs text-gray-500 leading-none">Google Play</div>
+                    <div className="text-base font-bold leading-tight text-orange-600">🏫 초등학교 전쟁</div>
+                  </div>
+                </a>
+                <a
+                  href="https://play.google.com/store/apps/details?id=io.hama.hama_mid_school_android"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 rounded-2xl bg-white px-6 py-4 text-gray-900 shadow-xl hover:shadow-2xl hover:scale-105 transition-all"
+                >
+                  <svg className="w-7 h-7 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.65.19.97.07l11.4-6.58-2.45-2.45-9.92 8.96zm-1.46-19.3C1.27 4.86 1 5.35 1 6v12c0 .65.27 1.14.72 1.54l.08.07 6.72-6.72v-.16L1.72 4.46zm16.9 8.32-2.28-1.32-2.72 2.72 2.72 2.72 2.3-1.33c.66-.38.66-1.41-.02-1.79zM4.15.49l11.4 6.6-2.45 2.45L3.18.58C3.5.46 3.85.49 4.15.67z"/></svg>
+                  <div className="text-left">
+                    <div className="text-xs text-gray-500 leading-none">Google Play</div>
+                    <div className="text-base font-bold leading-tight text-blue-600">🏫 중학교 전쟁</div>
+                  </div>
+                </a>
+                <a
+                  href="https://play.google.com/store/apps/details?id=io.hama.hama_high_school_android"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 rounded-2xl bg-white px-6 py-4 text-gray-900 shadow-xl hover:shadow-2xl hover:scale-105 transition-all"
+                >
+                  <svg className="w-7 h-7 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.65.19.97.07l11.4-6.58-2.45-2.45-9.92 8.96zm-1.46-19.3C1.27 4.86 1 5.35 1 6v12c0 .65.27 1.14.72 1.54l.08.07 6.72-6.72v-.16L1.72 4.46zm16.9 8.32-2.28-1.32-2.72 2.72 2.72 2.72 2.3-1.33c.66-.38.66-1.41-.02-1.79zM4.15.49l11.4 6.6-2.45 2.45L3.18.58C3.5.46 3.85.49 4.15.67z"/></svg>
+                  <div className="text-left">
+                    <div className="text-xs text-gray-500 leading-none">Google Play</div>
+                    <div className="text-base font-bold leading-tight text-green-600">🏫 고등학교 전쟁</div>
+                  </div>
+                </a>
               </div>
             </div>
           </div>

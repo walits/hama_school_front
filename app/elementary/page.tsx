@@ -246,8 +246,20 @@ export default function ElementaryPage() {
       </nav>
 
       <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <div className="mb-8">
+        <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <h1 className="text-4xl font-bold text-gray-900">📊 {PAGE_TITLE} 순위</h1>
+          <a
+            href="https://play.google.com/store/apps/details?id=io.hama.hama_school_android"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 rounded-2xl bg-black px-5 py-3 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all self-start sm:self-auto"
+          >
+            <svg className="w-6 h-6 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.65.19.97.07l11.4-6.58-2.45-2.45-9.92 8.96zm-1.46-19.3C1.27 4.86 1 5.35 1 6v12c0 .65.27 1.14.72 1.54l.08.07 6.72-6.72v-.16L1.72 4.46zm16.9 8.32-2.28-1.32-2.72 2.72 2.72 2.72 2.3-1.33c.66-.38.66-1.41-.02-1.79zM4.15.49l11.4 6.6-2.45 2.45L3.18.58C3.5.46 3.85.49 4.15.67z"/></svg>
+            <div className="text-left">
+              <div className="text-xs text-gray-300 leading-none">Google Play에서 받기</div>
+              <div className="text-sm font-bold leading-tight">초등학교 전쟁 앱</div>
+            </div>
+          </a>
         </div>
 
         {/* 학교 순위 섹션 */}
