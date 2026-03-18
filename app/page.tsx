@@ -134,19 +134,19 @@ export default function Home() {
                   <div className="flex items-center justify-center gap-4 flex-wrap">
                     <a
                       href="/elementary"
-                      className="rounded-full bg-gradient-to-r from-orange-500 to-amber-600 px-8 py-4 text-lg font-bold text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all cursor-pointer inline-block"
+                      className="rounded-lg bg-gradient-to-r from-orange-500 to-amber-600 px-8 py-4 text-lg font-bold text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all cursor-pointer inline-block"
                     >
                       🏫 초등학교 전쟁
                     </a>
                     <a
                       href="/middle"
-                      className="rounded-full bg-gradient-to-r from-blue-500 to-sky-600 px-8 py-4 text-lg font-bold text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all cursor-pointer inline-block"
+                      className="rounded-lg bg-gradient-to-r from-blue-500 to-sky-600 px-8 py-4 text-lg font-bold text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all cursor-pointer inline-block"
                     >
                       🏫 중학교 전쟁
                     </a>
                     <a
                       href="/high"
-                      className="rounded-full bg-gradient-to-r from-green-500 to-emerald-600 px-8 py-4 text-lg font-bold text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all cursor-pointer inline-block"
+                      className="rounded-lg bg-gradient-to-r from-green-500 to-emerald-600 px-8 py-4 text-lg font-bold text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all cursor-pointer inline-block"
                     >
                       🏫 고등학교 전쟁
                     </a>
