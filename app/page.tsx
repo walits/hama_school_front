@@ -125,66 +125,77 @@ export default function Home() {
                 </div>
               </div>
 
-              <div id="ranking-board" className="mt-12 flex flex-col items-center justify-center gap-6">
-                <div className="text-sm font-semibold text-gray-700">📊 상세 순위 보드</div>
-                <div className="flex items-center justify-center gap-6 flex-wrap">
-                  <a
-                    href="/elementary"
-                    className="rounded-full bg-gradient-to-r from-orange-500 to-amber-600 px-10 py-5 text-xl font-bold text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all cursor-pointer inline-block"
-                  >
-                    🏫 초등학교 전쟁
-                  </a>
-                  <a
-                    href="/middle"
-                    className="rounded-full bg-gradient-to-r from-blue-500 to-sky-600 px-10 py-5 text-xl font-bold text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all cursor-pointer inline-block"
-                  >
-                    🏫 중학교 전쟁
-                  </a>
-                  <a
-                    href="/high"
-                    className="rounded-full bg-gradient-to-r from-green-500 to-emerald-600 px-10 py-5 text-xl font-bold text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all cursor-pointer inline-block"
-                  >
-                    🏫 고등학교 전쟁
-                  </a>
+              <div id="ranking-board" className="mt-12 flex flex-col items-center justify-center gap-4 w-full max-w-2xl mx-auto">
+                {/* 상세 순위 보드 박스 */}
+                <div className="w-full bg-white/80 backdrop-blur-sm border-2 border-purple-200 rounded-2xl p-6 shadow-lg">
+                  <div className="text-sm font-bold text-purple-700 mb-4 flex items-center gap-2">
+                    <span>📊</span> 상세 순위 보드
+                  </div>
+                  <div className="flex items-center justify-center gap-4 flex-wrap">
+                    <a
+                      href="/elementary"
+                      className="rounded-full bg-gradient-to-r from-orange-500 to-amber-600 px-8 py-4 text-lg font-bold text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all cursor-pointer inline-block"
+                    >
+                      🏫 초등학교 전쟁
+                    </a>
+                    <a
+                      href="/middle"
+                      className="rounded-full bg-gradient-to-r from-blue-500 to-sky-600 px-8 py-4 text-lg font-bold text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all cursor-pointer inline-block"
+                    >
+                      🏫 중학교 전쟁
+                    </a>
+                    <a
+                      href="/high"
+                      className="rounded-full bg-gradient-to-r from-green-500 to-emerald-600 px-8 py-4 text-lg font-bold text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all cursor-pointer inline-block"
+                    >
+                      🏫 고등학교 전쟁
+                    </a>
+                  </div>
                 </div>
 
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                  <a
-                    href="https://play.google.com/store/apps/details?id=io.hama.hama_school_android"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 rounded-xl bg-black px-5 py-3 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all"
-                  >
-                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.65.19.97.07l11.4-6.58-2.45-2.45-9.92 8.96zm-1.46-19.3C1.27 4.86 1 5.35 1 6v12c0 .65.27 1.14.72 1.54l.08.07 6.72-6.72v-.16L1.72 4.46zm16.9 8.32-2.28-1.32-2.72 2.72 2.72 2.72 2.3-1.33c.66-.38.66-1.41-.02-1.79zM4.15.49l11.4 6.6-2.45 2.45L3.18.58C3.5.46 3.85.49 4.15.67z"/></svg>
-                    <div className="text-left">
-                      <div className="text-xs text-gray-300 leading-none">Google Play</div>
-                      <div className="text-sm font-bold leading-tight">초등학교 전쟁</div>
-                    </div>
-                  </a>
-                  <a
-                    href="https://play.google.com/store/apps/details?id=io.hama.hama_mid_school_android"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 rounded-xl bg-black px-5 py-3 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all"
-                  >
-                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.65.19.97.07l11.4-6.58-2.45-2.45-9.92 8.96zm-1.46-19.3C1.27 4.86 1 5.35 1 6v12c0 .65.27 1.14.72 1.54l.08.07 6.72-6.72v-.16L1.72 4.46zm16.9 8.32-2.28-1.32-2.72 2.72 2.72 2.72 2.3-1.33c.66-.38.66-1.41-.02-1.79zM4.15.49l11.4 6.6-2.45 2.45L3.18.58C3.5.46 3.85.49 4.15.67z"/></svg>
-                    <div className="text-left">
-                      <div className="text-xs text-gray-300 leading-none">Google Play</div>
-                      <div className="text-sm font-bold leading-tight">중학교 전쟁</div>
-                    </div>
-                  </a>
-                  <a
-                    href="https://play.google.com/store/apps/details?id=io.hama.hama_high_school_android"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 rounded-xl bg-black px-5 py-3 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all"
-                  >
-                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.65.19.97.07l11.4-6.58-2.45-2.45-9.92 8.96zm-1.46-19.3C1.27 4.86 1 5.35 1 6v12c0 .65.27 1.14.72 1.54l.08.07 6.72-6.72v-.16L1.72 4.46zm16.9 8.32-2.28-1.32-2.72 2.72 2.72 2.72 2.3-1.33c.66-.38.66-1.41-.02-1.79zM4.15.49l11.4 6.6-2.45 2.45L3.18.58C3.5.46 3.85.49 4.15.67z"/></svg>
-                    <div className="text-left">
-                      <div className="text-xs text-gray-300 leading-none">Google Play</div>
-                      <div className="text-sm font-bold leading-tight">고등학교 전쟁</div>
-                    </div>
-                  </a>
+                {/* 앱 다운로드 박스 */}
+                <div className="w-full bg-gray-900 border-2 border-gray-700 rounded-2xl p-6 shadow-lg">
+                  <div className="text-sm font-bold text-gray-300 mb-4 flex items-center gap-2">
+                    <span>📱</span> Android 앱 다운로드
+                  </div>
+                  <div className="flex items-center justify-center gap-3 flex-wrap">
+                    <a
+                      href="https://play.google.com/store/apps/details?id=io.hama.hama_school_android"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 rounded-xl bg-white/10 border border-white/20 px-4 py-3 text-white hover:bg-white/20 hover:scale-105 transition-all"
+                    >
+                      <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.65.19.97.07l11.4-6.58-2.45-2.45-9.92 8.96zm-1.46-19.3C1.27 4.86 1 5.35 1 6v12c0 .65.27 1.14.72 1.54l.08.07 6.72-6.72v-.16L1.72 4.46zm16.9 8.32-2.28-1.32-2.72 2.72 2.72 2.72 2.3-1.33c.66-.38.66-1.41-.02-1.79zM4.15.49l11.4 6.6-2.45 2.45L3.18.58C3.5.46 3.85.49 4.15.67z"/></svg>
+                      <div className="text-left">
+                        <div className="text-xs text-gray-400 leading-none">Google Play</div>
+                        <div className="text-sm font-bold leading-tight text-orange-400">초등학교 전쟁</div>
+                      </div>
+                    </a>
+                    <a
+                      href="https://play.google.com/store/apps/details?id=io.hama.hama_mid_school_android"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 rounded-xl bg-white/10 border border-white/20 px-4 py-3 text-white hover:bg-white/20 hover:scale-105 transition-all"
+                    >
+                      <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.65.19.97.07l11.4-6.58-2.45-2.45-9.92 8.96zm-1.46-19.3C1.27 4.86 1 5.35 1 6v12c0 .65.27 1.14.72 1.54l.08.07 6.72-6.72v-.16L1.72 4.46zm16.9 8.32-2.28-1.32-2.72 2.72 2.72 2.72 2.3-1.33c.66-.38.66-1.41-.02-1.79zM4.15.49l11.4 6.6-2.45 2.45L3.18.58C3.5.46 3.85.49 4.15.67z"/></svg>
+                      <div className="text-left">
+                        <div className="text-xs text-gray-400 leading-none">Google Play</div>
+                        <div className="text-sm font-bold leading-tight text-blue-400">중학교 전쟁</div>
+                      </div>
+                    </a>
+                    <a
+                      href="https://play.google.com/store/apps/details?id=io.hama.hama_high_school_android"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 rounded-xl bg-white/10 border border-white/20 px-4 py-3 text-white hover:bg-white/20 hover:scale-105 transition-all"
+                    >
+                      <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.65.19.97.07l11.4-6.58-2.45-2.45-9.92 8.96zm-1.46-19.3C1.27 4.86 1 5.35 1 6v12c0 .65.27 1.14.72 1.54l.08.07 6.72-6.72v-.16L1.72 4.46zm16.9 8.32-2.28-1.32-2.72 2.72 2.72 2.72 2.3-1.33c.66-.38.66-1.41-.02-1.79zM4.15.49l11.4 6.6-2.45 2.45L3.18.58C3.5.46 3.85.49 4.15.67z"/></svg>
+                      <div className="text-left">
+                        <div className="text-xs text-gray-400 leading-none">Google Play</div>
+                        <div className="text-sm font-bold leading-tight text-green-400">고등학교 전쟁</div>
+                      </div>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
