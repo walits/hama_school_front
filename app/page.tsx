@@ -128,8 +128,8 @@ export default function Home() {
               <div id="ranking-board" className="mt-12 flex flex-col items-center justify-center gap-4 w-full max-w-2xl mx-auto">
                 {/* 상세 순위 보드 박스 */}
                 <div className="w-full bg-white/80 backdrop-blur-sm border-2 border-purple-200 rounded-2xl p-6 shadow-lg">
-                  <div className="text-sm font-bold text-purple-700 mb-4 flex items-center gap-2">
-                    <span>📊</span> 상세 순위 보드
+                  <div className="text-sm font-bold text-purple-700 mb-4">
+                    상세 순위 보드
                   </div>
                   <div className="flex items-center justify-center gap-4 flex-wrap">
                     <a
@@ -155,8 +155,8 @@ export default function Home() {
 
                 {/* 앱 다운로드 박스 */}
                 <div className="w-full bg-gray-900 border-2 border-gray-700 rounded-2xl p-6 shadow-lg">
-                  <div className="text-sm font-bold text-gray-300 mb-4 flex items-center gap-2">
-                    <span>📱</span> Android 앱 다운로드
+                  <div className="text-sm font-bold text-gray-300 mb-4">
+                    Android 앱 다운로드
                   </div>
                   <div className="flex items-center justify-center gap-3 flex-wrap">
                     <a
