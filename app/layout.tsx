@@ -33,9 +33,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: '/og-image.png',
-        width: 1200,
-        height: 630,
+        url: '/elementary.png',
         alt: '대한민국 학교 퀴즈 전쟁',
       },
     ],
@@ -44,7 +42,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: "대한민국 학교 퀴즈 전쟁",
     description: "전국 학교가 참여하는 학습 전쟁! 우리 학교를 1등으로!",
-    images: ['/og-image.png'],
+    images: ['/elementary.png'],
   },
   robots: {
     index: true,
