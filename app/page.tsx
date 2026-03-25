@@ -196,6 +196,47 @@ export default function Home() {
                       </div>
                     </a>
                   </div>
+                  <div className="text-sm font-bold text-gray-300 mb-4 mt-5">
+                    iOS 앱 다운로드
+                  </div>
+                  <div className="flex items-center justify-center gap-3 flex-wrap">
+                    <a
+                      href="https://apps.apple.com/kr/app/%EC%B4%88%ED%80%B4%EC%A0%84/id6761090421"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 rounded-xl bg-white/10 border border-white/20 px-4 py-3 text-white hover:bg-white/20 hover:scale-105 transition-all"
+                    >
+                      <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                      <div className="text-left">
+                        <div className="text-xs text-gray-400 leading-none">App Store</div>
+                        <div className="text-sm font-bold leading-tight text-orange-400">초등학교 전쟁</div>
+                      </div>
+                    </a>
+                    <a
+                      href="https://apps.apple.com/kr/app/%EC%A4%91%ED%80%B4%EC%A0%84/id6761090339"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 rounded-xl bg-white/10 border border-white/20 px-4 py-3 text-white hover:bg-white/20 hover:scale-105 transition-all"
+                    >
+                      <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                      <div className="text-left">
+                        <div className="text-xs text-gray-400 leading-none">App Store</div>
+                        <div className="text-sm font-bold leading-tight text-blue-400">중학교 전쟁</div>
+                      </div>
+                    </a>
+                    <a
+                      href="https://apps.apple.com/kr/app/%EA%B3%A0%ED%80%B4%EC%A0%84/id6761090364"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 rounded-xl bg-white/10 border border-white/20 px-4 py-3 text-white hover:bg-white/20 hover:scale-105 transition-all"
+                    >
+                      <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                      <div className="text-left">
+                        <div className="text-xs text-gray-400 leading-none">App Store</div>
+                        <div className="text-sm font-bold leading-tight text-green-400">고등학교 전쟁</div>
+                      </div>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -466,6 +507,44 @@ export default function Home() {
                   <svg className="w-7 h-7 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.65.19.97.07l11.4-6.58-2.45-2.45-9.92 8.96zm-1.46-19.3C1.27 4.86 1 5.35 1 6v12c0 .65.27 1.14.72 1.54l.08.07 6.72-6.72v-.16L1.72 4.46zm16.9 8.32-2.28-1.32-2.72 2.72 2.72 2.72 2.3-1.33c.66-.38.66-1.41-.02-1.79zM4.15.49l11.4 6.6-2.45 2.45L3.18.58C3.5.46 3.85.49 4.15.67z"/></svg>
                   <div className="text-left">
                     <div className="text-xs text-gray-500 leading-none">Google Play</div>
+                    <div className="text-base font-bold leading-tight text-green-600">🏫 고등학교 전쟁</div>
+                  </div>
+                </a>
+              </div>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-4">
+                <a
+                  href="https://apps.apple.com/kr/app/%EC%B4%88%ED%80%B4%EC%A0%84/id6761090421"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 rounded-2xl bg-white px-6 py-4 text-gray-900 shadow-xl hover:shadow-2xl hover:scale-105 transition-all"
+                >
+                  <svg className="w-7 h-7 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                  <div className="text-left">
+                    <div className="text-xs text-gray-500 leading-none">App Store</div>
+                    <div className="text-base font-bold leading-tight text-orange-600">🏫 초등학교 전쟁</div>
+                  </div>
+                </a>
+                <a
+                  href="https://apps.apple.com/kr/app/%EC%A4%91%ED%80%B4%EC%A0%84/id6761090339"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 rounded-2xl bg-white px-6 py-4 text-gray-900 shadow-xl hover:shadow-2xl hover:scale-105 transition-all"
+                >
+                  <svg className="w-7 h-7 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                  <div className="text-left">
+                    <div className="text-xs text-gray-500 leading-none">App Store</div>
+                    <div className="text-base font-bold leading-tight text-blue-600">🏫 중학교 전쟁</div>
+                  </div>
+                </a>
+                <a
+                  href="https://apps.apple.com/kr/app/%EA%B3%A0%ED%80%B4%EC%A0%84/id6761090364"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 rounded-2xl bg-white px-6 py-4 text-gray-900 shadow-xl hover:shadow-2xl hover:scale-105 transition-all"
+                >
+                  <svg className="w-7 h-7 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                  <div className="text-left">
+                    <div className="text-xs text-gray-500 leading-none">App Store</div>
                     <div className="text-base font-bold leading-tight text-green-600">🏫 고등학교 전쟁</div>
                   </div>
                 </a>

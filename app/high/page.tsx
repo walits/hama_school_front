@@ -248,18 +248,32 @@ export default function HighPage() {
       <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <h1 className="text-4xl font-bold text-gray-900">📊 {PAGE_TITLE} 순위</h1>
-          <a
-            href="https://play.google.com/store/apps/details?id=io.hama.hama_high_school_android"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-3 rounded-2xl bg-black px-5 py-3 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all self-start sm:self-auto"
-          >
-            <svg className="w-6 h-6 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.65.19.97.07l11.4-6.58-2.45-2.45-9.92 8.96zm-1.46-19.3C1.27 4.86 1 5.35 1 6v12c0 .65.27 1.14.72 1.54l.08.07 6.72-6.72v-.16L1.72 4.46zm16.9 8.32-2.28-1.32-2.72 2.72 2.72 2.72 2.3-1.33c.66-.38.66-1.41-.02-1.79zM4.15.49l11.4 6.6-2.45 2.45L3.18.58C3.5.46 3.85.49 4.15.67z"/></svg>
-            <div className="text-left">
-              <div className="text-xs text-gray-300 leading-none">Google Play에서 받기</div>
-              <div className="text-sm font-bold leading-tight">고등학교 전쟁 앱</div>
-            </div>
-          </a>
+          <div className="flex gap-3 self-start sm:self-auto flex-wrap">
+            <a
+              href="https://play.google.com/store/apps/details?id=io.hama.hama_high_school_android"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 rounded-2xl bg-black px-5 py-3 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+            >
+              <svg className="w-6 h-6 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.65.19.97.07l11.4-6.58-2.45-2.45-9.92 8.96zm-1.46-19.3C1.27 4.86 1 5.35 1 6v12c0 .65.27 1.14.72 1.54l.08.07 6.72-6.72v-.16L1.72 4.46zm16.9 8.32-2.28-1.32-2.72 2.72 2.72 2.72 2.3-1.33c.66-.38.66-1.41-.02-1.79zM4.15.49l11.4 6.6-2.45 2.45L3.18.58C3.5.46 3.85.49 4.15.67z"/></svg>
+              <div className="text-left">
+                <div className="text-xs text-gray-300 leading-none">Google Play에서 받기</div>
+                <div className="text-sm font-bold leading-tight">고등학교 전쟁 앱</div>
+              </div>
+            </a>
+            <a
+              href="https://apps.apple.com/kr/app/%EA%B3%A0%ED%80%B4%EC%A0%84/id6761090364"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 rounded-2xl bg-black px-5 py-3 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+            >
+              <svg className="w-6 h-6 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+              <div className="text-left">
+                <div className="text-xs text-gray-300 leading-none">App Store에서 받기</div>
+                <div className="text-sm font-bold leading-tight">고등학교 전쟁 앱</div>
+              </div>
+            </a>
+          </div>
         </div>
 
         {/* 학교 순위 섹션 */}
