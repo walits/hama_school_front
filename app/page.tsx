@@ -128,27 +128,27 @@ export default function Home() {
               <div id="ranking-board" className="mt-12 flex flex-col items-center justify-center gap-4 w-full max-w-2xl mx-auto">
                 {/* 상세 순위 보드 박스 */}
                 <div className="w-full bg-white/80 backdrop-blur-sm border-2 border-purple-200 rounded-2xl p-6 shadow-lg">
-                  <div className="text-sm font-bold text-purple-700 mb-4">
-                    상세 순위 보드
+                  <div className="text-4xl font-bold text-purple-700 mb-4">
+                    상세 순위 보러 가기
                   </div>
                   <div className="flex items-center justify-center gap-4 flex-wrap">
                     <a
                       href="/elementary"
                       className="rounded-lg bg-gradient-to-r from-orange-500 to-amber-600 px-8 py-4 text-lg font-bold text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all cursor-pointer inline-block"
                     >
-                      🏫 초등학교 전쟁
+                      🏫 초등학교 순위
                     </a>
                     <a
                       href="/middle"
                       className="rounded-lg bg-gradient-to-r from-blue-500 to-sky-600 px-8 py-4 text-lg font-bold text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all cursor-pointer inline-block"
                     >
-                      🏫 중학교 전쟁
+                      🏫 중학교 순위
                     </a>
                     <a
                       href="/high"
                       className="rounded-lg bg-gradient-to-r from-green-500 to-emerald-600 px-8 py-4 text-lg font-bold text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all cursor-pointer inline-block"
                     >
-                      🏫 고등학교 전쟁
+                      🏫 고등학교 순위
                     </a>
                   </div>
                 </div>
