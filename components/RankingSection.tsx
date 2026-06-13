@@ -437,7 +437,7 @@ export default function RankingSection() {
                   </div>
                 </div>
                 <div className="text-right flex-shrink-0">
-                  <div className="text-xl font-bold text-yellow-600 whitespace-nowrap">{Math.round(rankings.elementary[0].totalScore).toLocaleString()}점</div>
+                  <div className="text-xl font-bold text-yellow-600 whitespace-nowrap">{Math.round(rankings.elementary[0].normalizedScore).toLocaleString()}점</div>
                   <div className="text-xs text-gray-600 mt-1 whitespace-nowrap">학생 {rankings.elementary[0].studentCount}명</div>
                 </div>
               </div>
