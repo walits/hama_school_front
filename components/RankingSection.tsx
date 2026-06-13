@@ -214,7 +214,7 @@ export default function RankingSection() {
                           {tierName}
                         </span>
                       </div>
-                      <div className="text-xl font-bold text-yellow-600 whitespace-nowrap">{firstPlace.totalScore.toLocaleString()}점</div>
+                      <div className="text-xl font-bold text-yellow-600 whitespace-nowrap">{Math.round(firstPlace.totalScore).toLocaleString()}점</div>
                     </div>
                   </div>
 
@@ -223,7 +223,7 @@ export default function RankingSection() {
                     <div className="mt-4 pt-4 border-t border-yellow-200">
                       <div className="flex justify-between text-xs text-gray-700 mb-2 font-semibold">
                         <span>다음: {firstPlace.tier.nextTierKorean} {firstPlace.tier.icon}</span>
-                        <span>{firstPlace.tier.remainingScore.toLocaleString()}점 남음</span>
+                        <span>{Math.round(firstPlace.tier.remainingScore).toLocaleString()}점 남음</span>
                       </div>
                       <div className="w-full bg-yellow-200 rounded-full h-3">
                         <div
@@ -270,7 +270,7 @@ export default function RankingSection() {
                               {tierName}
                             </span>
                           </div>
-                          <div className="text-base font-bold text-gray-900">{student.totalScore.toLocaleString()}점</div>
+                          <div className="text-base font-bold text-gray-900">{Math.round(student.totalScore).toLocaleString()}점</div>
                         </div>
                       </div>
                     </div>
@@ -325,7 +325,7 @@ export default function RankingSection() {
                           {tierName}
                         </span>
                       </div>
-                      <div className="text-xl font-bold text-yellow-600 whitespace-nowrap">{firstPlace.normalizedScore.toLocaleString()}점</div>
+                      <div className="text-xl font-bold text-yellow-600 whitespace-nowrap">{Math.round(firstPlace.normalizedScore).toLocaleString()}점</div>
                     </div>
                   </div>
 
@@ -334,7 +334,7 @@ export default function RankingSection() {
                     <div className="mt-4 pt-4 border-t border-yellow-200">
                       <div className="flex justify-between text-sm text-gray-700 mb-2 font-semibold">
                         <span>다음: {firstPlace.tier.nextTierKorean} {firstPlace.tier.icon}</span>
-                        <span>{firstPlace.tier.remainingScore.toLocaleString()}점 남음</span>
+                        <span>{Math.round(firstPlace.tier.remainingScore).toLocaleString()}점 남음</span>
                       </div>
                       <div className="w-full bg-yellow-200 rounded-full h-3">
                         <div
@@ -379,7 +379,7 @@ export default function RankingSection() {
                               {tierName}
                             </span>
                           </div>
-                          <div className="text-base font-bold text-gray-900">{school.normalizedScore.toLocaleString()}점</div>
+                          <div className="text-base font-bold text-gray-900">{Math.round(school.normalizedScore).toLocaleString()}점</div>
                         </div>
                       </div>
                     </div>
@@ -437,7 +437,7 @@ export default function RankingSection() {
                   </div>
                 </div>
                 <div className="text-right flex-shrink-0">
-                  <div className="text-xl font-bold text-yellow-600 whitespace-nowrap">{rankings.elementary[0].totalScore.toLocaleString()}점</div>
+                  <div className="text-xl font-bold text-yellow-600 whitespace-nowrap">{Math.round(rankings.elementary[0].totalScore).toLocaleString()}점</div>
                   <div className="text-xs text-gray-600 mt-1 whitespace-nowrap">학생 {rankings.elementary[0].studentCount}명</div>
                 </div>
               </div>

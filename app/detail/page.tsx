@@ -445,7 +445,7 @@ export default function DetailPage() {
                               <span className="text-xs font-semibold text-gray-800">{tierName}</span>
                             </div>
                             <div className="text-base font-bold text-gray-900">
-                              {school.normalizedScore.toLocaleString()}
+                              {Math.round(school.normalizedScore).toLocaleString()}
                             </div>
                             <div className="text-xs text-gray-500">보정 점수</div>
                           </div>
@@ -628,7 +628,7 @@ export default function DetailPage() {
                               <span className="text-xs font-semibold text-gray-800">{tierName}</span>
                             </div>
                             <div className="text-base font-bold text-purple-600">
-                              {student.totalScore.toLocaleString()}
+                              {Math.round(student.totalScore).toLocaleString()}
                             </div>
                             <div className="text-xs text-gray-500">점수</div>
                           </div>
