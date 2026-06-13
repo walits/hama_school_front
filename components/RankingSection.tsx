@@ -81,12 +81,18 @@ export default function RankingSection() {
   const [modalStudents, setModalStudents] = useState<Student[]>([]);
   const [modalLoading, setModalLoading] = useState(false);
 
+  const PROGRESS_PATHS = {
+    elementary: 'progress',
+    middle: 'mid-progress',
+    high: 'high-progress'
+  };
+
   async function openSchoolModal(school: School, level: SchoolLevel) {
     setModalSchool({ school, level });
     setModalStudents([]);
     setModalLoading(true);
     try {
-      const res = await fetch(`https://api.schoolwar.kr/${STUDENT_PATHS[level]}/ranking/national?schoolId=${school.id}&limit=100`);
+      const res = await fetch(`https://api.schoolwar.kr/${PROGRESS_PATHS[level]}/school-ranking/${school.id}`);
       if (res.ok) {
         const data = await res.json();
         setModalStudents(data.data || data || []);
