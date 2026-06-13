@@ -503,27 +503,6 @@ export default function RankingSection() {
           <h2 className="text-4xl font-bold text-gray-900 mb-4">전국 학교 전쟁 순위</h2>
         </div>
 
-        {/* 초등학교 1등 하이라이트 */}
-        {rankings.elementary.length > 0 && (
-          <div className="mt-8 max-w-3xl mx-auto mb-12">
-            <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-6 border-2 border-yellow-300 shadow-xl">
-              <div className="flex items-center justify-between gap-6 flex-nowrap">
-                <div className="flex items-center gap-3 min-w-0 flex-1">
-                  <div className="text-3xl flex-shrink-0">👑</div>
-                  <div className="text-left min-w-0">
-                    <div className="text-xs text-gray-600 mb-1">🏆 초등학교 전국 1등</div>
-                    <div className="text-lg font-bold text-gray-900 truncate">{rankings.elementary[0].name}</div>
-                    <div className="text-xs text-gray-600 truncate">{rankings.elementary[0].region1} {rankings.elementary[0].region2}</div>
-                  </div>
-                </div>
-                <div className="text-right flex-shrink-0">
-                  <div className="text-xl font-bold text-yellow-600 whitespace-nowrap">{Math.round(rankings.elementary[0].normalizedScore).toLocaleString()}점</div>
-                  <div className="text-xs text-gray-600 mt-1 whitespace-nowrap">학생 {rankings.elementary[0].studentCount}명</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
 
         {/* 학교급별 랭킹 */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-12">
