@@ -153,6 +153,30 @@ export default function Home() {
                   </div>
                 </div>
 
+                {/* 보정점수 체계 박스 */}
+                <div className="w-full bg-white/80 backdrop-blur-sm border-2 border-indigo-200 rounded-2xl p-6 shadow-lg">
+                  <div className="text-lg font-bold text-indigo-700 mb-4">⚖️ 보정점수 체계</div>
+                  <p className="text-sm text-gray-500 mb-4">소규모 학교가 불리하지 않도록 학생 수에 따라 점수를 보정합니다.</p>
+                  <div className="grid grid-cols-4 gap-2 text-center">
+                    <div className="bg-indigo-100 rounded-xl p-3">
+                      <div className="text-xs text-gray-500 mb-1">100명 미만</div>
+                      <div className="text-2xl font-bold text-indigo-600">×2.5</div>
+                    </div>
+                    <div className="bg-blue-100 rounded-xl p-3">
+                      <div className="text-xs text-gray-500 mb-1">100~499명</div>
+                      <div className="text-2xl font-bold text-blue-600">×2.0</div>
+                    </div>
+                    <div className="bg-sky-100 rounded-xl p-3">
+                      <div className="text-xs text-gray-500 mb-1">500~999명</div>
+                      <div className="text-2xl font-bold text-sky-600">×1.5</div>
+                    </div>
+                    <div className="bg-gray-100 rounded-xl p-3">
+                      <div className="text-xs text-gray-500 mb-1">1000명 이상</div>
+                      <div className="text-2xl font-bold text-gray-600">×1.0</div>
+                    </div>
+                  </div>
+                </div>
+
                 {/* 앱 다운로드 박스 */}
                 <div className="w-full bg-gray-900 border-2 border-gray-700 rounded-2xl p-6 shadow-lg">
                   <div className="text-sm font-bold text-gray-300 mb-4">
