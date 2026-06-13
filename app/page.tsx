@@ -153,30 +153,6 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* 보정점수 체계 박스 */}
-                <div className="w-full bg-white/80 backdrop-blur-sm border-2 border-indigo-200 rounded-2xl p-6 shadow-lg">
-                  <div className="text-lg font-bold text-indigo-700 mb-4">⚖️ 보정점수 체계</div>
-                  <p className="text-sm text-gray-500 mb-4">소규모 학교가 불리하지 않도록 학생 수에 따라 점수를 보정합니다.</p>
-                  <div className="grid grid-cols-4 gap-2 text-center">
-                    <div className="bg-indigo-100 rounded-xl p-3">
-                      <div className="text-xs text-gray-500 mb-1">100명 미만</div>
-                      <div className="text-2xl font-bold text-indigo-600">×2.5</div>
-                    </div>
-                    <div className="bg-blue-100 rounded-xl p-3">
-                      <div className="text-xs text-gray-500 mb-1">100~499명</div>
-                      <div className="text-2xl font-bold text-blue-600">×2.0</div>
-                    </div>
-                    <div className="bg-sky-100 rounded-xl p-3">
-                      <div className="text-xs text-gray-500 mb-1">500~999명</div>
-                      <div className="text-2xl font-bold text-sky-600">×1.5</div>
-                    </div>
-                    <div className="bg-gray-100 rounded-xl p-3">
-                      <div className="text-xs text-gray-500 mb-1">1000명 이상</div>
-                      <div className="text-2xl font-bold text-gray-600">×1.0</div>
-                    </div>
-                  </div>
-                </div>
-
                 {/* 앱 다운로드 박스 */}
                 <div className="w-full bg-gray-900 border-2 border-gray-700 rounded-2xl p-6 shadow-lg">
                   <div className="text-sm font-bold text-gray-300 mb-4">
@@ -383,40 +359,34 @@ export default function Home() {
             {/* 학생수 보너스 시스템 */}
             <div className="mt-12 bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl p-8 shadow-lg border-2 border-green-200">
               <h4 className="text-2xl font-bold text-gray-900 mb-4 text-center">🎁 학생수 보너스 시스템</h4>
-              <p className="text-center text-gray-700 mb-6">학생수가 적은 학교일수록 추가 점수를 받아요!</p>
+              <p className="text-center text-gray-700 mb-6">학생수가 적은 학교일수록 보정 배율이 높아요!</p>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                 <div className="bg-white p-5 rounded-xl shadow-md">
-                  <div className="text-center mb-3">
-                    <span className="text-3xl">🏫</span>
-                    <p className="font-bold text-green-900 mt-2">소규모 학교</p>
-                  </div>
-                  <p className="text-green-700 font-bold text-center mt-2">⭐ 높은 보너스!</p>
-                  <p className="text-xs text-gray-500 text-center mt-2">작은 학교도 경쟁력 있게!</p>
+                  <div className="text-3xl mb-2">🏫</div>
+                  <div className="text-sm text-gray-500 mb-1">100명 미만</div>
+                  <div className="text-3xl font-bold text-green-600">×2.5</div>
                 </div>
-
                 <div className="bg-white p-5 rounded-xl shadow-md">
-                  <div className="text-center mb-3">
-                    <span className="text-3xl">🏢</span>
-                    <p className="font-bold text-blue-900 mt-2">중규모 학교</p>
-                  </div>
-                  <p className="text-blue-700 font-bold text-center mt-2">⭐ 적정 보너스</p>
-                  <p className="text-xs text-gray-500 text-center mt-2">균형잡힌 경쟁</p>
+                  <div className="text-3xl mb-2">🏢</div>
+                  <div className="text-sm text-gray-500 mb-1">100~499명</div>
+                  <div className="text-3xl font-bold text-blue-600">×2.0</div>
                 </div>
-
                 <div className="bg-white p-5 rounded-xl shadow-md">
-                  <div className="text-center mb-3">
-                    <span className="text-3xl">🏛️</span>
-                    <p className="font-bold text-purple-900 mt-2">대규모 학교</p>
-                  </div>
-                  <p className="text-purple-700 font-bold text-center mt-2">⭐ 기본 점수</p>
-                  <p className="text-xs text-gray-500 text-center mt-2">참여자가 많으면 유리!</p>
+                  <div className="text-3xl mb-2">🏛️</div>
+                  <div className="text-sm text-gray-500 mb-1">500~999명</div>
+                  <div className="text-3xl font-bold text-sky-600">×1.5</div>
+                </div>
+                <div className="bg-white p-5 rounded-xl shadow-md">
+                  <div className="text-3xl mb-2">🏙️</div>
+                  <div className="text-sm text-gray-500 mb-1">1000명 이상</div>
+                  <div className="text-3xl font-bold text-gray-500">×1.0</div>
                 </div>
               </div>
 
               <div className="mt-6 bg-white p-5 rounded-xl">
                 <p className="text-sm text-gray-700 text-center">
-                  💡 <span className="font-semibold">공정한 경쟁을 위해</span> 학생수에 따라 자동으로 보너스 점수가 추가됩니다.
+                  💡 <span className="font-semibold">공정한 경쟁을 위해</span> 학생수에 따라 자동으로 보정 배율이 적용됩니다.
                   <br />학생이 적어도 열심히 하면 상위권 진입이 가능해요!
                 </p>
               </div>
