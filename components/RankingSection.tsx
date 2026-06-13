@@ -204,9 +204,8 @@ export default function RankingSection() {
   };
 
   const getMultiplier = (studentCount: number) => {
-    if (studentCount < 100) return { label: '×2.5', color: 'text-green-600 bg-green-50' };
-    if (studentCount < 500) return { label: '×2.0', color: 'text-blue-600 bg-blue-50' };
-    if (studentCount < 1000) return { label: '×1.5', color: 'text-sky-600 bg-sky-50' };
+    if (studentCount <= 100) return { label: '×2.0', color: 'text-green-600 bg-green-50' };
+    if (studentCount <= 500) return { label: '×1.5', color: 'text-blue-600 bg-blue-50' };
     return { label: '×1.0', color: 'text-gray-500 bg-gray-100' };
   };
 

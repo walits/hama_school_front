@@ -361,25 +361,20 @@ export default function Home() {
               <h4 className="text-2xl font-bold text-gray-900 mb-4 text-center">🎁 학생수 보너스 시스템</h4>
               <p className="text-center text-gray-700 mb-6">학생수가 적은 학교일수록 보정 배율이 높아요!</p>
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+              <div className="grid grid-cols-3 gap-4 text-center">
                 <div className="bg-white p-5 rounded-xl shadow-md">
                   <div className="text-3xl mb-2">🏫</div>
-                  <div className="text-sm text-gray-500 mb-1">100명 미만</div>
-                  <div className="text-3xl font-bold text-green-600">×2.5</div>
+                  <div className="text-sm text-gray-500 mb-1">100명 이하</div>
+                  <div className="text-3xl font-bold text-green-600">×2.0</div>
                 </div>
                 <div className="bg-white p-5 rounded-xl shadow-md">
                   <div className="text-3xl mb-2">🏢</div>
-                  <div className="text-sm text-gray-500 mb-1">100~499명</div>
-                  <div className="text-3xl font-bold text-blue-600">×2.0</div>
+                  <div className="text-sm text-gray-500 mb-1">101~500명</div>
+                  <div className="text-3xl font-bold text-blue-600">×1.5</div>
                 </div>
                 <div className="bg-white p-5 rounded-xl shadow-md">
                   <div className="text-3xl mb-2">🏛️</div>
-                  <div className="text-sm text-gray-500 mb-1">500~999명</div>
-                  <div className="text-3xl font-bold text-sky-600">×1.5</div>
-                </div>
-                <div className="bg-white p-5 rounded-xl shadow-md">
-                  <div className="text-3xl mb-2">🏙️</div>
-                  <div className="text-sm text-gray-500 mb-1">1000명 이상</div>
+                  <div className="text-sm text-gray-500 mb-1">500명 초과</div>
                   <div className="text-3xl font-bold text-gray-500">×1.0</div>
                 </div>
               </div>
