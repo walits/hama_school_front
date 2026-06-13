@@ -92,7 +92,7 @@ export default function RankingSection() {
     setModalStudents([]);
     setModalLoading(true);
     try {
-      const res = await fetch(`https://api.schoolwar.kr/${PROGRESS_PATHS[level]}/school-ranking/${school.id}`);
+      const res = await fetch(`https://api.schoolwar.kr/${PROGRESS_PATHS[level]}/school-ranking/${school.id}?limit=0`);
       if (res.ok) {
         const data = await res.json();
         setModalStudents(data.data || data || []);
