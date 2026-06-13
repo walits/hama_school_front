@@ -197,6 +197,13 @@ export default function RankingSection() {
     }
   };
 
+  const getMultiplier = (studentCount: number) => {
+    if (studentCount < 100) return { label: '×2.5', color: 'text-green-600 bg-green-50' };
+    if (studentCount < 500) return { label: '×2.0', color: 'text-blue-600 bg-blue-50' };
+    if (studentCount < 1000) return { label: '×1.5', color: 'text-sky-600 bg-sky-50' };
+    return { label: '×1.0', color: 'text-gray-500 bg-gray-100' };
+  };
+
   const renderStudentRankingList = (students: Student[], level: SchoolLevel) => {
     const firstPlace = students[0];
     const restStudents = students.slice(1);
@@ -352,6 +359,7 @@ export default function RankingSection() {
                         </span>
                       </div>
                       <div className="text-xl font-bold text-yellow-600 whitespace-nowrap">{Math.round(firstPlace.normalizedScore).toLocaleString()}점</div>
+                      <div className={`text-xs font-bold px-2 py-0.5 rounded-full mt-1 inline-block ${getMultiplier(firstPlace.studentCount).color}`}>{getMultiplier(firstPlace.studentCount).label} 보정</div>
                     </div>
                   </div>
 
@@ -407,6 +415,7 @@ export default function RankingSection() {
                             </span>
                           </div>
                           <div className="text-base font-bold text-gray-900">{Math.round(school.normalizedScore).toLocaleString()}점</div>
+                          <div className={`text-xs font-bold px-1.5 py-0.5 rounded-full mt-0.5 inline-block ${getMultiplier(school.studentCount).color}`}>{getMultiplier(school.studentCount).label}</div>
                         </div>
                       </div>
                     </div>
