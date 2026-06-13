@@ -51,6 +51,12 @@ const SCHOOL_PATHS = {
   high: 'high-schools'
 };
 
+const STUDENT_PATHS = {
+  elementary: 'users',
+  middle: 'mid-users',
+  high: 'high-users'
+};
+
 export default function RankingSection() {
   const [rankings, setRankings] = useState<{
     elementary: School[];
@@ -71,6 +77,26 @@ export default function RankingSection() {
     high: []
   });
   const [loading, setLoading] = useState(true);
+  const [modalSchool, setModalSchool] = useState<{ school: School; level: SchoolLevel } | null>(null);
+  const [modalStudents, setModalStudents] = useState<Student[]>([]);
+  const [modalLoading, setModalLoading] = useState(false);
+
+  async function openSchoolModal(school: School, level: SchoolLevel) {
+    setModalSchool({ school, level });
+    setModalStudents([]);
+    setModalLoading(true);
+    try {
+      const res = await fetch(`https://api.schoolwar.kr/${STUDENT_PATHS[level]}/ranking/national?schoolId=${school.id}&limit=100`);
+      if (res.ok) {
+        const data = await res.json();
+        setModalStudents(data.data || data || []);
+      }
+    } catch {
+      setModalStudents([]);
+    } finally {
+      setModalLoading(false);
+    }
+  }
 
   useEffect(() => {
     fetchRankings();
@@ -309,7 +335,7 @@ export default function RankingSection() {
               const tierName = firstPlace.tier?.currentKorean || fallbackTier.nameKorean;
 
               return (
-                <div className="bg-gradient-to-r from-yellow-50 via-orange-50 to-yellow-50 border-4 border-yellow-400 rounded-2xl p-6 shadow-xl">
+                <div className="bg-gradient-to-r from-yellow-50 via-orange-50 to-yellow-50 border-4 border-yellow-400 rounded-2xl p-6 shadow-xl cursor-pointer hover:shadow-2xl transition-shadow" onClick={() => openSchoolModal(firstPlace, level)}>
                   <div className="flex items-center justify-between gap-6 mb-4 flex-nowrap">
                     <div className="flex items-center gap-3 min-w-0 flex-1">
                       <div className="text-3xl animate-bounce flex-shrink-0">🥇</div>
@@ -360,7 +386,8 @@ export default function RankingSection() {
                   return (
                     <div
                       key={school.id}
-                      className="p-3 rounded-lg bg-gray-50 border border-gray-200 hover:shadow-md transition-all"
+                      onClick={() => openSchoolModal(school, level)}
+                      className="p-3 rounded-lg bg-gray-50 border border-gray-200 hover:shadow-md transition-all cursor-pointer"
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
@@ -409,6 +436,50 @@ export default function RankingSection() {
   }
 
   return (
+    <>
+    {/* 학교 학생 목록 모달 */}
+    {modalSchool && (
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50" onClick={() => setModalSchool(null)}>
+        <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md max-h-[80vh] flex flex-col" onClick={e => e.stopPropagation()}>
+          <div className="p-6 border-b border-gray-200">
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <h3 className="text-xl font-bold text-gray-900">{modalSchool.school.name}</h3>
+                <p className="text-sm text-gray-500 mt-1">{modalSchool.school.region1} {modalSchool.school.region2} · {SCHOOL_LABELS[modalSchool.level]}</p>
+              </div>
+              <button onClick={() => setModalSchool(null)} className="text-gray-400 hover:text-gray-600 text-2xl leading-none flex-shrink-0">×</button>
+            </div>
+          </div>
+          <div className="overflow-y-auto flex-1 p-4">
+            {modalLoading ? (
+              <div className="flex items-center justify-center py-12">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600"></div>
+              </div>
+            ) : modalStudents.length === 0 ? (
+              <p className="text-center text-gray-500 py-12">학생 데이터가 없습니다.</p>
+            ) : (
+              <div className="space-y-2">
+                {modalStudents.map((student, index) => (
+                  <div key={student.id} className="flex items-center justify-between p-3 rounded-lg bg-gray-50 border border-gray-100">
+                    <div className="flex items-center gap-3">
+                      <div className="text-sm font-bold text-gray-400 w-7">{index + 1}위</div>
+                      <div>
+                        <div className="font-semibold text-gray-900">{student.nickname}</div>
+                        <div className="text-xs text-gray-400">Lv.{student.level}</div>
+                      </div>
+                    </div>
+                    <div className="text-base font-bold text-purple-600">{Math.round(student.totalScore).toLocaleString()}점</div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+          <div className="p-4 border-t border-gray-200">
+            <button onClick={() => setModalSchool(null)} className="w-full py-3 rounded-xl bg-gray-100 hover:bg-gray-200 font-semibold text-gray-700 transition-colors">닫기</button>
+          </div>
+        </div>
+      </div>
+    )}
     <section className="py-20 bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* 상단 제목 */}
@@ -466,5 +537,6 @@ export default function RankingSection() {
         </div>
       </div>
     </section>
+    </>
   );
 }
