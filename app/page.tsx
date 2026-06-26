@@ -290,7 +290,7 @@ export default function Home() {
                   🥈
                 </div>
                 <h3 className="text-xl font-bold text-gray-700 mb-2">Silver</h3>
-                <p className="text-3xl font-bold text-gray-600 mb-1">100,000+</p>
+                <p className="text-3xl font-bold text-gray-600 mb-1">50,000+</p>
                 <p className="text-sm text-gray-600 mb-3">활동적인 학교</p>
                 <div className="space-y-1 text-xs text-gray-500">
                   <p>✓ 은빛 배지 잠금 해제</p>
@@ -304,7 +304,7 @@ export default function Home() {
                   🥇
                 </div>
                 <h3 className="text-xl font-bold text-yellow-900 mb-2">Gold</h3>
-                <p className="text-3xl font-bold text-yellow-600 mb-1">500,000+</p>
+                <p className="text-3xl font-bold text-yellow-600 mb-1">200,000+</p>
                 <p className="text-sm text-gray-600 mb-3">경쟁력 있는 학교</p>
                 <div className="space-y-1 text-xs text-gray-500">
                   <p>✓ 금빛 배지 획득</p>
@@ -318,7 +318,7 @@ export default function Home() {
                   🔷
                 </div>
                 <h3 className="text-xl font-bold text-purple-700 mb-2">Platinum</h3>
-                <p className="text-3xl font-bold text-purple-600 mb-1">2,000,000+</p>
+                <p className="text-3xl font-bold text-purple-600 mb-1">500,000+</p>
                 <p className="text-sm text-gray-600 mb-3">상위권 학교</p>
                 <div className="space-y-1 text-xs text-gray-500">
                   <p>✓ 백금 배지 특전</p>
@@ -332,7 +332,7 @@ export default function Home() {
                   💎
                 </div>
                 <h3 className="text-xl font-bold text-cyan-900 mb-2">Diamond</h3>
-                <p className="text-3xl font-bold text-cyan-600 mb-1">5,000,000+</p>
+                <p className="text-3xl font-bold text-cyan-600 mb-1">1,000,000+</p>
                 <p className="text-sm text-gray-600 mb-3">최강 학교</p>
                 <div className="space-y-1 text-xs text-gray-500">
                   <p>✓ 다이아몬드 배지</p>
@@ -346,7 +346,7 @@ export default function Home() {
                   👑
                 </div>
                 <h3 className="text-xl font-bold text-orange-900 mb-2">Master</h3>
-                <p className="text-3xl font-bold text-orange-600 mb-1">10,000,000+</p>
+                <p className="text-3xl font-bold text-orange-600 mb-1">3,000,000+</p>
                 <p className="text-sm text-gray-600 mb-3">마스터 학교</p>
                 <div className="space-y-1 text-xs text-gray-500">
                   <p>✓ 마스터 왕관 배지</p>
