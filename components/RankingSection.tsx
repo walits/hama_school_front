@@ -186,9 +186,9 @@ export default function RankingSection() {
   const getFallbackTier = (score: number, isStudent: boolean = false) => {
     if (isStudent) {
       // 학생 티어 (모두 검은색으로 통일)
-      if (score >= 500000) return { emoji: '🐉', name: 'DRAGON', nameKorean: '용', color: '#1F2937' };
-      if (score >= 150000) return { emoji: '🦁', name: 'LION', nameKorean: '사자', color: '#1F2937' };
-      if (score >= 50000) return { emoji: '🐺', name: 'WOLF', nameKorean: '늑대', color: '#1F2937' };
+      if (score >= 200000) return { emoji: '🐉', name: 'DRAGON', nameKorean: '용', color: '#1F2937' };
+      if (score >= 80000) return { emoji: '🦁', name: 'LION', nameKorean: '사자', color: '#1F2937' };
+      if (score >= 30000) return { emoji: '🐺', name: 'WOLF', nameKorean: '늑대', color: '#1F2937' };
       if (score >= 10000) return { emoji: '🦊', name: 'FOX', nameKorean: '여우', color: '#1F2937' };
       if (score >= 2500) return { emoji: '🐰', name: 'RABBIT', nameKorean: '토끼', color: '#1F2937' };
       return { emoji: '🐣', name: 'CHICK', nameKorean: '병아리', color: '#1F2937' };

@@ -428,7 +428,7 @@ export default function Home() {
                     🐺
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">늑대</h3>
-                  <p className="text-3xl font-bold text-gray-700 mb-1">50,000+</p>
+                  <p className="text-3xl font-bold text-gray-700 mb-1">30,000+</p>
                   <p className="text-sm text-gray-600">강한 늑대</p>
                 </div>
 
@@ -437,7 +437,7 @@ export default function Home() {
                     🦁
                   </div>
                   <h3 className="text-xl font-bold text-yellow-900 mb-2">사자</h3>
-                  <p className="text-3xl font-bold text-yellow-700 mb-1">150,000+</p>
+                  <p className="text-3xl font-bold text-yellow-700 mb-1">80,000+</p>
                   <p className="text-sm text-gray-600">백수의 왕</p>
                 </div>
 
@@ -446,7 +446,7 @@ export default function Home() {
                     🐉
                   </div>
                   <h3 className="text-xl font-bold text-red-900 mb-2">용</h3>
-                  <p className="text-3xl font-bold text-red-700 mb-1">500,000+</p>
+                  <p className="text-3xl font-bold text-red-700 mb-1">200,000+</p>
                   <p className="text-sm text-gray-600">최강 전설</p>
                 </div>
               </div>
