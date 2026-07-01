@@ -56,10 +56,6 @@ export default function Home() {
                 <a href="/high" className="hover:opacity-80 transition-opacity cursor-pointer">
                   <img src="/high.png" alt="고등학교" className="h-12 w-12 object-contain" />
                 </a>
-                <a href="/game" className="flex flex-col items-center gap-1 hover:opacity-80 transition-opacity cursor-pointer">
-                  <span className="text-3xl leading-none">🎮</span>
-                  <span className="text-xs font-semibold text-orange-600">게임전쟁</span>
-                </a>
               </div>
             </div>
           </div>
