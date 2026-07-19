@@ -126,6 +126,23 @@ export default function Home() {
               </div>
 
               <div id="ranking-board" className="mt-12 flex flex-col items-center justify-center gap-4 w-full max-w-2xl mx-auto">
+                {/* 웹 게임 입장 버튼 */}
+                <div className="w-full">
+                  <a
+                    href="https://game.schoolwar.kr"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-3 w-full rounded-2xl bg-gradient-to-r from-orange-500 to-pink-500 px-6 py-4 text-white font-bold text-lg shadow-lg hover:from-orange-400 hover:to-pink-400 hover:scale-[1.02] active:scale-[0.98] transition-all"
+                  >
+                    <span className="text-2xl">🎮</span>
+                    <div className="text-left">
+                      <div className="text-xs font-normal opacity-80">앱 없이 바로 플레이</div>
+                      <div>대한민국 초등 퀴즈/게임 전쟁 입장하기</div>
+                    </div>
+                    <span className="ml-auto text-xl opacity-70">→</span>
+                  </a>
+                </div>
+
                 {/* 앱 다운로드 박스 */}
                 <div className="w-full bg-gray-900 border-2 border-gray-700 rounded-2xl p-6 shadow-lg">
                   <div className="text-sm font-bold text-gray-300 mb-4">
@@ -212,22 +229,6 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* 웹 게임 입장 버튼 */}
-                <div className="w-full mt-4">
-                  <a
-                    href="https://game.schoolwar.kr"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-3 w-full rounded-2xl bg-gradient-to-r from-orange-500 to-pink-500 px-6 py-4 text-white font-bold text-lg shadow-lg hover:from-orange-400 hover:to-pink-400 hover:scale-[1.02] active:scale-[0.98] transition-all"
-                  >
-                    <span className="text-2xl">🎮</span>
-                    <div className="text-left">
-                      <div className="text-xs font-normal opacity-80">앱 없이 바로 플레이</div>
-                      <div>대한민국 초등 퀴즈 전쟁 입장하기</div>
-                    </div>
-                    <span className="ml-auto text-xl opacity-70">→</span>
-                  </a>
-                </div>
               </div>
             </div>
           </div>
