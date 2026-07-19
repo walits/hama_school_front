@@ -126,33 +126,6 @@ export default function Home() {
               </div>
 
               <div id="ranking-board" className="mt-12 flex flex-col items-center justify-center gap-4 w-full max-w-2xl mx-auto">
-                {/* 상세 순위 보드 박스 */}
-                <div className="w-full bg-white/80 backdrop-blur-sm border-2 border-purple-200 rounded-2xl p-6 shadow-lg">
-                  <div className="text-4xl font-bold text-purple-700 mb-4">
-                    상세 순위 보러 가기
-                  </div>
-                  <div className="flex items-center justify-center gap-4 flex-wrap">
-                    <a
-                      href="/elementary"
-                      className="rounded-lg bg-gradient-to-r from-orange-500 to-amber-600 px-8 py-4 text-lg font-bold text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all cursor-pointer inline-block"
-                    >
-                      🏫 초등학교 순위
-                    </a>
-                    <a
-                      href="/middle"
-                      className="rounded-lg bg-gradient-to-r from-blue-500 to-sky-600 px-8 py-4 text-lg font-bold text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all cursor-pointer inline-block"
-                    >
-                      🏫 중학교 순위
-                    </a>
-                    <a
-                      href="/high"
-                      className="rounded-lg bg-gradient-to-r from-green-500 to-emerald-600 px-8 py-4 text-lg font-bold text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all cursor-pointer inline-block"
-                    >
-                      🏫 고등학교 순위
-                    </a>
-                  </div>
-                </div>
-
                 {/* 앱 다운로드 박스 */}
                 <div className="w-full bg-gray-900 border-2 border-gray-700 rounded-2xl p-6 shadow-lg">
                   <div className="text-sm font-bold text-gray-300 mb-4">
@@ -238,6 +211,23 @@ export default function Home() {
                     </a>
                   </div>
                 </div>
+
+                {/* 웹 게임 입장 버튼 */}
+                <div className="w-full mt-4">
+                  <a
+                    href="https://game.schoolwar.kr"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-3 w-full rounded-2xl bg-gradient-to-r from-orange-500 to-pink-500 px-6 py-4 text-white font-bold text-lg shadow-lg hover:from-orange-400 hover:to-pink-400 hover:scale-[1.02] active:scale-[0.98] transition-all"
+                  >
+                    <span className="text-2xl">🎮</span>
+                    <div className="text-left">
+                      <div className="text-xs font-normal opacity-80">앱 없이 바로 플레이</div>
+                      <div>대한민국 초등 퀴즈 전쟁 입장하기</div>
+                    </div>
+                    <span className="ml-auto text-xl opacity-70">→</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -245,6 +235,35 @@ export default function Home() {
 
         {/* Real-time Rankings Section */}
         <RankingSection />
+
+        {/* 상세 순위 보러 가기 */}
+        <section className="py-10 bg-white">
+          <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+            <div className="bg-white/80 backdrop-blur-sm border-2 border-purple-200 rounded-2xl p-6 shadow-lg text-center">
+              <div className="text-3xl font-bold text-purple-700 mb-4">상세 순위 보러 가기</div>
+              <div className="flex items-center justify-center gap-4 flex-wrap">
+                <a
+                  href="/elementary"
+                  className="rounded-lg bg-gradient-to-r from-orange-500 to-amber-600 px-8 py-4 text-lg font-bold text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all cursor-pointer inline-block"
+                >
+                  🏫 초등학교 순위
+                </a>
+                <a
+                  href="/middle"
+                  className="rounded-lg bg-gradient-to-r from-blue-500 to-sky-600 px-8 py-4 text-lg font-bold text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all cursor-pointer inline-block"
+                >
+                  🏫 중학교 순위
+                </a>
+                <a
+                  href="/high"
+                  className="rounded-lg bg-gradient-to-r from-green-500 to-emerald-600 px-8 py-4 text-lg font-bold text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all cursor-pointer inline-block"
+                >
+                  🏫 고등학교 순위
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* Game Mechanics Section */}
         <section className="py-12 bg-gradient-to-br from-indigo-50 to-purple-50">

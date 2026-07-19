@@ -427,7 +427,7 @@ export default function ElementaryPage() {
                             </div>
                             <div className="min-w-0 flex-1">
                               <div className="font-bold text-gray-900 truncate">{school.name}</div>
-                              <div className="text-xs text-gray-600 truncate">
+                              <div className="text-xs text-gray-800 truncate">
                                 {school.region1} {school.region2} · 학생 {school.studentCount}명
                               </div>
                             </div>
@@ -607,7 +607,7 @@ export default function ElementaryPage() {
                             </div>
                             <div className="min-w-0 flex-1">
                               <div className="font-bold text-gray-900 truncate">{student.nickname}</div>
-                              <div className="text-xs text-gray-600 truncate">
+                              <div className="text-xs text-gray-800 truncate">
                                 {student.school ? `${student.school.name}` : `Lv.${student.level}`}
                               </div>
                             </div>
