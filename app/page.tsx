@@ -134,10 +134,10 @@ export default function Home() {
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-3 w-full rounded-2xl bg-gradient-to-r from-orange-500 to-pink-500 px-6 py-4 text-white font-bold text-lg shadow-lg hover:from-orange-400 hover:to-pink-400 hover:scale-[1.02] active:scale-[0.98] transition-all"
                   >
-                    <span className="text-2xl">🎮</span>
+                    <span className="text-3xl">🎮</span>
                     <div className="text-left">
-                      <div className="text-xs font-normal opacity-80">앱 없이 바로 플레이</div>
-                      <div>대한민국 초등 퀴즈/게임 전쟁 입장하기</div>
+                      <div className="text-base font-extrabold text-yellow-300 tracking-wide drop-shadow">⚡ 앱 없이 바로 플레이!</div>
+                      <div className="text-sm font-semibold opacity-90">대한민국 초등 퀴즈/게임 전쟁 입장하기</div>
                     </div>
                     <span className="ml-auto text-xl opacity-70">→</span>
                   </a>
